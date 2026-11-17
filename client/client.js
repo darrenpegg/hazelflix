@@ -215,7 +215,7 @@ function $run(program) {
 }
 
 // the build that wrote it (build-info)
-const $build = { version: "0.3.1926+eec71cea.dirty", commit: "eec71cea", branch: "reel-release" };
+const $build = { version: "0.3.1930+4bf691fb.dirty", commit: "4bf691fb", branch: "main" };
 
 // the program
 $run(() => {
