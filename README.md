@@ -71,7 +71,12 @@ It holds the database, your settings and keys, uploaded photos, posters, IMDb's 
 
 Replace this folder with the new release's and start it again. Your data stays where it is.
 
+## Licence
+
+HazelFlix is under the [MIT License](LICENSE). What it includes from others, and their licences, is in [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt).
+
 ## Credits
 
 - Lettering in [Inter](https://github.com/rsms/inter), under the SIL Open Font License 1.1 (`assets/fonts/Inter-LICENSE.txt`).
+- Icons from [Heroicons](https://github.com/tailwindlabs/heroicons), under the MIT License.
 - Film data from [TMDB](https://www.themoviedb.org) and [IMDb's non-commercial datasets](https://developer.imdb.com/non-commercial-datasets/) (for personal and non-commercial use). Places from [GeoNames](https://www.geonames.org) (CC BY 4.0).

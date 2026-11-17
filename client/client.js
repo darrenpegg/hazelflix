@@ -215,7 +215,7 @@ function $run(program) {
 }
 
 // the build that wrote it (build-info)
-const $build = { version: "0.3.1930+4bf691fb.dirty", commit: "4bf691fb", branch: "main" };
+const $build = { version: "0.3.1937+83d0dbbd.dirty", commit: "83d0dbbd", branch: "main" };
 
 // the program
 $run(() => {
@@ -2556,7 +2556,7 @@ $run(() => {
     }
   });
   (controls$27remote = function (remote) {
-    let button$27312, chosen$27248, command$27268, dragging$27249, find_playing$27260, from_queue$27258, handler$27i201, handler$27i204, handler$27i205, handler$27i206, has$3f$27261, list$27313, listed$27256, listing$27255, names$27250, names_of$27262, others$27259, queue_of$27257, queue_row$27267, queue_shape$27266, queues$27252, render$27264, seek$27254, seek_value$27269, show_queue$27265, states$27251, tab$21$27263, tabs$27253;
+    let button$27315, chosen$27248, command$27268, dragging$27249, find_playing$27260, from_queue$27258, handler$27i201, handler$27i204, handler$27i205, handler$27i206, has$3f$27261, list$27316, listed$27256, listing$27255, names$27250, names_of$27262, others$27259, queue_of$27257, queue_row$27267, queue_shape$27266, queues$27252, render$27264, seek$27254, seek_value$27269, show_queue$27265, states$27251, tab$21$27263, tabs$27253;
     (chosen$27248 = data_of$27dom(remote, "target"));
     (dragging$27249 = false);
     (names$27250 = "");
@@ -2643,7 +2643,7 @@ $run(() => {
       return append$21$27dom(tabs$27253, b$27275);
     });
     (render$27264 = function () {
-      let buttons$27280, duration$27289, each$27279, each$27281, list$27276, now$27278, or$27value$27285, or$27value$27286, or$27value$27292, playing$27277, playing$27284, position$27290, poster$27287, q$27291, s$27283, src$27288, subtitles$27293, x$27i185, x$27i186, x$27i187, x$27i188, x$27i189, x$27i190, x$27i191, x$27i192, x$27i193, x$27i194;
+      let buttons$27280, duration$27292, each$27279, each$27281, list$27276, now$27278, or$27value$27285, or$27value$27286, or$27value$27287, or$27value$27288, or$27value$27289, or$27value$27295, playing$27277, playing$27284, position$27293, poster$27290, q$27294, s$27283, src$27291, subtitles$27296, x$27i185, x$27i186, x$27i187, x$27i188, x$27i189, x$27i190, x$27i191, x$27i192, x$27i193, x$27i194;
       (list$27276 = others$27259());
       hide$21$27remote("remote-ready", ($B["equal?"]($B["map-ref"](self$27socket, "role", ""), "play") === false));
       hide$21$27remote("remote-none", ($B["null?"](list$27276) === false));
@@ -2677,48 +2677,49 @@ $run(() => {
       (s$27283 = ((or$27value$27285 = from_queue$27258(screen_of$27where(chosen$27248))), ((or$27value$27285) !== false ? or$27value$27285 : $B["map-ref"](states$27251, chosen$27248, false))));
       (playing$27284 = ((s$27283) !== false ? ((x$27i185 = $B["map-ref"](s$27283, "playing", false)), ((x$27i185) !== false ? (((x$27i185 === $sym("null")) === false) ? (($B["equal?"](x$27i185, 0) === false) ? ($B["equal?"](x$27i185, "") === false) : false) : false) : false)) : false));
       hide$21$27remote("remote-now", (playing$27284 === false));
-      hide$21$27remote("remote-idle", ((or$27value$27286 = $B["equal?"](chosen$27248, "")), (or$27value$27286 ? or$27value$27286 : playing$27284)));
+      hide$21$27remote("remote-idle", ((or$27value$27286 = $B["equal?"](chosen$27248, "")), (or$27value$27286 ? or$27value$27286 : ((or$27value$27287 = playing$27284), (or$27value$27287 ? or$27value$27287 : $B["equal?"]($B["map-ref"](self$27socket, "role", ""), "play"))))));
+      hide$21$27remote("remote-idle-ready", ((or$27value$27288 = $B["equal?"](chosen$27248, "")), (or$27value$27288 ? or$27value$27288 : ((or$27value$27289 = playing$27284), (or$27value$27289 ? or$27value$27289 : ($B["equal?"]($B["map-ref"](self$27socket, "role", ""), "play") === false))))));
       if (playing$27284) {
-        (poster$27287 = by_id$27dom("remote-poster"));
-        (src$27288 = ((x$27i186 = $B["map-ref"](s$27283, "poster", "")), ($B["string?"](x$27i186) ? x$27i186 : ($B["number?"](x$27i186) ? $B["number->string"](x$27i186) : ""))));
-        (duration$27289 = ((x$27i187 = $B["map-ref"](s$27283, "duration", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i187) ? (x$27i187 + 0.0) : 0.0)))));
-        (position$27290 = ((x$27i188 = $B["map-ref"](s$27283, "position", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i188) ? (x$27i188 + 0.0) : 0.0)))));
-        (q$27291 = queue_of$27257(screen_of$27where(chosen$27248)));
-        ((poster$27287) !== false ? (set_hidden$21$27dom(poster$27287, $B["equal?"](src$27288, "")), ((($B["equal?"](src$27288, "") === false) ? ($B["equal?"](attribute_of$27dom(poster$27287, "src"), src$27288) === false) : false) ? set_attribute$21$27dom(poster$27287, "src", src$27288) : false)) : false);
+        (poster$27290 = by_id$27dom("remote-poster"));
+        (src$27291 = ((x$27i186 = $B["map-ref"](s$27283, "poster", "")), ($B["string?"](x$27i186) ? x$27i186 : ($B["number?"](x$27i186) ? $B["number->string"](x$27i186) : ""))));
+        (duration$27292 = ((x$27i187 = $B["map-ref"](s$27283, "duration", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i187) ? (x$27i187 + 0.0) : 0.0)))));
+        (position$27293 = ((x$27i188 = $B["map-ref"](s$27283, "position", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i188) ? (x$27i188 + 0.0) : 0.0)))));
+        (q$27294 = queue_of$27257(screen_of$27where(chosen$27248)));
+        ((poster$27290) !== false ? (set_hidden$21$27dom(poster$27290, $B["equal?"](src$27291, "")), ((($B["equal?"](src$27291, "") === false) ? ($B["equal?"](attribute_of$27dom(poster$27290, "src"), src$27291) === false) : false) ? set_attribute$21$27dom(poster$27290, "src", src$27291) : false)) : false);
         text$21$27remote("remote-title", ((x$27i189 = $B["map-ref"](s$27283, "title", "")), ($B["string?"](x$27i189) ? x$27i189 : ($B["number?"](x$27i189) ? $B["number->string"](x$27i189) : ""))));
         text$21$27remote("remote-label", ((x$27i190 = $B["map-ref"](s$27283, "label", "")), ($B["string?"](x$27i190) ? x$27i190 : ($B["number?"](x$27i190) ? $B["number->string"](x$27i190) : ""))));
-        ((dragging$27249) !== false ? false : (set_attribute$21$27dom(seek$27254, "max", $B["number->string"](duration$27289)), set_field$21$27dom(seek$27254, $B["number->string"](position$27290)), text$21$27remote("remote-time", $B["string-append"](clock$27clock((0.0 + position$27290)), " / ", clock$27clock((0.0 + duration$27289))))));
+        ((dragging$27249) !== false ? false : (set_attribute$21$27dom(seek$27254, "max", $B["number->string"](duration$27292)), set_field$21$27dom(seek$27254, $B["number->string"](position$27293)), text$21$27remote("remote-time", $B["string-append"](clock$27clock((0.0 + position$27293)), " / ", clock$27clock((0.0 + duration$27292))))));
         hide$21$27remote("remote-play", (((x$27i191 = $B["map-ref"](s$27283, "paused", false)), ((x$27i191) !== false ? (((x$27i191 === $sym("null")) === false) ? (($B["equal?"](x$27i191, 0) === false) ? ($B["equal?"](x$27i191, "") === false) : false) : false) : false)) === false));
         hide$21$27remote("remote-pause", ((x$27i192 = $B["map-ref"](s$27283, "paused", false)), ((x$27i192) !== false ? (((x$27i192 === $sym("null")) === false) ? (($B["equal?"](x$27i192, 0) === false) ? ($B["equal?"](x$27i192, "") === false) : false) : false) : false)));
-        hide$21$27remote("remote-next-slot", ((q$27291) !== false ? (((or$27value$27292 = ($B["map-ref"](q$27291, "at", 0) < ($B["vector-length"]($B["map-ref"](q$27291, "items", $B["vector"]())) - 1))), (or$27value$27292 ? or$27value$27292 : $B["equal?"]($B["map-ref"](q$27291, "repeat", ""), "all"))) === false) : (((x$27i193 = $B["map-ref"](s$27283, "next", false)), ((x$27i193) !== false ? (((x$27i193 === $sym("null")) === false) ? (($B["equal?"](x$27i193, 0) === false) ? ($B["equal?"](x$27i193, "") === false) : false) : false) : false)) === false)));
-        hide$21$27remote("remote-prev-slot", (((q$27291) !== false ? ($B["vector-length"]($B["map-ref"](q$27291, "items", $B["vector"]())) > 0) : false) === false));
-        ((subtitles$27293 = query_in$27dom(remote, "[data-command=subtitles]")), ((subtitles$27293) !== false ? set_hidden$21$27dom(subtitles$27293, (((x$27i194 = $B["map-ref"](s$27283, "subtitles", false)), ((x$27i194) !== false ? (((x$27i194 === $sym("null")) === false) ? (($B["equal?"](x$27i194, 0) === false) ? ($B["equal?"](x$27i194, "") === false) : false) : false) : false)) === false)) : false));
-        return show_queue$27265(q$27291);
+        hide$21$27remote("remote-next-slot", ((q$27294) !== false ? (((or$27value$27295 = ($B["map-ref"](q$27294, "at", 0) < ($B["vector-length"]($B["map-ref"](q$27294, "items", $B["vector"]())) - 1))), (or$27value$27295 ? or$27value$27295 : $B["equal?"]($B["map-ref"](q$27294, "repeat", ""), "all"))) === false) : (((x$27i193 = $B["map-ref"](s$27283, "next", false)), ((x$27i193) !== false ? (((x$27i193 === $sym("null")) === false) ? (($B["equal?"](x$27i193, 0) === false) ? ($B["equal?"](x$27i193, "") === false) : false) : false) : false)) === false)));
+        hide$21$27remote("remote-prev-slot", (((q$27294) !== false ? ($B["vector-length"]($B["map-ref"](q$27294, "items", $B["vector"]())) > 0) : false) === false));
+        ((subtitles$27296 = query_in$27dom(remote, "[data-command=subtitles]")), ((subtitles$27296) !== false ? set_hidden$21$27dom(subtitles$27296, (((x$27i194 = $B["map-ref"](s$27283, "subtitles", false)), ((x$27i194) !== false ? (((x$27i194 === $sym("null")) === false) ? (($B["equal?"](x$27i194, 0) === false) ? ($B["equal?"](x$27i194, "") === false) : false) : false) : false)) === false)) : false));
+        return show_queue$27265(q$27294);
       } else {
         return false;
       }
     });
     (show_queue$27265 = function (q) {
-      let at$27296, each$27298, items$27295, list$27294, shape$27297;
-      (list$27294 = by_id$27dom("remote-queue"));
-      if ((list$27294) !== false) {
+      let at$27299, each$27301, items$27298, list$27297, shape$27300;
+      (list$27297 = by_id$27dom("remote-queue"));
+      if ((list$27297) !== false) {
         if ((((listing$27255) !== false ? q : false) === false)) {
-          set_hidden$21$27dom(list$27294, true);
+          set_hidden$21$27dom(list$27297, true);
           return (listed$27256 = "");
         } else {
-          (items$27295 = $B["map-ref"](q, "items", $B["vector"]()));
-          (at$27296 = $B["map-ref"](q, "at", 0));
-          (shape$27297 = queue_shape$27266(items$27295, at$27296));
-          set_hidden$21$27dom(list$27294, false);
-          if ($B["equal?"](shape$27297, listed$27256)) {
+          (items$27298 = $B["map-ref"](q, "items", $B["vector"]()));
+          (at$27299 = $B["map-ref"](q, "at", 0));
+          (shape$27300 = queue_shape$27266(items$27298, at$27299));
+          set_hidden$21$27dom(list$27297, false);
+          if ($B["equal?"](shape$27300, listed$27256)) {
             return false;
           } else {
-            (listed$27256 = shape$27297);
-            clear$21$27dom(list$27294);
-            (each$27298 = function (i) {
+            (listed$27256 = shape$27300);
+            clear$21$27dom(list$27297);
+            (each$27301 = function (i) {
               for (;;) {
-                if ((i < $B["vector-length"](items$27295))) {
-                  append$21$27dom(list$27294, queue_row$27267($B["vector-ref"](items$27295, i), (i === at$27296)));
+                if ((i < $B["vector-length"](items$27298))) {
+                  append$21$27dom(list$27297, queue_row$27267($B["vector-ref"](items$27298, i), (i === at$27299)));
                   const $t0 = (i + 1);
                   i = $t0;
                   continue;
@@ -2727,7 +2728,7 @@ $run(() => {
                 }
               }
             });
-            return each$27298(0);
+            return each$27301(0);
           }
         }
       } else {
@@ -2735,8 +2736,8 @@ $run(() => {
       }
     });
     (queue_shape$27266 = function (items, at) {
-      let each$27299;
-      (each$27299 = function (i, out) {
+      let each$27302;
+      (each$27302 = function (i, out) {
         let x$27i195;
         for (;;) {
           if ((i < $B["vector-length"](items))) {
@@ -2750,29 +2751,29 @@ $run(() => {
           }
         }
       });
-      return each$27299(0, $B["number->string"](at));
+      return each$27302(0, $B["number->string"](at));
     });
     (queue_row$27267 = function (item, playing) {
-      let artist$27302, b$27301, li$27300, x$27i196, x$27i197, x$27i198;
-      (li$27300 = make_element$27dom("li"));
-      (b$27301 = make_element$27dom("button"));
-      set_attribute$21$27dom(b$27301, "type", "button");
-      set_attribute$21$27dom(b$27301, "data-item", $B["number->string"](((x$27i196 = $B["map-ref"](item, "id", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i196) ? (x$27i196 + 0.0) : 0.0))))));
-      set_attribute$21$27dom(b$27301, "class", (playing ? "remote-row playing" : "remote-row"));
-      set_text$21$27dom(b$27301, ((artist$27302 = ((x$27i197 = $B["map-ref"](item, "artist", "")), ($B["string?"](x$27i197) ? x$27i197 : ($B["number?"](x$27i197) ? $B["number->string"](x$27i197) : "")))), $B["string-append"](((x$27i198 = $B["map-ref"](item, "title", "")), ($B["string?"](x$27i198) ? x$27i198 : ($B["number?"](x$27i198) ? $B["number->string"](x$27i198) : ""))), ($B["equal?"](artist$27302, "") ? "" : $B["string-append"](" \xc2\xb7 ", artist$27302)))));
-      append$21$27dom(li$27300, b$27301);
-      return li$27300;
+      let artist$27305, b$27304, li$27303, x$27i196, x$27i197, x$27i198;
+      (li$27303 = make_element$27dom("li"));
+      (b$27304 = make_element$27dom("button"));
+      set_attribute$21$27dom(b$27304, "type", "button");
+      set_attribute$21$27dom(b$27304, "data-item", $B["number->string"](((x$27i196 = $B["map-ref"](item, "id", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i196) ? (x$27i196 + 0.0) : 0.0))))));
+      set_attribute$21$27dom(b$27304, "class", (playing ? "remote-row playing" : "remote-row"));
+      set_text$21$27dom(b$27304, ((artist$27305 = ((x$27i197 = $B["map-ref"](item, "artist", "")), ($B["string?"](x$27i197) ? x$27i197 : ($B["number?"](x$27i197) ? $B["number->string"](x$27i197) : "")))), $B["string-append"](((x$27i198 = $B["map-ref"](item, "title", "")), ($B["string?"](x$27i198) ? x$27i198 : ($B["number?"](x$27i198) ? $B["number->string"](x$27i198) : ""))), ($B["equal?"](artist$27305, "") ? "" : $B["string-append"](" \xc2\xb7 ", artist$27305)))));
+      append$21$27dom(li$27303, b$27304);
+      return li$27303;
     });
     (command$27268 = function (name, value) {
-      let msg$27i199, msg$27i200, op$27304, position$27305, q$27303;
+      let msg$27i199, msg$27i200, op$27307, position$27308, q$27306;
       if ($B["equal?"](chosen$27248, "")) {
         return false;
       } else {
-        (q$27303 = from_queue$27258(screen_of$27where(chosen$27248)));
-        (op$27304 = $B["map-ref"](as_queue$27remote, name, false));
-        if ((((q$27303) !== false ? op$27304 : false)) !== false) {
-          (position$27305 = $B["map-ref"](q$27303, "position", 0));
-          (msg$27i199 = $B["map-of"]("type", "queue", "op", op$27304, "queue", $B["map-ref"](q$27303, "queue", 0), "value", ($B["equal?"](name, "back") ? ((position$27305 > 10) ? (position$27305 - 10) : 0) : ($B["equal?"](name, "forward") ? (position$27305 + 30) : value))));
+        (q$27306 = from_queue$27258(screen_of$27where(chosen$27248)));
+        (op$27307 = $B["map-ref"](as_queue$27remote, name, false));
+        if ((((q$27306) !== false ? op$27307 : false)) !== false) {
+          (position$27308 = $B["map-ref"](q$27306, "position", 0));
+          (msg$27i199 = $B["map-of"]("type", "queue", "op", op$27307, "queue", $B["map-ref"](q$27306, "queue", 0), "value", ($B["equal?"](name, "back") ? ((position$27308 > 10) ? (position$27308 - 10) : 0) : ($B["equal?"](name, "forward") ? (position$27308 + 30) : value))));
           if ((open_socket$27socket) !== false) {
             return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i199));
           } else {
@@ -2789,10 +2790,10 @@ $run(() => {
       }
     });
     (seek_value$27269 = function () {
-      let n$27306;
-      (n$27306 = $B["string->number"](value_of$27dom(seek$27254)));
-      if ((n$27306) !== false) {
-        return n$27306;
+      let n$27309;
+      (n$27309 = $B["string->number"](value_of$27dom(seek$27254)));
+      if ((n$27309) !== false) {
+        return n$27309;
       } else {
         return 0;
       }
@@ -2802,13 +2803,13 @@ $run(() => {
       return render$27264();
     }), (handlers$27socket = $B["map-set"](handlers$27socket, "queue", $B["append"]($B["map-ref"](handlers$27socket, "queue", null), $listFromEnd(handler$27i201)))));
     ((handler$27i204 = function (text, m) {
-      let each$27308, l$27307;
-      ((l$27307 = $B["map-ref"](m, "targets", $B["vector"]())), (each$27308 = function (i) {
-        let msg$27i203, q$27309, x$27i202;
+      let each$27311, l$27310;
+      ((l$27310 = $B["map-ref"](m, "targets", $B["vector"]())), (each$27311 = function (i) {
+        let msg$27i203, q$27312, x$27i202;
         for (;;) {
-          if ((i < $B["vector-length"](l$27307))) {
-            (q$27309 = ((x$27i202 = $B["map-ref"]($B["vector-ref"](l$27307, i), "queue", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i202) ? (x$27i202 + 0.0) : 0.0)))));
-            (((q$27309 > 0) ? ($B["map-ref"](queues$27252, q$27309, false) === false) : false) ? ((msg$27i203 = $B["map-of"]("type", "queue", "op", "state", "queue", q$27309)), ((open_socket$27socket) !== false ? socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i203)) : false)) : false);
+          if ((i < $B["vector-length"](l$27310))) {
+            (q$27312 = ((x$27i202 = $B["map-ref"]($B["vector-ref"](l$27310, i), "queue", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i202) ? (x$27i202 + 0.0) : 0.0)))));
+            (((q$27312 > 0) ? ($B["map-ref"](queues$27252, q$27312, false) === false) : false) ? ((msg$27i203 = $B["map-of"]("type", "queue", "op", "state", "queue", q$27312)), ((open_socket$27socket) !== false ? socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i203)) : false)) : false);
             const $t0 = (i + 1);
             i = $t0;
             continue;
@@ -2816,7 +2817,7 @@ $run(() => {
             return false;
           }
         }
-      }), each$27308(0));
+      }), each$27311(0));
       return render$27264();
     }), (handlers$27socket = $B["map-set"](handlers$27socket, "targets", $B["append"]($B["map-ref"](handlers$27socket, "targets", null), $listFromEnd(handler$27i204)))));
     ((handler$27i205 = function (text, m) {
@@ -2834,35 +2835,35 @@ $run(() => {
       }
     });
     on$27dom(tabs$27253, click$27dom, function (e) {
-      let b$27310;
-      (b$27310 = closest_of$27dom(e, "[data-screen]"));
-      if ((b$27310) !== false) {
-        (chosen$27248 = data_of$27dom(b$27310, "screen"));
+      let b$27313;
+      (b$27313 = closest_of$27dom(e, "[data-screen]"));
+      if ((b$27313) !== false) {
+        (chosen$27248 = data_of$27dom(b$27313, "screen"));
         return render$27264();
       } else {
         return false;
       }
     });
     on$27dom(remote, click$27dom, function (e) {
-      let b$27311;
-      (b$27311 = closest_of$27dom(e, "[data-command]"));
-      if ((b$27311) !== false) {
-        return command$27268(data_of$27dom(b$27311, "command"), 0);
+      let b$27314;
+      (b$27314 = closest_of$27dom(e, "[data-command]"));
+      if ((b$27314) !== false) {
+        return command$27268(data_of$27dom(b$27314, "command"), 0);
       } else {
         return false;
       }
     });
-    ((button$27312 = by_id$27dom("remote-list")), ((button$27312) !== false ? on$27dom(button$27312, click$27dom, function (e) {
+    ((button$27315 = by_id$27dom("remote-list")), ((button$27315) !== false ? on$27dom(button$27315, click$27dom, function (e) {
       (listing$27255 = (listing$27255 === false));
-      set_attribute$21$27dom(button$27312, "aria-expanded", ((listing$27255) !== false ? "true" : "false"));
+      set_attribute$21$27dom(button$27315, "aria-expanded", ((listing$27255) !== false ? "true" : "false"));
       return render$27264();
     }) : false));
-    ((list$27313 = by_id$27dom("remote-queue")), ((list$27313) !== false ? on$27dom(list$27313, click$27dom, function (e) {
-      let b$27314, msg$27i207, n$27316, q$27315;
-      (b$27314 = closest_of$27dom(e, "[data-item]"));
-      (q$27315 = queue_of$27257(screen_of$27where(chosen$27248)));
-      if ((((b$27314) !== false ? q$27315 : false)) !== false) {
-        (msg$27i207 = $B["map-of"]("type", "queue", "op", "jump", "queue", $B["map-ref"](q$27315, "id", 0), "item", ((n$27316 = $B["string->number"](data_of$27dom(b$27314, "item"))), ((n$27316) !== false ? n$27316 : 0))));
+    ((list$27316 = by_id$27dom("remote-queue")), ((list$27316) !== false ? on$27dom(list$27316, click$27dom, function (e) {
+      let b$27317, msg$27i207, n$27319, q$27318;
+      (b$27317 = closest_of$27dom(e, "[data-item]"));
+      (q$27318 = queue_of$27257(screen_of$27where(chosen$27248)));
+      if ((((b$27317) !== false ? q$27318 : false)) !== false) {
+        (msg$27i207 = $B["map-of"]("type", "queue", "op", "jump", "queue", $B["map-ref"](q$27318, "id", 0), "item", ((n$27319 = $B["string->number"](data_of$27dom(b$27317, "item"))), ((n$27319) !== false ? n$27319 : 0))));
         if ((open_socket$27socket) !== false) {
           return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i207));
         } else {
@@ -2898,42 +2899,42 @@ $run(() => {
     return false;
   });
   (players_start$27bar = function () {
-    let bar$27318, close$27dom$27319, film$27i214, film$27i217, handler$27i225, on_load$27i215, on_load$27i218, on_sleep$27i220, on_wake$27i219, screen$27317;
-    (screen$27317 = by_id$27dom("player-screen"));
-    (bar$27318 = by_id$27dom("music-bar"));
-    if ((screen$27317) !== false) {
-      return start_player$27player(screen$27317, ((film$27i214 = function (item) {
+    let bar$27321, close$27dom$27322, film$27i214, film$27i217, handler$27i225, on_load$27i215, on_load$27i218, on_sleep$27i220, on_wake$27i219, screen$27320;
+    (screen$27320 = by_id$27dom("player-screen"));
+    (bar$27321 = by_id$27dom("music-bar"));
+    if ((screen$27320) !== false) {
+      return start_player$27player(screen$27320, ((film$27i214 = function (item) {
         return false;
       }), (on_load$27i215 = function (item, p) {
         return false;
       }), $B["%record-make"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", false, false, film$27i214, on_load$27i215, nothing$27bar, nothing$27bar)));
     } else {
-      if ((bar$27318) !== false) {
-        (bar_player$27bar = start_player$27player(bar$27318, ((film$27i217 = function (item) {
+      if ((bar$27321) !== false) {
+        (bar_player$27bar = start_player$27player(bar$27321, ((film$27i217 = function (item) {
           return false;
         }), (on_load$27i218 = function (item, p) {
           return false;
         }), (on_wake$27i219 = function () {
           let r$27i216;
-          set_hidden$21$27dom(bar$27318, false);
+          set_hidden$21$27dom(bar$27321, false);
           add_class$21$27dom(body$27dom(), "with-bar");
           session_set$21$27page(bar_key$27bar, $B["number->string"](((r$27i216 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 6, r$27i216))()));
           return false;
         }), (on_sleep$27i220 = function () {
-          set_hidden$21$27dom(bar$27318, true);
+          set_hidden$21$27dom(bar$27321, true);
           remove_class$21$27dom(body$27dom(), "with-bar");
           session_remove$21$27page(bar_key$27bar);
           return false;
         }), $B["%record-make"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", true, true, film$27i217, on_load$27i218, on_wake$27i219, on_sleep$27i220))));
-        ((close$27dom$27319 = query_in$27dom(bar$27318, "[data-bar-close]")), ((close$27dom$27319) !== false ? on$27dom(close$27dom$27319, click$27dom, function (e) {
+        ((close$27dom$27322 = query_in$27dom(bar$27321, "[data-bar-close]")), ((close$27dom$27322) !== false ? on$27dom(close$27dom$27322, click$27dom, function (e) {
           let r$27i221;
           return ((r$27i221 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 1, r$27i221))();
         }) : false));
         (handler$27i225 = function (text, m) {
-          let r$27i223, r$27i224, was$27320, x$27i222;
-          (was$27320 = ((x$27i222 = $B["string->number"](session_get$27page(bar_key$27bar))), $B["exact"]($B["floor"](($B["number?"](x$27i222) ? (x$27i222 + 0.0) : 0.0)))));
-          if (((was$27320 > 0) ? (((r$27i223 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i223))() === false) : false)) {
-            return ((r$27i224 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 0, r$27i224))(was$27320);
+          let r$27i223, r$27i224, was$27323, x$27i222;
+          (was$27323 = ((x$27i222 = $B["string->number"](session_get$27page(bar_key$27bar))), $B["exact"]($B["floor"](($B["number?"](x$27i222) ? (x$27i222 + 0.0) : 0.0)))));
+          if (((was$27323 > 0) ? (((r$27i223 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i223))() === false) : false)) {
+            return ((r$27i224 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 0, r$27i224))(was$27323);
           } else {
             return false;
           }
@@ -2945,15 +2946,15 @@ $run(() => {
     }
   });
   (digits$3f$27bar = function (s, from) {
-    let loop$27321;
+    let loop$27324;
     if ((from < $B["string-length"](s))) {
-      (loop$27321 = function (i) {
-        let b$27322;
+      (loop$27324 = function (i) {
+        let b$27325;
         for (;;) {
           if ((i === $B["string-length"](s))) {
             return true;
           } else {
-            if (((b$27322 = $B["byte-ref"](s, i)), ((b$27322 >= 48) ? (b$27322 <= 57) : false))) {
+            if (((b$27325 = $B["byte-ref"](s, i)), ((b$27325 >= 48) ? (b$27325 <= 57) : false))) {
               const $t0 = (i + 1);
               i = $t0;
               continue;
@@ -2963,17 +2964,17 @@ $run(() => {
           }
         }
       });
-      return loop$27321(from);
+      return loop$27324(from);
     } else {
       return false;
     }
   });
   (site_path$27bar = function (url) {
-    let cut$27324, origin$27page$27323;
-    (origin$27page$27323 = origin$27page());
-    if (($B["string-prefix?"](origin$27page$27323, url) ? $B["string-prefix?"]("/", $B["substring"](url, $B["string-length"](origin$27page$27323), $B["string-length"](url))) : false)) {
-      (cut$27324 = function (p, i) {
-        let or$27value$27325;
+    let cut$27327, origin$27page$27326;
+    (origin$27page$27326 = origin$27page());
+    if (($B["string-prefix?"](origin$27page$27326, url) ? $B["string-prefix?"]("/", $B["substring"](url, $B["string-length"](origin$27page$27326), $B["string-length"](url))) : false)) {
+      (cut$27327 = function (p, i) {
+        let or$27value$27328;
         for (;;) {
           if ((i === $B["string-length"](p))) {
             if (((i > 1) ? $B["string-suffix?"]("/", p) : false)) {
@@ -2982,7 +2983,7 @@ $run(() => {
               return p;
             }
           } else {
-            if (((or$27value$27325 = ($B["byte-ref"](p, i) === 63)), (or$27value$27325 ? or$27value$27325 : ($B["byte-ref"](p, i) === 35)))) {
+            if (((or$27value$27328 = ($B["byte-ref"](p, i) === 63)), (or$27value$27328 ? or$27value$27328 : ($B["byte-ref"](p, i) === 35)))) {
               const $t0 = $B["substring"](p, 0, i);
               const $t1 = 0;
               p = $t0;
@@ -2998,45 +2999,45 @@ $run(() => {
           }
         }
       });
-      return cut$27324($B["substring"](url, $B["string-length"](origin$27page$27323), $B["string-length"](url)), 0);
+      return cut$27327($B["substring"](url, $B["string-length"](origin$27page$27326), $B["string-length"](url)), 0);
     } else {
       return false;
     }
   });
   (swappable$3f$27bar = function (url) {
-    let or$27value$27327, or$27value$27328, or$27value$27329, or$27value$27330, or$27value$27331, or$27value$27332, or$27value$27333, p$27326;
-    (p$27326 = site_path$27bar(url));
-    if ((p$27326) !== false) {
-      (or$27value$27327 = $B["equal?"](p$27326, "/music"));
-      if (or$27value$27327) {
-        return or$27value$27327;
+    let or$27value$27330, or$27value$27331, or$27value$27332, or$27value$27333, or$27value$27334, or$27value$27335, or$27value$27336, p$27329;
+    (p$27329 = site_path$27bar(url));
+    if ((p$27329) !== false) {
+      (or$27value$27330 = $B["equal?"](p$27329, "/music"));
+      if (or$27value$27330) {
+        return or$27value$27330;
       } else {
-        (or$27value$27328 = $B["equal?"](p$27326, "/music/songs"));
-        if (or$27value$27328) {
-          return or$27value$27328;
+        (or$27value$27331 = $B["equal?"](p$27329, "/music/songs"));
+        if (or$27value$27331) {
+          return or$27value$27331;
         } else {
-          (or$27value$27329 = $B["equal?"](p$27326, "/music/videos"));
-          if (or$27value$27329) {
-            return or$27value$27329;
+          (or$27value$27332 = $B["equal?"](p$27329, "/music/videos"));
+          if (or$27value$27332) {
+            return or$27value$27332;
           } else {
-            (or$27value$27330 = $B["equal?"](p$27326, "/music/artists"));
-            if (or$27value$27330) {
-              return or$27value$27330;
+            (or$27value$27333 = $B["equal?"](p$27329, "/music/artists"));
+            if (or$27value$27333) {
+              return or$27value$27333;
             } else {
-              (or$27value$27331 = $B["equal?"](p$27326, "/music/playlists"));
-              if (or$27value$27331) {
-                return or$27value$27331;
+              (or$27value$27334 = $B["equal?"](p$27329, "/music/playlists"));
+              if (or$27value$27334) {
+                return or$27value$27334;
               } else {
-                (or$27value$27332 = ($B["string-prefix?"]("/album/", p$27326) ? digits$3f$27bar(p$27326, 7) : false));
-                if ((or$27value$27332) !== false) {
-                  return or$27value$27332;
+                (or$27value$27335 = ($B["string-prefix?"]("/album/", p$27329) ? digits$3f$27bar(p$27329, 7) : false));
+                if ((or$27value$27335) !== false) {
+                  return or$27value$27335;
                 } else {
-                  (or$27value$27333 = ($B["string-prefix?"]("/artist/", p$27326) ? digits$3f$27bar(p$27326, 8) : false));
-                  if ((or$27value$27333) !== false) {
-                    return or$27value$27333;
+                  (or$27value$27336 = ($B["string-prefix?"]("/artist/", p$27329) ? digits$3f$27bar(p$27329, 8) : false));
+                  if ((or$27value$27336) !== false) {
+                    return or$27value$27336;
                   } else {
-                    if ($B["string-prefix?"]("/playlist/", p$27326)) {
-                      return digits$3f$27bar(p$27326, 10);
+                    if ($B["string-prefix?"]("/playlist/", p$27329)) {
+                      return digits$3f$27bar(p$27329, 10);
                     } else {
                       return false;
                     }
@@ -3052,14 +3053,14 @@ $run(() => {
     }
   });
   (kept$3f$27bar = function (e) {
-    let or$27value$27334, or$27value$27335;
-    (or$27value$27334 = $B["equal?"](id_of$27dom(e), "music-bar"));
-    if (or$27value$27334) {
-      return or$27value$27334;
+    let or$27value$27337, or$27value$27338;
+    (or$27value$27337 = $B["equal?"](id_of$27dom(e), "music-bar"));
+    if (or$27value$27337) {
+      return or$27value$27337;
     } else {
-      (or$27value$27335 = $B["equal?"](tag_of$27dom(e), "SCRIPT"));
-      if (or$27value$27335) {
-        return or$27value$27335;
+      (or$27value$27338 = $B["equal?"](tag_of$27dom(e), "SCRIPT"));
+      if (or$27value$27338) {
+        return or$27value$27338;
       } else {
         return $B["equal?"](id_of$27dom(e), "intro");
       }
@@ -3067,24 +3068,24 @@ $run(() => {
   });
   (go$27bar = function (url, push) {
     return fetch_text$27fetch(url, function (status, text) {
-      let bar$27340, coming$27345, doc$27336, each$27344, each$27346, fresh$27338, fresh_body$27337, here$27339, new_style$27342, now$27343, old_style$27341;
+      let bar$27343, coming$27348, doc$27339, each$27347, each$27349, fresh$27341, fresh_body$27340, here$27342, new_style$27345, now$27346, old_style$27344;
       if ((status === 0)) {
         return go$21$27page(url);
       } else {
-        (doc$27336 = read_page$27page(text));
-        (fresh_body$27337 = body_of$27dom(doc$27336));
-        (fresh$27338 = ((fresh_body$27337) !== false ? first_element_of$27dom(fresh_body$27337) : false));
-        (here$27339 = first_element_of$27dom(body$27dom()));
-        (bar$27340 = by_id$27dom("music-bar"));
-        if ((((fresh$27338) !== false ? ((here$27339) !== false ? ((bar$27340) !== false ? query_in$27dom(doc$27336, "main") : false) : false) : false)) !== false) {
-          (old_style$27341 = head_style$27page(this_page$27dom()));
-          (new_style$27342 = head_style$27page(doc$27336));
-          ((((old_style$27341) !== false ? new_style$27342 : false)) !== false ? set_text$21$27dom(old_style$27341, text_of$27dom(new_style$27342)) : false);
-          set_page_title$21$27page(page_title$27page(doc$27336));
-          ((now$27343 = children_of$27dom(here$27339)), ((each$27344 = function (i) {
+        (doc$27339 = read_page$27page(text));
+        (fresh_body$27340 = body_of$27dom(doc$27339));
+        (fresh$27341 = ((fresh_body$27340) !== false ? first_element_of$27dom(fresh_body$27340) : false));
+        (here$27342 = first_element_of$27dom(body$27dom()));
+        (bar$27343 = by_id$27dom("music-bar"));
+        if ((((fresh$27341) !== false ? ((here$27342) !== false ? ((bar$27343) !== false ? query_in$27dom(doc$27339, "main") : false) : false) : false)) !== false) {
+          (old_style$27344 = head_style$27page(this_page$27dom()));
+          (new_style$27345 = head_style$27page(doc$27339));
+          ((((old_style$27344) !== false ? new_style$27345 : false)) !== false ? set_text$21$27dom(old_style$27344, text_of$27dom(new_style$27345)) : false);
+          set_page_title$21$27page(page_title$27page(doc$27339));
+          ((now$27346 = children_of$27dom(here$27342)), ((each$27347 = function (i) {
             for (;;) {
-              if ((i < $B["vector-length"](now$27343))) {
-                (kept$3f$27bar($B["vector-ref"](now$27343, i)) ? false : remove$21$27dom($B["vector-ref"](now$27343, i)));
+              if ((i < $B["vector-length"](now$27346))) {
+                (kept$3f$27bar($B["vector-ref"](now$27346, i)) ? false : remove$21$27dom($B["vector-ref"](now$27346, i)));
                 const $t0 = (i + 1);
                 i = $t0;
                 continue;
@@ -3092,11 +3093,11 @@ $run(() => {
                 return false;
               }
             }
-          }), each$27344(0)));
-          ((coming$27345 = children_of$27dom(fresh$27338)), ((each$27346 = function (i) {
+          }), each$27347(0)));
+          ((coming$27348 = children_of$27dom(fresh$27341)), ((each$27349 = function (i) {
             for (;;) {
-              if ((i < $B["vector-length"](coming$27345))) {
-                (kept$3f$27bar($B["vector-ref"](coming$27345, i)) ? false : insert_before$21$27dom(here$27339, import$21$27dom($B["vector-ref"](coming$27345, i)), bar$27340));
+              if ((i < $B["vector-length"](coming$27348))) {
+                (kept$3f$27bar($B["vector-ref"](coming$27348, i)) ? false : insert_before$21$27dom(here$27342, import$21$27dom($B["vector-ref"](coming$27348, i)), bar$27343));
                 const $t0 = (i + 1);
                 i = $t0;
                 continue;
@@ -3104,7 +3105,7 @@ $run(() => {
                 return false;
               }
             }
-          }), each$27346(0)));
+          }), each$27349(0)));
           (push ? push_address$21$27page(url) : false);
           return scroll_to_top$21$27page();
         } else {
@@ -3116,14 +3117,14 @@ $run(() => {
   (pages_swap$27bar = function () {
     if ((by_id$27dom("music-bar")) !== false) {
       on_document$27dom(click$27dom, function (e) {
-        let a$27347, r$27i210$27i226, url$27348;
+        let a$27350, r$27i210$27i226, url$27351;
         if ((((bar_player$27bar) !== false ? ((r$27i210$27i226 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i210$27i226))() : false) ? ((default_prevented$3f$27dom(e) === false) ? plain_click$3f$27dom(e) : false) : false)) {
-          (a$27347 = closest_of$27dom(e, "a[href]"));
-          if ((a$27347) !== false) {
-            (url$27348 = link_address$27page(a$27347));
-            if (((($B["equal?"](url$27348, "") === false) ? swappable$3f$27bar(url$27348) : false)) !== false) {
+          (a$27350 = closest_of$27dom(e, "a[href]"));
+          if ((a$27350) !== false) {
+            (url$27351 = link_address$27page(a$27350));
+            if (((($B["equal?"](url$27351, "") === false) ? swappable$3f$27bar(url$27351) : false)) !== false) {
               prevent_default$21$27dom(e);
-              return go$27bar(url$27348, true);
+              return go$27bar(url$27351, true);
             } else {
               return false;
             }
@@ -3156,13 +3157,13 @@ $run(() => {
   (ask_where$27music = function (msg, there) {
     let choices;
     (choices = function (l) {
-      let t$27350;
+      let t$27353;
       if ($B["null?"](l)) {
         return null;
       } else {
-        (t$27350 = $B["car"](l));
-        return $B["cons"]($B["cons"]($B["map-ref"](t$27350, "name", ""), function () {
-          return send$27music($B["map-set"](msg, "target", $B["map-ref"](t$27350, "id", "")));
+        (t$27353 = $B["car"](l));
+        return $B["cons"]($B["cons"]($B["map-ref"](t$27353, "name", ""), function () {
+          return send$27music($B["map-set"](msg, "target", $B["map-ref"](t$27353, "id", "")));
         }), choices($B["cdr"](l)));
       }
     });
@@ -3173,28 +3174,28 @@ $run(() => {
   (music_buttons$27music = function () {
     let handler$27i232, handler$27i233;
     on_document$27dom(click$27dom, function (e) {
-      let b$27351, msg$27352, n$27349$27i229, n$27349$27i231, s$27i228, s$27i230, there$27353;
-      (b$27351 = closest_of$27dom(e, "[data-music]"));
-      if ((b$27351) !== false) {
-        (msg$27352 = $B["map-of"]("type", "queue", "op", data_of$27dom(b$27351, "music"), "what", data_of$27dom(b$27351, "what"), "id", ((s$27i228 = data_of$27dom(b$27351, "id")), ((n$27349$27i229 = $B["string->number"](s$27i228)), ((n$27349$27i229) !== false ? n$27349$27i229 : 0))), "start", ((s$27i230 = data_of$27dom(b$27351, "start")), ((n$27349$27i231 = $B["string->number"](s$27i230)), ((n$27349$27i231) !== false ? n$27349$27i231 : 0))), "shuffle", $B["equal?"](data_of$27dom(b$27351, "shuffle"), "1"), "next", $B["equal?"](data_of$27dom(b$27351, "next"), "1"), "queue", queue_now$27player));
-        (there$27353 = other_screens$27where());
+      let b$27354, msg$27355, n$27352$27i229, n$27352$27i231, s$27i228, s$27i230, there$27356;
+      (b$27354 = closest_of$27dom(e, "[data-music]"));
+      if ((b$27354) !== false) {
+        (msg$27355 = $B["map-of"]("type", "queue", "op", data_of$27dom(b$27354, "music"), "what", data_of$27dom(b$27354, "what"), "id", ((s$27i228 = data_of$27dom(b$27354, "id")), ((n$27352$27i229 = $B["string->number"](s$27i228)), ((n$27352$27i229) !== false ? n$27352$27i229 : 0))), "start", ((s$27i230 = data_of$27dom(b$27354, "start")), ((n$27352$27i231 = $B["string->number"](s$27i230)), ((n$27352$27i231) !== false ? n$27352$27i231 : 0))), "shuffle", $B["equal?"](data_of$27dom(b$27354, "shuffle"), "1"), "next", $B["equal?"](data_of$27dom(b$27354, "next"), "1"), "queue", queue_now$27player));
+        (there$27356 = other_screens$27where());
         prevent_default$21$27dom(e);
-        if (($B["equal?"](data_of$27dom(b$27351, "music"), "play") ? (($B["null?"](there$27353) === false) ? (dialogs$3f$27dom() ? (by_id$27dom("player-screen") === false) : false) : false) : false)) {
-          return ask_where$27music(msg$27352, there$27353);
+        if (($B["equal?"](data_of$27dom(b$27354, "music"), "play") ? (($B["null?"](there$27356) === false) ? (dialogs$3f$27dom() ? (by_id$27dom("player-screen") === false) : false) : false) : false)) {
+          return ask_where$27music(msg$27355, there$27356);
         } else {
-          return send$27music(msg$27352);
+          return send$27music(msg$27355);
         }
       } else {
         return false;
       }
     });
     ((handler$27i232 = function (text, m) {
-      let name$27354;
+      let name$27357;
       if ((by_id$27dom("player-screen")) !== false) {
         return false;
       } else {
         if (($B["map-ref"](m, "elsewhere", false)) !== false) {
-          return note$27ui(((name$27354 = $B["map-ref"](m, "name", "")), ($B["equal?"](name$27354, "") ? "Playing on the player that's open." : $B["string-append"]("Playing on ", name$27354, "."))));
+          return note$27ui(((name$27357 = $B["map-ref"](m, "name", "")), ($B["equal?"](name$27357, "") ? "Playing on the player that's open." : $B["string-append"]("Playing on ", name$27357, "."))));
         } else {
           if (bar_wake$21$27bar($B["map-ref"](m, "queue", 0))) {
             return false;
@@ -3205,9 +3206,9 @@ $run(() => {
       }
     }), (handlers$27socket = $B["map-set"](handlers$27socket, "queued", $B["append"]($B["map-ref"](handlers$27socket, "queued", null), $listFromEnd(handler$27i232)))));
     (handler$27i233 = function (text, m) {
-      let n$27355;
-      (n$27355 = $B["map-ref"](m, "n", 1));
-      return note$27ui(((n$27355 === 1) ? "Added to the queue." : $B["string-append"]($B["number->string"](n$27355), " added to the queue.")));
+      let n$27358;
+      (n$27358 = $B["map-ref"](m, "n", 1));
+      return note$27ui(((n$27358 === 1) ? "Added to the queue." : $B["string-append"]($B["number->string"](n$27358), " added to the queue.")));
     });
     return (handlers$27socket = $B["map-set"](handlers$27socket, "added", $B["append"]($B["map-ref"](handlers$27socket, "added", null), $listFromEnd(handler$27i233))));
   });
@@ -3230,92 +3231,92 @@ $run(() => {
     }
   });
   (photos_page$27photos = function () {
-    let chooser$27359, finished$27367, going$27362, handler$27i247, line_for$27364, lines$27360, made$27363, next$27366, queue$27361, send_file$27368, sending$3f$27365, watch$27369;
-    (chooser$27359 = by_id$27dom("photo-files"));
-    (lines$27360 = by_id$27dom("photo-uploads"));
-    (queue$27361 = null);
-    (going$27362 = 0);
-    (made$27363 = 0);
-    (line_for$27364 = function (name) {
-      let l$27370;
-      (l$27370 = make_element$27dom("div"));
-      set_text$21$27dom(l$27370, $B["string-append"](name, ": waiting"));
-      append$21$27dom(lines$27360, l$27370);
-      return l$27370;
+    let chooser$27362, finished$27370, going$27365, handler$27i247, line_for$27367, lines$27363, made$27366, next$27369, queue$27364, send_file$27371, sending$3f$27368, watch$27372;
+    (chooser$27362 = by_id$27dom("photo-files"));
+    (lines$27363 = by_id$27dom("photo-uploads"));
+    (queue$27364 = null);
+    (going$27365 = 0);
+    (made$27366 = 0);
+    (line_for$27367 = function (name) {
+      let l$27373;
+      (l$27373 = make_element$27dom("div"));
+      set_text$21$27dom(l$27373, $B["string-append"](name, ": waiting"));
+      append$21$27dom(lines$27363, l$27373);
+      return l$27373;
     });
-    (sending$3f$27365 = function () {
-      let or$27value$27371;
-      (or$27value$27371 = (going$27362 > 0));
-      if (or$27value$27371) {
-        return or$27value$27371;
+    (sending$3f$27368 = function () {
+      let or$27value$27374;
+      (or$27value$27374 = (going$27365 > 0));
+      if (or$27value$27374) {
+        return or$27value$27374;
       } else {
-        return $B["pair?"](queue$27361);
+        return $B["pair?"](queue$27364);
       }
     });
-    (next$27366 = function () {
-      let f$27372;
+    (next$27369 = function () {
+      let f$27375;
       for (;;) {
-        if (((going$27362 < at_once$27photos) ? $B["pair?"](queue$27361) : false)) {
-          (f$27372 = $B["car"](queue$27361));
-          (queue$27361 = $B["cdr"](queue$27361));
-          (going$27362 = (going$27362 + 1));
-          send_file$27368(f$27372);
+        if (((going$27365 < at_once$27photos) ? $B["pair?"](queue$27364) : false)) {
+          (f$27375 = $B["car"](queue$27364));
+          (queue$27364 = $B["cdr"](queue$27364));
+          (going$27365 = (going$27365 + 1));
+          send_file$27371(f$27375);
           continue;
         } else {
           return false;
         }
       }
     });
-    (finished$27367 = function () {
-      (going$27362 = (going$27362 - 1));
-      return next$27366();
+    (finished$27370 = function () {
+      (going$27365 = (going$27365 - 1));
+      return next$27369();
     });
-    (send_file$27368 = function (f) {
-      let began$27377, failed$27378, from$27379, id$27375, line$27376, name$27373, size$27374;
-      (name$27373 = file_name$27fetch(f));
-      (size$27374 = file_size$27fetch(f));
-      (id$27375 = $B["random-hex"](16));
-      (line$27376 = line_for$27364(name$27373));
-      (began$27377 = now_ms$27page());
-      (failed$27378 = function (why) {
-        set_text$21$27dom(line$27376, $B["string-append"](name$27373, ": ", why));
-        set_style$21$27dom(line$27376, "color", "#f0b446");
-        return finished$27367();
+    (send_file$27371 = function (f) {
+      let began$27380, failed$27381, from$27382, id$27378, line$27379, name$27376, size$27377;
+      (name$27376 = file_name$27fetch(f));
+      (size$27377 = file_size$27fetch(f));
+      (id$27378 = $B["random-hex"](16));
+      (line$27379 = line_for$27367(name$27376));
+      (began$27380 = now_ms$27page());
+      (failed$27381 = function (why) {
+        set_text$21$27dom(line$27379, $B["string-append"](name$27376, ": ", why));
+        set_style$21$27dom(line$27379, "color", "#f0b446");
+        return finished$27370();
       });
-      (from$27379 = function (at, tried) {
-        let asked$27381, end$27380, id$27i234, most$27382, name$27i235, size$27i236;
-        (end$27380 = (((at + piece$27photos) > size$27374) ? size$27374 : (at + piece$27photos)));
-        (asked$27381 = now_ms$27page());
-        (most$27382 = 0);
-        return post_piece_watched$21$27fetch(((id$27i234 = id$27375), (name$27i235 = name$27373), (size$27i236 = size$27374), $B["string-append"]("/photos/upload?id=", id$27i234, "&name=", encode_component$27page(name$27i235), "&size=", $B["number->string"](size$27i236))), f, at, end$27380, quiet_ms$27photos, function (sent) {
-          let bytes$27i237, mb$27358$27i239, ms$27i238;
-          ((sent > most$27382) ? (most$27382 = sent) : false);
-          return set_text$21$27dom(line$27376, $B["string-append"](name$27373, ": ", $B["number->string"]($B["quotient"]((100 * (at + sent)), size$27374)), "%", ((bytes$27i237 = (at + sent)), (ms$27i238 = (now_ms$27page() - began$27377)), ((ms$27i238 < 500.0) ? "" : ((mb$27358$27i239 = (((bytes$27i237 + 0.0) / 1048576.0) / (ms$27i238 / 1000.0))), $B["string-append"](", ", $B["number->string"](($B["round"]((mb$27358$27i239 * 10.0)) / 10.0)), " MB/s"))))));
+      (from$27382 = function (at, tried) {
+        let asked$27384, end$27383, id$27i234, most$27385, name$27i235, size$27i236;
+        (end$27383 = (((at + piece$27photos) > size$27377) ? size$27377 : (at + piece$27photos)));
+        (asked$27384 = now_ms$27page());
+        (most$27385 = 0);
+        return post_piece_watched$21$27fetch(((id$27i234 = id$27378), (name$27i235 = name$27376), (size$27i236 = size$27377), $B["string-append"]("/photos/upload?id=", id$27i234, "&name=", encode_component$27page(name$27i235), "&size=", $B["number->string"](size$27i236))), f, at, end$27383, quiet_ms$27photos, function (sent) {
+          let bytes$27i237, mb$27361$27i239, ms$27i238;
+          ((sent > most$27385) ? (most$27385 = sent) : false);
+          return set_text$21$27dom(line$27379, $B["string-append"](name$27376, ": ", $B["number->string"]($B["quotient"]((100 * (at + sent)), size$27377)), "%", ((bytes$27i237 = (at + sent)), (ms$27i238 = (now_ms$27page() - began$27380)), ((ms$27i238 < 500.0) ? "" : ((mb$27361$27i239 = (((bytes$27i237 + 0.0) / 1048576.0) / (ms$27i238 / 1000.0))), $B["string-append"](", ", $B["number->string"](($B["round"]((mb$27361$27i239 * 10.0)) / 10.0)), " MB/s"))))));
         }, function (status, body$27dom) {
-          let bytes$27i244, m$27356$27i240, m$27356$27i242, mb$27358$27i246, ms$27i245, v$27357$27i241, v$27357$27i243, why$27383;
-          post_form$21$27fetch("/photos/log", $B["string-append"]("line=", encode_component$27page($B["string-append"]("page ", $B["substring"](id$27375, 0, 6), " at ", $B["number->string"](at), "-", $B["number->string"](end$27380), " try ", $B["number->string"](tried), ": status ", $B["number->string"](status), " after ", $B["number->string"]($B["exact"]($B["round"]((now_ms$27page() - asked$27381)))), " ms, ", $B["number->string"](most$27382), " bytes seen going, ", (($B["string-length"](body$27dom) > 60) ? $B["substring"](body$27dom, 0, 60) : body$27dom)))));
+          let bytes$27i244, m$27359$27i240, m$27359$27i242, mb$27361$27i246, ms$27i245, v$27360$27i241, v$27360$27i243, why$27386;
+          post_form$21$27fetch("/photos/log", $B["string-append"]("line=", encode_component$27page($B["string-append"]("page ", $B["substring"](id$27378, 0, 6), " at ", $B["number->string"](at), "-", $B["number->string"](end$27383), " try ", $B["number->string"](tried), ": status ", $B["number->string"](status), " after ", $B["number->string"]($B["exact"]($B["round"]((now_ms$27page() - asked$27384)))), " ms, ", $B["number->string"](most$27385), " bytes seen going, ", (($B["string-length"](body$27dom) > 60) ? $B["substring"](body$27dom, 0, 60) : body$27dom)))));
           if ((((status <= 0) ? (tried < tries$27photos) : false)) !== false) {
-            set_text$21$27dom(line$27376, $B["string-append"](name$27373, ": ", ((status === -1) ? $B["string-append"]("the phone wouldn't hand it over (", body$27dom, "), trying again") : "stalled, trying again")));
+            set_text$21$27dom(line$27379, $B["string-append"](name$27376, ": ", ((status === -1) ? $B["string-append"]("the phone wouldn't hand it over (", body$27dom, "), trying again") : "stalled, trying again")));
             return after$27page(2000, function () {
-              return from$27379(at, (tried + 1));
+              return from$27382(at, (tried + 1));
             });
           } else {
             if ((status === -1)) {
-              return failed$27378($B["string-append"]("the phone wouldn't hand it over (", body$27dom, ")"));
+              return failed$27381($B["string-append"]("the phone wouldn't hand it over (", body$27dom, ")"));
             } else {
               if (((status === 200) === false)) {
-                return failed$27378(((why$27383 = ((m$27356$27i240 = $B["json-parse"](body$27dom, false)), ($B["map?"](m$27356$27i240) ? ((v$27357$27i241 = $B["map-ref"](m$27356$27i240, "error", "")), ($B["string?"](v$27357$27i241) ? v$27357$27i241 : "")) : ""))), ($B["equal?"](why$27383, "") ? "couldn't be sent" : why$27383)));
+                return failed$27381(((why$27386 = ((m$27359$27i240 = $B["json-parse"](body$27dom, false)), ($B["map?"](m$27359$27i240) ? ((v$27360$27i241 = $B["map-ref"](m$27359$27i240, "error", "")), ($B["string?"](v$27360$27i241) ? v$27360$27i241 : "")) : ""))), ($B["equal?"](why$27386, "") ? "couldn't be sent" : why$27386)));
               } else {
-                if ((end$27380 < size$27374)) {
-                  return from$27379(end$27380, 1);
+                if ((end$27383 < size$27377)) {
+                  return from$27382(end$27383, 1);
                 } else {
-                  if ($B["equal?"](((m$27356$27i242 = $B["json-parse"](body$27dom, false)), ($B["map?"](m$27356$27i242) ? ((v$27357$27i243 = $B["map-ref"](m$27356$27i242, "state", "")), ($B["string?"](v$27357$27i243) ? v$27357$27i243 : "")) : "")), "known")) {
-                    set_text$21$27dom(line$27376, $B["string-append"](name$27373, ": already here"));
-                    return finished$27367();
+                  if ($B["equal?"](((m$27359$27i242 = $B["json-parse"](body$27dom, false)), ($B["map?"](m$27359$27i242) ? ((v$27360$27i243 = $B["map-ref"](m$27359$27i242, "state", "")), ($B["string?"](v$27360$27i243) ? v$27360$27i243 : "")) : "")), "known")) {
+                    set_text$21$27dom(line$27379, $B["string-append"](name$27376, ": already here"));
+                    return finished$27370();
                   } else {
-                    (made$27363 = (made$27363 + 1));
-                    set_text$21$27dom(line$27376, $B["string-append"](name$27373, ": sent", ((bytes$27i244 = size$27374), (ms$27i245 = (now_ms$27page() - began$27377)), ((ms$27i245 < 500.0) ? "" : ((mb$27358$27i246 = (((bytes$27i244 + 0.0) / 1048576.0) / (ms$27i245 / 1000.0))), $B["string-append"](", ", $B["number->string"](($B["round"]((mb$27358$27i246 * 10.0)) / 10.0)), " MB/s")))), ", being made ready"));
-                    return finished$27367();
+                    (made$27366 = (made$27366 + 1));
+                    set_text$21$27dom(line$27379, $B["string-append"](name$27376, ": sent", ((bytes$27i244 = size$27377), (ms$27i245 = (now_ms$27page() - began$27380)), ((ms$27i245 < 500.0) ? "" : ((mb$27361$27i246 = (((bytes$27i244 + 0.0) / 1048576.0) / (ms$27i245 / 1000.0))), $B["string-append"](", ", $B["number->string"](($B["round"]((mb$27361$27i246 * 10.0)) / 10.0)), " MB/s")))), ", being made ready"));
+                    return finished$27370();
                   }
                 }
               }
@@ -3323,30 +3324,30 @@ $run(() => {
           }
         });
       });
-      if ((size$27374 === 0)) {
-        return failed$27378("empty");
+      if ((size$27377 === 0)) {
+        return failed$27381("empty");
       } else {
-        if ((size$27374 > piece$27photos)) {
-          return failed$27378("too large: 64 MB at most");
+        if ((size$27377 > piece$27photos)) {
+          return failed$27381("too large: 64 MB at most");
         } else {
-          return from$27379(0, 1);
+          return from$27382(0, 1);
         }
       }
     });
-    if ((chooser$27359 === false)) {
+    if ((chooser$27362 === false)) {
       return false;
     } else {
-      (watch$27369 = function (input$27dom) {
+      (watch$27372 = function (input$27dom) {
         return on$27dom(input$27dom, change$27dom, function (e) {
-          (queue$27361 = $B["append"](queue$27361, $B["vector->list"](chosen_files$27fetch(input$27dom))));
-          watch$27369(file_input_again$21$27fetch(input$27dom));
-          return next$27366();
+          (queue$27364 = $B["append"](queue$27364, $B["vector->list"](chosen_files$27fetch(input$27dom))));
+          watch$27372(file_input_again$21$27fetch(input$27dom));
+          return next$27369();
         });
       });
-      watch$27369(chooser$27359);
+      watch$27372(chooser$27362);
       ((handler$27i247 = function (text, msg) {
-        let or$27value$27384;
-        if (((((or$27value$27384 = (made$27363 > 0)), (or$27value$27384 ? or$27value$27384 : query$27dom("[data-photos-making]")))) !== false ? (sending$3f$27365() === false) : false)) {
+        let or$27value$27387;
+        if (((((or$27value$27387 = (made$27366 > 0)), (or$27value$27387 ? or$27value$27387 : query$27dom("[data-photos-making]")))) !== false ? (sending$3f$27368() === false) : false)) {
           return reload$21$27page();
         } else {
           return false;
@@ -3356,55 +3357,55 @@ $run(() => {
     }
   });
   (place_pin$27photos = function (place) {
-    let pin$27385;
-    (pin$27385 = by_id$27dom("photo-dialog-place"));
-    if ((pin$27385) !== false) {
-      set_attribute$21$27dom(pin$27385, "data-place", place);
-      return set_hidden$21$27dom(pin$27385, $B["equal?"](place, ""));
+    let pin$27388;
+    (pin$27388 = by_id$27dom("photo-dialog-place"));
+    if ((pin$27388) !== false) {
+      set_attribute$21$27dom(pin$27388, "data-place", place);
+      return set_hidden$21$27dom(pin$27388, $B["equal?"](place, ""));
     } else {
       return false;
     }
   });
   (photo_dialog$27photos = function () {
-    let cancel$27389, d$27386, delete$27390, pin$27388;
-    (d$27386 = by_id$27dom("photo-dialog"));
-    if (((d$27386) !== false ? dialogs$3f$27dom() : false)) {
+    let cancel$27392, d$27389, delete$27393, pin$27391;
+    (d$27389 = by_id$27dom("photo-dialog"));
+    if (((d$27389) !== false ? dialogs$3f$27dom() : false)) {
       each_of$27photos($B["vector->list"](query_all$27dom("[data-photo]")), function (card) {
         return on$27dom(card, click$27dom, function (e) {
-          let id$27387;
+          let id$27390;
           if (plain_click$3f$27dom(e)) {
-            (id$27387 = data_of$27dom(card, "photo"));
+            (id$27390 = data_of$27dom(card, "photo"));
             prevent_default$21$27dom(e);
-            set_attribute$21$27dom(by_id$27dom("photo-dialog-img"), "src", $B["string-append"]("/photo/", id$27387));
+            set_attribute$21$27dom(by_id$27dom("photo-dialog-img"), "src", $B["string-append"]("/photo/", id$27390));
             set_text$21$27dom(by_id$27dom("photo-dialog-date"), data_of$27dom(card, "date"));
             set_field$21$27dom(by_id$27dom("photo-dialog-caption"), data_of$27dom(card, "caption"));
             place_pin$27photos(data_of$27dom(card, "place"));
-            set_attribute$21$27dom(by_id$27dom("photo-dialog-form"), "action", $B["string-append"]("/photos/", id$27387));
-            return show_modal$21$27dom(d$27386);
+            set_attribute$21$27dom(by_id$27dom("photo-dialog-form"), "action", $B["string-append"]("/photos/", id$27390));
+            return show_modal$21$27dom(d$27389);
           } else {
             return false;
           }
         });
       });
-      ((pin$27388 = by_id$27dom("photo-dialog-place")), ((pin$27388) !== false ? (place_pin$27photos(data_of$27dom(pin$27388, "place")), on$27dom(pin$27388, click$27dom, function (e) {
-        set_field$21$27dom(by_id$27dom("photo-dialog-caption"), data_of$27dom(pin$27388, "place"));
+      ((pin$27391 = by_id$27dom("photo-dialog-place")), ((pin$27391) !== false ? (place_pin$27photos(data_of$27dom(pin$27391, "place")), on$27dom(pin$27391, click$27dom, function (e) {
+        set_field$21$27dom(by_id$27dom("photo-dialog-caption"), data_of$27dom(pin$27391, "place"));
         return focus$21$27dom(by_id$27dom("photo-dialog-caption"));
       })) : false));
-      ((cancel$27389 = query$27dom("[data-photo-cancel]")), (delete$27390 = query$27dom("[data-photo-delete]")), ((cancel$27389) !== false ? on$27dom(cancel$27389, click$27dom, function (e) {
+      ((cancel$27392 = query$27dom("[data-photo-cancel]")), (delete$27393 = query$27dom("[data-photo-delete]")), ((cancel$27392) !== false ? on$27dom(cancel$27392, click$27dom, function (e) {
         prevent_default$21$27dom(e);
-        return close_dialog$21$27dom(d$27386);
-      }) : false), ((delete$27390) !== false ? on$27dom(delete$27390, click$27dom, function (e) {
+        return close_dialog$21$27dom(d$27389);
+      }) : false), ((delete$27393) !== false ? on$27dom(delete$27393, click$27dom, function (e) {
         if (confirmed$3f$27page("Delete this photo? Its original goes too.")) {
           return false;
         } else {
           return prevent_default$21$27dom(e);
         }
       }) : false));
-      return on$27dom(d$27386, click$27dom, function (e) {
+      return on$27dom(d$27389, click$27dom, function (e) {
         if ((closest_of$27dom(e, "#photo-dialog img, #photo-dialog form")) !== false) {
           return false;
         } else {
-          return close_dialog$21$27dom(d$27386);
+          return close_dialog$21$27dom(d$27389);
         }
       });
     } else {
@@ -3433,90 +3434,90 @@ $run(() => {
     }
   });
   (saver_runs$27saver = function () {
-    let end$27402, front$27395, handler$27i254, handler$27i255, load_photos$27403, next_photo$27398, order$27394, photos$27393, saver$27391, show$27400, showing$27397, start$27401, texts$27399, timer$27396, wait$27392;
-    (saver$27391 = by_id$27dom("saver"));
-    (wait$27392 = by_id$27dom("ready-wait"));
-    (photos$27393 = $B["vector"]());
-    (order$27394 = null);
-    (front$27395 = false);
-    (timer$27396 = 0);
-    (showing$27397 = false);
-    (next_photo$27398 = function () {
-      let i$27404, p$27405;
-      ($B["null?"](order$27394) ? (order$27394 = $B["vector->list"](photos$27393)) : false);
-      (i$27404 = $B["exact"]($B["floor"]((random$27page() * $B["length"](order$27394)))));
-      (p$27405 = nth$27saver(order$27394, i$27404));
-      (order$27394 = without$27saver(order$27394, i$27404));
-      return p$27405;
+    let end$27405, front$27398, handler$27i254, handler$27i255, load_photos$27406, next_photo$27401, order$27397, photos$27396, saver$27394, show$27403, showing$27400, start$27404, texts$27402, timer$27399, wait$27395;
+    (saver$27394 = by_id$27dom("saver"));
+    (wait$27395 = by_id$27dom("ready-wait"));
+    (photos$27396 = $B["vector"]());
+    (order$27397 = null);
+    (front$27398 = false);
+    (timer$27399 = 0);
+    (showing$27400 = false);
+    (next_photo$27401 = function () {
+      let i$27407, p$27408;
+      ($B["null?"](order$27397) ? (order$27397 = $B["vector->list"](photos$27396)) : false);
+      (i$27407 = $B["exact"]($B["floor"]((random$27page() * $B["length"](order$27397)))));
+      (p$27408 = nth$27saver(order$27397, i$27407));
+      (order$27397 = without$27saver(order$27397, i$27407));
+      return p$27408;
     });
-    (texts$27399 = function (p) {
+    (texts$27402 = function (p) {
       set_text$21$27dom(by_id$27dom("saver-caption"), $B["map-ref"](p, "caption", ""));
       return set_text$21$27dom(by_id$27dom("saver-date"), $B["map-ref"](p, "date", ""));
     });
-    (show$27400 = function (p) {
-      let back$27409, begin_moving$27414, coming$27406, from$27412, going$27407, img$27408, scale$27i248, scale$27i251, to$27413, url$27410, x$27i249, x$27i252, y$27i250, y$27i253, zoom_in$27411;
-      (coming$27406 = by_id$27dom(($B["equal?"](front$27395, "saver-a") ? "saver-b" : "saver-a")));
-      (going$27407 = ((front$27395) !== false ? by_id$27dom(front$27395) : false));
-      (img$27408 = query_in$27dom(coming$27406, "img"));
-      (back$27409 = query_in$27dom(coming$27406, ".saver-back"));
-      (url$27410 = $B["string-append"]("/photo/", $B["number->string"]($B["map-ref"](p, "id", 0))));
-      (zoom_in$27411 = (random$27page() < 0.5));
-      (from$27412 = ((scale$27i248 = (zoom_in$27411 ? 1.0 : 1.1000000000000001)), (x$27i249 = (-2.0 + ((2.0 - -2.0) * random$27page()))), (y$27i250 = (-2.0 + ((2.0 - -2.0) * random$27page()))), $B["string-append"]("scale(", $realText(scale$27i248), ") translate(", $B["string-append"]($realText(($B["round"]((x$27i249 * 100.0)) / 100.0)), "%"), ", ", $B["string-append"]($realText(($B["round"]((y$27i250 * 100.0)) / 100.0)), "%"), ")")));
-      (to$27413 = ((scale$27i251 = (zoom_in$27411 ? 1.1000000000000001 : 1.0)), (x$27i252 = (-2.0 + ((2.0 - -2.0) * random$27page()))), (y$27i253 = (-2.0 + ((2.0 - -2.0) * random$27page()))), $B["string-append"]("scale(", $realText(scale$27i251), ") translate(", $B["string-append"]($realText(($B["round"]((x$27i252 * 100.0)) / 100.0)), "%"), ", ", $B["string-append"]($realText(($B["round"]((y$27i253 * 100.0)) / 100.0)), "%"), ")")));
-      (begin_moving$27414 = function () {
-        set_style$21$27dom(coming$27406, "transition", "none");
-        set_style$21$27dom(coming$27406, "transform", from$27412);
-        set_style$21$27dom(coming$27406, "opacity", "0");
+    (show$27403 = function (p) {
+      let back$27412, begin_moving$27417, coming$27409, from$27415, going$27410, img$27411, scale$27i248, scale$27i251, to$27416, url$27413, x$27i249, x$27i252, y$27i250, y$27i253, zoom_in$27414;
+      (coming$27409 = by_id$27dom(($B["equal?"](front$27398, "saver-a") ? "saver-b" : "saver-a")));
+      (going$27410 = ((front$27398) !== false ? by_id$27dom(front$27398) : false));
+      (img$27411 = query_in$27dom(coming$27409, "img"));
+      (back$27412 = query_in$27dom(coming$27409, ".saver-back"));
+      (url$27413 = $B["string-append"]("/photo/", $B["number->string"]($B["map-ref"](p, "id", 0))));
+      (zoom_in$27414 = (random$27page() < 0.5));
+      (from$27415 = ((scale$27i248 = (zoom_in$27414 ? 1.0 : 1.1000000000000001)), (x$27i249 = (-2.0 + ((2.0 - -2.0) * random$27page()))), (y$27i250 = (-2.0 + ((2.0 - -2.0) * random$27page()))), $B["string-append"]("scale(", $realText(scale$27i248), ") translate(", $B["string-append"]($realText(($B["round"]((x$27i249 * 100.0)) / 100.0)), "%"), ", ", $B["string-append"]($realText(($B["round"]((y$27i250 * 100.0)) / 100.0)), "%"), ")")));
+      (to$27416 = ((scale$27i251 = (zoom_in$27414 ? 1.1000000000000001 : 1.0)), (x$27i252 = (-2.0 + ((2.0 - -2.0) * random$27page()))), (y$27i253 = (-2.0 + ((2.0 - -2.0) * random$27page()))), $B["string-append"]("scale(", $realText(scale$27i251), ") translate(", $B["string-append"]($realText(($B["round"]((x$27i252 * 100.0)) / 100.0)), "%"), ", ", $B["string-append"]($realText(($B["round"]((y$27i253 * 100.0)) / 100.0)), "%"), ")")));
+      (begin_moving$27417 = function () {
+        set_style$21$27dom(coming$27409, "transition", "none");
+        set_style$21$27dom(coming$27409, "transform", from$27415);
+        set_style$21$27dom(coming$27409, "opacity", "0");
         after$27page(50, function () {
-          set_style$21$27dom(coming$27406, "transition", "transform 11.5s linear, opacity 1.5s ease");
-          set_style$21$27dom(coming$27406, "transform", to$27413);
-          set_style$21$27dom(coming$27406, "opacity", "1");
-          texts$27399(p);
-          if ((going$27407) !== false) {
-            return set_style$21$27dom(going$27407, "opacity", "0");
+          set_style$21$27dom(coming$27409, "transition", "transform 11.5s linear, opacity 1.5s ease");
+          set_style$21$27dom(coming$27409, "transform", to$27416);
+          set_style$21$27dom(coming$27409, "opacity", "1");
+          texts$27402(p);
+          if ((going$27410) !== false) {
+            return set_style$21$27dom(going$27410, "opacity", "0");
           } else {
             return false;
           }
         });
-        (front$27395 = id_of$27dom(coming$27406));
-        return (timer$27396 = after$27page(shown_ms$27saver, function () {
-          if ((showing$27397) !== false) {
-            return show$27400(next_photo$27398());
+        (front$27398 = id_of$27dom(coming$27409));
+        return (timer$27399 = after$27page(shown_ms$27saver, function () {
+          if ((showing$27400) !== false) {
+            return show$27403(next_photo$27401());
           } else {
             return false;
           }
         }));
       });
-      on_once$27dom(img$27408, load$27dom, function (e) {
-        if ((showing$27397) !== false) {
-          return begin_moving$27414();
+      on_once$27dom(img$27411, load$27dom, function (e) {
+        if ((showing$27400) !== false) {
+          return begin_moving$27417();
         } else {
           return false;
         }
       });
-      set_style$21$27dom(back$27409, "background-image", $B["string-append"]("url(", url$27410, ")"));
-      return set_attribute$21$27dom(img$27408, "src", url$27410);
+      set_style$21$27dom(back$27412, "background-image", $B["string-append"]("url(", url$27413, ")"));
+      return set_attribute$21$27dom(img$27411, "src", url$27413);
     });
-    (start$27401 = function () {
-      (showing$27397 = true);
+    (start$27404 = function () {
+      (showing$27400 = true);
       set_text$21$27dom(by_id$27dom("saver-name"), $B["map-ref"](self$27socket, "name", ""));
-      set_hidden$21$27dom(saver$27391, false);
-      return show$27400(next_photo$27398());
+      set_hidden$21$27dom(saver$27394, false);
+      return show$27403(next_photo$27401());
     });
-    (end$27402 = function () {
-      (showing$27397 = false);
-      cancel_timer$21$27page(timer$27396);
-      return set_hidden$21$27dom(saver$27391, true);
+    (end$27405 = function () {
+      (showing$27400 = false);
+      cancel_timer$21$27page(timer$27399);
+      return set_hidden$21$27dom(saver$27394, true);
     });
-    (load_photos$27403 = function () {
+    (load_photos$27406 = function () {
       return fetch_text$27fetch("/photos.json", function (status, body$27dom) {
-        let l$27415;
-        (l$27415 = ((status === 200) ? $B["json-parse"](body$27dom, false) : false));
-        if ($B["vector?"](l$27415)) {
-          (photos$27393 = l$27415);
-          (order$27394 = null);
-          if (((showing$27397) !== false ? ($B["vector-length"](l$27415) === 0) : false)) {
-            return end$27402();
+        let l$27418;
+        (l$27418 = ((status === 200) ? $B["json-parse"](body$27dom, false) : false));
+        if ($B["vector?"](l$27418)) {
+          (photos$27396 = l$27418);
+          (order$27397 = null);
+          if (((showing$27400) !== false ? ($B["vector-length"](l$27418) === 0) : false)) {
+            return end$27405();
           } else {
             return false;
           }
@@ -3525,22 +3526,22 @@ $run(() => {
         }
       });
     });
-    if ((((saver$27391) !== false ? wait$27392 : false)) !== false) {
-      load_photos$27403();
+    if ((((saver$27394) !== false ? wait$27395 : false)) !== false) {
+      load_photos$27406();
       ((handler$27i254 = function (text, m) {
-        return load_photos$27403();
+        return load_photos$27406();
       }), (handlers$27socket = $B["map-set"](handlers$27socket, "photos", $B["append"]($B["map-ref"](handlers$27socket, "photos", null), $listFromEnd(handler$27i254)))));
       ((handler$27i255 = function (text, m) {
         return set_text$21$27dom(by_id$27dom("saver-name"), $B["map-ref"](self$27socket, "name", ""));
       }), (handlers$27socket = $B["map-set"](handlers$27socket, "you", $B["append"]($B["map-ref"](handlers$27socket, "you", null), $listFromEnd(handler$27i255)))));
       return every$27page(1000, function () {
-        let want$27416;
-        (want$27416 = ((hidden$3f$27dom(wait$27392) === false) ? ($B["vector-length"](photos$27393) > 0) : false));
-        if ((want$27416 ? (showing$27397 === false) : false)) {
-          return start$27401();
+        let want$27419;
+        (want$27419 = ((hidden$3f$27dom(wait$27395) === false) ? ($B["vector-length"](photos$27396) > 0) : false));
+        if ((want$27419 ? (showing$27400 === false) : false)) {
+          return start$27404();
         } else {
-          if (((showing$27397) !== false ? (want$27416 === false) : false)) {
-            return end$27402();
+          if (((showing$27400) !== false ? (want$27419 === false) : false)) {
+            return end$27405();
           } else {
             return false;
           }
