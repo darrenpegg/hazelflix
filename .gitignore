@@ -1,0 +1,8 @@
+# HazelFlix keeps its data outside this folder (README.md, "Your data"); these are in case it's pointed here
+*.db
+*.db-shm
+*.db-wal
+data/
+*.log
+.DS_Store
+node_modules/
