@@ -32,4 +32,4 @@ node -e 'const [a, b] = process.versions.node.split(".").map(Number); process.ex
 
 mkdir -p "$data"
 cd "$here"
-exec node --no-warnings reel.js --db "$data/reel.db" --assets "$here/assets" --client "$here/client" "$@"
+exec node --no-warnings reel.js --db "$data/reel.db" --assets "$here/assets" --client "$here/client" --docs "$here/help" "$@"

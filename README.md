@@ -14,6 +14,8 @@ HazelFlix is one JavaScript file, run by Node.js. There's nothing to install fro
 > `reel.js` here is what lsp made of it for Node.js. It's a real program because a real program finds what a test
 > suite doesn't, so expect it to be useful, but not a product.
 
+**Help:** [`help/`](help/index.md), also in HazelFlix itself at `/help`. **What's new:** [RELEASE-NOTES.md](RELEASE-NOTES.md). HazelFlix is made to be run from your phone: [put it on your home screen](help/phone.md).
+
 ## What you need
 
 - [Node.js](https://nodejs.org) 22.5 or later
