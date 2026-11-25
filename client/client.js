@@ -62,6 +62,12 @@ function $bits(field, value) {
 class LspError extends Error {}
 
 function $trap(why) { throw new LspError(why); }
+function $theReal(x) { return typeof x === "number" ? x : $trap("wrong type: not a real"); }
+// the boxed types' (#1175)
+function $theString(x) { return typeof x === "string" ? x : $trap("wrong type: not a string"); }
+function $theList(x) { return x === null || x instanceof Pair ? x : $trap("wrong type: not a list"); }
+function $theVector(x) { return Array.isArray(x) ? x : $trap("wrong type: not a vector"); }
+function $theMap(x) { return x instanceof Map ? x : $trap("wrong type: not a map"); }
 // exact's trap, made once: the backend throws it from a statement of its own ahead of the one the exact is in, which
 // V8 keeps fast in a loop where a call there (even one never made) costs it the loop's unboxed reals (#1073)
 const $notInteger = new LspError("wrong type: not an integer");
@@ -218,11 +224,11 @@ function $run(program) {
 }
 
 // the build that wrote it (build-info)
-const $build = { version: "0.3.2168+34cc1dfa.dirty", commit: "34cc1dfa", branch: "main" };
+const $build = { version: "0.3.2391+c6bc7d15.dirty", commit: "c6bc7d15", branch: "main" };
 
 // the program
 $run(() => {
-  let add_class$21$27dom, address$27page, after$27page, again$27intro, alert$21$27page, append$21$27dom, as_queue$27remote, ask$27page, ask_where$27music, ask_where$27where, ask_which$27where, asked$27where, asked_href$27where, at_once$27photos, attribute_of$27dom, audio_close$21$27audio, audio_context$27audio, audio_now$27audio, audio_resume$21$27audio, audio_running$3f$27audio, back$21$27page, bar_key$27bar, bar_player$27bar, bar_wake$21$27bar, biquad$27audio, body$27dom, body_of$27dom, browser_id$27socket, by_id$27dom, cancel_timer$21$27page, capture_pointer$21$27dom, change$27dom, checked$3f$27dom, children_of$27dom, chime_notes$27intro, chimes$27intro, choices$27playlist, choose$27ui, chosen_files$27fetch, clamp$27picker, clear$21$27dom, clear_source$21$27media, click$27dom, clock$27clock, close$27dom, close_dialog$21$27dom, closest_of$27dom, confirmed$3f$27page, connect$21$27audio, connect$27socket, controls$27remote, converting_refreshes$27search, cookie_get$27page, cookie_set$21$27page, copy_content$21$27dom, data_of$27dom, default_prevented$3f$27dom, delay_node$27audio, destination$27audio, dialogs$3f$27dom, digits$3f$27bar, each_in$27picker, each_of$27intro, each_of$27photos, encode_component$27page, ended$27media, envelope$27intro, every$27page, fetch_text$27fetch, file_input_again$21$27fetch, file_name$27fetch, file_size$27fetch, film_back$27back, film_page$3f$27back, film_plays$27film, filters_apply$27search, first_element_of$27dom, focus$21$27dom, focus_window$21$27page, frame_step$27picker, full$3f$27keypad, fullscreen$21$27page, gain_node$27audio, go$21$27page, go$27bar, handlers$27socket, head_style$27page, heard$27socket, hidden$3f$27dom, hide$21$27remote, history_length$27page, id_of$27dom, import$21$27dom, input$27dom, insert_before$21$27dom, intro_plays$27intro, join_names$27player, kept$3f$27bar, key_of$27dom, keydown$27dom, keypads_work$27keypad, link_address$27page, load$27dom, loadedmetadata$27media, make_element$27dom, make_player$27player, make_player_options$27player, media_by_id$27media, media_duration$27media, media_in$27media, media_paused$3f$27media, media_ready$3f$27media, media_session$21$27media, media_time$27media, mousemove$27dom, music_buttons$27music, muted$3f$27media, new_playlist$27playlist, noise_source$27audio, note$27ui, nothing$27bar, now_ms$27page, nth$27saver, number_of$27picker, number_of_field$27film, on$27dom, on_document$27dom, on_media_key$27media, on_once$27dom, on_window$27page, only_able$27where, open_socket$27socket, open_window$27page, opener_session_get$27page, origin$27page, oscillator$27audio, other_screens$27where, page_title$27page, pagehide$27page, pages_swap$27bar, panner$27audio, param$27audio, part_in$27dom, partials$27intro, path$27page, pause$21$27media, pause$27media, pending$27playlist, photo_dialog$27photos, photos_page$27photos, picker_work$27picker, pickers_work$27picker, piece$27photos, place_pin$27photos, plain_click$3f$27dom, play$21$27media, play$27media, play_then$21$27media, play_where$27where, player$3f$27player, player_current$27player, player_link$3f$27where, player_media$27player, player_options$3f$27player, player_options_asleep$27player, player_options_bar$27player, player_options_film$27player, player_options_on_load$27player, player_options_on_sleep$27player, player_options_on_wake$27player, player_playing$3f$27player, player_position$27player, player_queue$27player, player_reload$27player, player_send$27player, player_sleep$27player, player_state$27player, player_wake$27player, players_start$27bar, playlists_add$27playlist, plays$27film, pointer_x$27dom, pointer_y$27dom, pointerdown$27dom, pointermove$27dom, pointerup$27dom, pop_out$27playlist, popstate$27page, post_form$21$27fetch, post_piece_watched$21$27fetch, prevent_default$21$27dom, previous_of$27dom, push_address$21$27page, query$27dom, query_all$27dom, query_all_in$27dom, query_has$3f$27page, query_in$27dom, query_with$27page, queue_now$27player, quiet_ms$27photos, ramp_to$21$27audio, random$27page, read_page$27page, ready_to_play$27ready, rect_of$27dom, referrer$27page, reload$21$27page, remote_controls$27remote, remove$21$27dom, remove_class$21$27dom, replace_address$21$27page, resize$27page, saver_runs$27saver, screen_of$27where, screen_plays$27ready, scroll_to_top$21$27page, search_as_typed$27search, search_now$27search, seek$21$27media, seeked$27media, self$27socket, send$27music, send_to$27where, sent$27where, session_get$27page, session_remove$21$27page, session_set$21$27page, set_at$21$27audio, set_attribute$21$27dom, set_class$21$27dom, set_field$21$27dom, set_hidden$21$27dom, set_muted$21$27media, set_page_style$21$27dom, set_page_title$21$27page, set_poster$21$27media, set_source$21$27media, set_style$21$27dom, set_text$21$27dom, set_title$21$27dom, set_value$21$27audio, set_volume$21$27media, show_modal$21$27dom, show_subtitles$21$27media, shown_ms$27saver, site_path$27bar, socket_address$27browser$2fsocket, socket_open$27browser$2fsocket, socket_send$21$27browser$2fsocket, sound$27intro, start$21$27audio, start_player$27player, stop$21$27audio, submit$27dom, submit_form$21$27dom, subtitles_showing$3f$27media, swappable$3f$27bar, tab$27socket, tab_id$27socket, tag_of$27dom, targets$27where, text$21$27ready, text$21$27remote, text_of$27dom, this_page$27dom, time_text$27picker, timeupdate$27media, toggle_class$21$27dom, touchstart$27dom, tries$27photos, user_agent$27page, value_of$27dom, volume$27media, volumechange$27media, wait$27socket, waiting$27where, with_pairs$27player, without$27saver;
+  let add_class$21$27dom, address$27page, after$27page, again$27intro, alert$21$27page, append$21$27dom, as_queue$27remote, ask$27page, ask_where$27music, ask_where$27where, ask_which$27where, asked$27where, asked_href$27where, at_once$27photos, attribute_of$27dom, audio_close$21$27audio, audio_context$27audio, audio_now$27audio, audio_resume$21$27audio, audio_running$3f$27audio, back$21$27page, bar_key$27bar, bar_player$27bar, bar_wake$21$27bar, biquad$27audio, body$27dom, body_of$27dom, browser_id$27socket, by_id$27dom, cancel_timer$21$27page, capture_pointer$21$27dom, change$27dom, checked$3f$27dom, children_of$27dom, chime_notes$27intro, chimes$27intro, choices$27playlist, choose$27ui, chosen_files$27fetch, clear$21$27dom, clear_source$21$27media, click$27dom, clock$27clock, close$27dom, close_dialog$21$27dom, closest_of$27dom, confirmed$3f$27page, connect$21$27audio, connect$27socket, controls$27remote, converting_refreshes$27search, cookie_get$27page, cookie_set$21$27page, copy_content$21$27dom, data_of$27dom, default_prevented$3f$27dom, delay_node$27audio, destination$27audio, dialogs$3f$27dom, digits$3f$27bar, each_in$27picker, each_of$27intro, each_of$27photos, encode_component$27page, ended$27media, envelope$27intro, every$27page, fetch_text$27fetch, file_input_again$21$27fetch, file_name$27fetch, file_size$27fetch, film_back$27back, film_page$3f$27back, film_plays$27film, filters_apply$27search, first_element_of$27dom, focus$21$27dom, focus_window$21$27page, frame_step$27picker, full$3f$27keypad, fullscreen$21$27page, gain_node$27audio, go$21$27page, go$27bar, handlers$27socket, head_style$27page, heard$27socket, hidden$3f$27dom, hide$21$27remote, history_length$27page, id_of$27dom, import$21$27dom, input$27dom, insert_before$21$27dom, intro_plays$27intro, intro_shows$27intro, join_names$27player, kept$3f$27bar, key_of$27dom, keydown$27dom, keypads_work$27keypad, link_address$27page, load$27dom, loadedmetadata$27media, make_element$27dom, make_player$27player, make_player_options$27player, media_by_id$27media, media_duration$27media, media_in$27media, media_paused$3f$27media, media_ready$3f$27media, media_session$21$27media, media_time$27media, mousemove$27dom, music_buttons$27music, muted$3f$27media, new_playlist$27playlist, noise_source$27audio, note$27ui, nothing$27bar, now_ms$27page, nth$27saver, number_of$27film, number_of$27picker, number_of_field$27film, on$27dom, on_document$27dom, on_media_key$27media, on_once$27dom, on_window$27page, only_able$27where, open_socket$27socket, open_window$27page, opener_session_get$27page, origin$27page, oscillator$27audio, other_screens$27where, page_title$27page, pagehide$27page, pages_swap$27bar, panner$27audio, param$27audio, part_in$27dom, partials$27intro, path$27page, pause$21$27media, pause$27media, pending$27playlist, photo_dialog$27photos, photos_page$27photos, picker_runs$27picker, picker_work$27picker, pickers_work$27picker, piece$27photos, place_pin$27photos, plain_click$3f$27dom, play$21$27media, play$27media, play_then$21$27media, play_where$27where, player$3f$27player, player_current$27player, player_link$3f$27where, player_media$27player, player_options$3f$27player, player_options_asleep$27player, player_options_bar$27player, player_options_film$27player, player_options_on_load$27player, player_options_on_sleep$27player, player_options_on_wake$27player, player_playing$3f$27player, player_position$27player, player_queue$27player, player_reload$27player, player_send$27player, player_sleep$27player, player_state$27player, player_wake$27player, players_start$27bar, playlists_add$27playlist, plays$27film, pointer_x$27dom, pointer_y$27dom, pointerdown$27dom, pointermove$27dom, pointerup$27dom, pop_out$27playlist, popstate$27page, post_form$21$27fetch, post_piece_watched$21$27fetch, prevent_default$21$27dom, previous_of$27dom, push_address$21$27page, query$27dom, query_all$27dom, query_all_in$27dom, query_has$3f$27page, query_in$27dom, query_with$27page, queue_now$27player, quiet_ms$27photos, ramp_to$21$27audio, random$27page, read_page$27page, ready_to_play$27ready, real_of$27said, rect_of$27dom, referrer$27page, reload$21$27page, remote_controls$27remote, remove$21$27dom, remove_class$21$27dom, replace_address$21$27page, resize$27page, saver_runs$27saver, saver_shows$27saver, screen_of$27where, screen_plays$27ready, scroll_to_top$21$27page, search_as_typed$27search, search_now$27search, seek$21$27media, seeked$27media, self$27socket, send$27music, send_to$27where, sent$27where, series_views$27series, session_get$27page, session_remove$21$27page, session_set$21$27page, set_at$21$27audio, set_attribute$21$27dom, set_class$21$27dom, set_field$21$27dom, set_hidden$21$27dom, set_muted$21$27media, set_page_style$21$27dom, set_page_title$21$27page, set_poster$21$27media, set_source$21$27media, set_style$21$27dom, set_text$21$27dom, set_title$21$27dom, set_value$21$27audio, set_volume$21$27media, show_modal$21$27dom, show_subtitles$21$27media, shown_ms$27saver, site_path$27bar, socket_address$27browser$2fsocket, socket_open$27browser$2fsocket, socket_send$21$27browser$2fsocket, sound$27intro, start$21$27audio, start_player$27player, stop$21$27audio, submit$27dom, submit_form$21$27dom, subtitles_showing$3f$27media, swappable$3f$27bar, tab$27socket, tab_id$27socket, tag_of$27dom, targets$27where, text$21$27ready, text$21$27remote, text_of$27dom, this_page$27dom, time_text$27picker, timeupdate$27media, toggle_class$21$27dom, touchstart$27dom, tries$27photos, user_agent$27page, value_of$27dom, volume$27media, volumechange$27media, wait$27socket, waiting$27where, with_pairs$27player, without$27saver;
   $sym("node");
   $sym("element");
   $sym("event");
@@ -689,7 +695,7 @@ $run(() => {
     let each$276, msg$275;
     (msg$275 = $B["json-parse"](text, false));
     if ($B["map?"](msg$275)) {
-      ($B["equal?"]($B["map-ref"](msg$275, "type", ""), "you") ? (set_page_style$21$27dom("--safe-w", $B["string-append"]($B["number->string"]($B["map-ref"](msg$275, "safe_w", 80)), "vw")), set_page_style$21$27dom("--safe-h", $B["string-append"]($B["number->string"]($B["map-ref"](msg$275, "safe_h", 90)), "vh")), (self$27socket = msg$275)) : false);
+      ($B["equal?"]($B["map-ref"](msg$275, "type", ""), "you") ? (set_page_style$21$27dom("--safe-w", $B["string-append"]($B["number->string"]($B["map-ref"](msg$275, "safe_w", 80)), "vw")), set_page_style$21$27dom("--safe-h", $B["string-append"]($B["number->string"]($B["map-ref"](msg$275, "safe_h", 90)), "vh")), (self$27socket = $theMap(msg$275))) : false);
       (each$276 = function (l) {
         for (;;) {
           if ($B["null?"](l)) {
@@ -823,14 +829,17 @@ $run(() => {
     let url$2710;
     (url$2710 = $B["string-append"]("/search?q=", encode_component$27page(value_of$27dom(box))));
     return fetch_text$27fetch(url$2710, function (status, html) {
-      let main$2712, page$2711, style$2714, their_style$2715, theirs$2713;
+      let main$2712, page$2711, sheet$2716, style$2714, their_sheet$2717, their_style$2715, theirs$2713;
       (page$2711 = read_page$27page(html));
       (main$2712 = query$27dom("main"));
       (theirs$2713 = query_in$27dom(page$2711, "main"));
       (style$2714 = query$27dom("style"));
       (their_style$2715 = query_in$27dom(page$2711, "style"));
+      (sheet$2716 = query$27dom("link[data-sheet]"));
+      (their_sheet$2717 = query_in$27dom(page$2711, "link[data-sheet]"));
       if ((((main$2712) !== false ? ((theirs$2713) !== false ? (status === 200) : false) : false)) !== false) {
         ((((style$2714) !== false ? their_style$2715 : false)) !== false ? copy_content$21$27dom(style$2714, their_style$2715) : false);
+        (((sheet$2716) !== false ? ((their_sheet$2717) !== false ? ($B["equal?"](attribute_of$27dom(sheet$2716, "href"), attribute_of$27dom(their_sheet$2717, "href")) === false) : false) : false) ? set_attribute$21$27dom(sheet$2716, "href", attribute_of$27dom(their_sheet$2717, "href")) : false);
         copy_content$21$27dom(main$2712, theirs$2713);
         set_attribute$21$27dom(main$2712, "class", attribute_of$27dom(theirs$2713, "class"));
         replace_address$21$27page(url$2710);
@@ -841,14 +850,14 @@ $run(() => {
     });
   });
   (search_as_typed$27search = function () {
-    let box$2716, typing$2717;
-    (box$2716 = query$27dom("input[data-search]"));
-    (typing$2717 = 0);
-    if ((box$2716) !== false) {
-      return on$27dom(box$2716, input$27dom, function (e) {
-        cancel_timer$21$27page(typing$2717);
-        return (typing$2717 = after$27page(250, function () {
-          return search_now$27search(box$2716);
+    let box$2718, typing$2719;
+    (box$2718 = query$27dom("input[data-search]"));
+    (typing$2719 = 0);
+    if ((box$2718) !== false) {
+      return on$27dom(box$2718, input$27dom, function (e) {
+        cancel_timer$21$27page(typing$2719);
+        return (typing$2719 = after$27page(250, function () {
+          return search_now$27search(box$2718);
         }));
       });
     } else {
@@ -856,27 +865,27 @@ $run(() => {
     }
   });
   (filters_apply$27search = function () {
-    let each$2719, filters$2718;
-    (filters$2718 = query_all$27dom("[data-filter]"));
-    (each$2719 = function (i) {
-      let f$2720;
-      if ((i < $B["vector-length"](filters$2718))) {
-        (f$2720 = $B["vector-ref"](filters$2718, i));
-        on$27dom(f$2720, change$27dom, function (e) {
-          return submit_form$21$27dom(f$2720);
+    let each$2721, filters$2720;
+    (filters$2720 = query_all$27dom("[data-filter]"));
+    (each$2721 = function (i) {
+      let f$2722;
+      if ((i < $B["vector-length"](filters$2720))) {
+        (f$2722 = $B["vector-ref"](filters$2720, i));
+        on$27dom(f$2722, change$27dom, function (e) {
+          return submit_form$21$27dom(f$2722);
         });
-        return each$2719((i + 1));
+        return each$2721((i + 1));
       } else {
         return false;
       }
     });
-    return each$2719(0);
+    return each$2721(0);
   });
   (converting_refreshes$27search = function () {
-    let n$2722, refresh$2721;
-    (refresh$2721 = query$27dom("[data-refresh]"));
-    if ((refresh$2721) !== false) {
-      return after$27page((1000 * ((n$2722 = $B["string->number"](data_of$27dom(refresh$2721, "refresh"))), ((n$2722) !== false ? $B["exact"](n$2722) : 30))), function () {
+    let n$2724, refresh$2723;
+    (refresh$2723 = query$27dom("[data-refresh]"));
+    if ((refresh$2723) !== false) {
+      return after$27page((1000 * ((n$2724 = $B["string->number"](data_of$27dom(refresh$2723, "refresh"))), ((n$2724) !== false ? $B["exact"](n$2724) : 30))), function () {
         return reload$21$27page();
       });
     } else {
@@ -979,113 +988,117 @@ $run(() => {
     return false;
   });
   (intro_plays$27intro = function () {
-    let audio$2724, begin_playing$2729, gone$2726, intro$2723, leave$2727, or$27value$2734, or$27value$2735, or$27value$2736, show$2730, start$2728, started$2725;
-    (intro$2723 = by_id$27dom("intro"));
-    (audio$2724 = false);
-    (started$2725 = false);
-    (gone$2726 = false);
-    (leave$2727 = function () {
-      let done$2731;
-      if (gone$2726) {
+    let intro$2725;
+    (intro$2725 = by_id$27dom("intro"));
+    if ((intro$2725) !== false) {
+      return intro_shows$27intro(intro$2725);
+    } else {
+      return false;
+    }
+  });
+  (intro_shows$27intro = function (intro) {
+    let audio$2726, begin_playing$2731, gone$2728, leave$2729, or$27value$2736, or$27value$2737, or$27value$2738, show$2732, start$2730, started$2727;
+    (audio$2726 = false);
+    (started$2727 = false);
+    (gone$2728 = false);
+    (leave$2729 = function () {
+      let done$2733;
+      if (gone$2728) {
         return false;
       } else {
-        (gone$2726 = true);
-        add_class$21$27dom(intro$2723, "leaving");
+        (gone$2728 = true);
+        add_class$21$27dom(intro, "leaving");
         after$27page(600, function () {
-          return set_hidden$21$27dom(intro$2723, true);
+          return set_hidden$21$27dom(intro, true);
         });
-        (done$2731 = audio$2724);
-        if ((done$2731) !== false) {
+        (done$2733 = audio$2726);
+        if ((done$2733) !== false) {
           return after$27page(4000, function () {
-            return audio_close$21$27audio(done$2731);
+            return audio_close$21$27audio(done$2733);
           });
         } else {
           return false;
         }
       }
     });
-    (start$2728 = function () {
-      if (started$2725) {
+    (start$2730 = function () {
+      if (started$2727) {
         return false;
       } else {
-        (started$2725 = true);
-        add_class$21$27dom(intro$2723, "playing");
-        (((audio$2724) !== false ? audio_running$3f$27audio(audio$2724) : false) ? sound$27intro(audio$2724) : false);
-        return after$27page(3700, leave$2727);
+        (started$2727 = true);
+        add_class$21$27dom(intro, "playing");
+        (((audio$2726) !== false ? audio_running$3f$27audio(audio$2726) : false) ? sound$27intro(audio$2726) : false);
+        return after$27page(3700, leave$2729);
       }
     });
-    (begin_playing$2729 = function () {
-      if (((audio$2724) !== false ? (audio_running$3f$27audio(audio$2724) === false) : false)) {
-        return audio_resume$21$27audio(audio$2724, start$2728);
+    (begin_playing$2731 = function () {
+      if (((audio$2726) !== false ? (audio_running$3f$27audio(audio$2726) === false) : false)) {
+        return audio_resume$21$27audio(audio$2726, start$2730);
       } else {
-        return start$2728();
+        return start$2730();
       }
     });
-    (show$2730 = function (asked) {
-      let or$27value$2732, or$27value$2733;
-      (audio$2724 = audio_context$27audio());
-      (started$2725 = false);
-      (gone$2726 = false);
-      remove_class$21$27dom(intro$2723, "leaving");
-      remove_class$21$27dom(intro$2723, "playing");
-      set_hidden$21$27dom(intro$2723, false);
-      if ((((or$27value$2732 = asked), (or$27value$2732 ? or$27value$2732 : ((or$27value$2733 = (audio$2724 === false)), (or$27value$2733 ? or$27value$2733 : audio_running$3f$27audio(audio$2724)))))) !== false) {
-        return begin_playing$2729();
+    (show$2732 = function (asked) {
+      let or$27value$2734, or$27value$2735;
+      (audio$2726 = audio_context$27audio());
+      (started$2727 = false);
+      (gone$2728 = false);
+      remove_class$21$27dom(intro, "leaving");
+      remove_class$21$27dom(intro, "playing");
+      set_hidden$21$27dom(intro, false);
+      if ((((or$27value$2734 = asked), (or$27value$2734 ? or$27value$2734 : ((or$27value$2735 = (audio$2726 === false)), (or$27value$2735 ? or$27value$2735 : ((audio$2726) !== false ? audio_running$3f$27audio(audio$2726) : false)))))) !== false) {
+        return begin_playing$2731();
       } else {
         return false;
       }
     });
-    if ((intro$2723 === false)) {
+    on$27dom(intro, click$27dom, function (e) {
+      if (started$2727) {
+        return leave$2729();
+      } else {
+        return begin_playing$2731();
+      }
+    });
+    on_document$27dom(keydown$27dom, function (e) {
+      if (gone$2728) {
+        return false;
+      } else {
+        if ($B["equal?"](key_of$27dom(e), "Escape")) {
+          return leave$2729();
+        } else {
+          if ((started$2727 === false)) {
+            return begin_playing$2731();
+          } else {
+            return false;
+          }
+        }
+      }
+    });
+    (again$27intro = function () {
+      return show$2732(true);
+    });
+    if ((((or$27value$2736 = by_id$27dom("player")), ((or$27value$2736) !== false ? or$27value$2736 : ((or$27value$2737 = by_id$27dom("ready")), ((or$27value$2737) !== false ? or$27value$2737 : ((or$27value$2738 = query$27dom("[data-profiles]")), ((or$27value$2738) !== false ? or$27value$2738 : query$27dom("[data-help]")))))))) !== false) {
       return false;
     } else {
-      on$27dom(intro$2723, click$27dom, function (e) {
-        if (started$2725) {
-          return leave$2727();
-        } else {
-          return begin_playing$2729();
-        }
-      });
-      on_document$27dom(keydown$27dom, function (e) {
-        if (gone$2726) {
-          return false;
-        } else {
-          if ($B["equal?"](key_of$27dom(e), "Escape")) {
-            return leave$2727();
-          } else {
-            if ((started$2725 === false)) {
-              return begin_playing$2729();
-            } else {
-              return false;
-            }
-          }
-        }
-      });
-      (again$27intro = function () {
-        return show$2730(true);
-      });
-      if ((((or$27value$2734 = by_id$27dom("player")), ((or$27value$2734) !== false ? or$27value$2734 : ((or$27value$2735 = by_id$27dom("ready")), ((or$27value$2735) !== false ? or$27value$2735 : ((or$27value$2736 = query$27dom("[data-profiles]")), ((or$27value$2736) !== false ? or$27value$2736 : query$27dom("[data-help]")))))))) !== false) {
+      if ((($B["equal?"](session_get$27page("hazelflix-intro"), "") === false) ? (query_has$3f$27page("intro") === false) : false)) {
         return false;
       } else {
-        if ((($B["equal?"](session_get$27page("hazelflix-intro"), "") === false) ? (query_has$3f$27page("intro") === false) : false)) {
+        if ((session_set$21$27page("hazelflix-intro", "1") === false)) {
           return false;
         } else {
-          if ((session_set$21$27page("hazelflix-intro", "1") === false)) {
-            return false;
-          } else {
-            return show$2730(false);
-          }
+          return show$2732(false);
         }
       }
     }
   });
   (envelope$27intro = function (g, at, attack, peak, hold, release) {
-    let p$2737;
-    (p$2737 = param$27audio(g, "gain"));
-    set_at$21$27audio(p$2737, 0.0001, 0.0);
-    set_at$21$27audio(p$2737, 0.0001, at);
-    ramp_to$21$27audio(p$2737, peak, (at + attack));
-    set_at$21$27audio(p$2737, peak, (at + (attack + hold)));
-    return ramp_to$21$27audio(p$2737, 0.0001, (at + (attack + (hold + release))));
+    let p$2739;
+    (p$2739 = param$27audio(g, "gain"));
+    set_at$21$27audio(p$2739, 0.0001, 0.0);
+    set_at$21$27audio(p$2739, 0.0001, at);
+    ramp_to$21$27audio(p$2739, peak, (at + attack));
+    set_at$21$27audio(p$2739, peak, (at + (attack + hold)));
+    return ramp_to$21$27audio(p$2739, 0.0001, (at + (attack + (hold + release))));
   });
   (each_of$27intro = function (l, f) {
     for (;;) {
@@ -1102,60 +1115,60 @@ $run(() => {
     }
   });
   (sound$27intro = function (c) {
-    let at$2748, band$2746, echo$2740, feedback$2741, hg$2747, hiss$2745, note$2750, notes$2751, open$2749, out$2739, t0$2738, wet$2742;
-    (t0$2738 = (audio_now$27audio(c) + 0.050000000000000003));
-    (out$2739 = gain_node$27audio(c));
-    (echo$2740 = delay_node$27audio(c, 1.0));
-    (feedback$2741 = gain_node$27audio(c));
-    (wet$2742 = gain_node$27audio(c));
-    set_value$21$27audio(param$27audio(out$2739, "gain"), 0.69999999999999996);
-    connect$21$27audio(out$2739, destination$27audio(c));
-    set_value$21$27audio(param$27audio(echo$2740, "delayTime"), 0.27000000000000002);
-    set_value$21$27audio(param$27audio(feedback$2741, "gain"), 0.32000000000000001);
-    set_value$21$27audio(param$27audio(wet$2742, "gain"), 0.28000000000000003);
-    connect$21$27audio(echo$2740, feedback$2741);
-    connect$21$27audio(feedback$2741, echo$2740);
-    connect$21$27audio(echo$2740, wet$2742);
-    connect$21$27audio(wet$2742, destination$27audio(c));
-    connect$21$27audio(out$2739, echo$2740);
+    let at$2750, band$2748, echo$2742, feedback$2743, hg$2749, hiss$2747, note$2752, notes$2753, open$2751, out$2741, t0$2740, wet$2744;
+    (t0$2740 = (audio_now$27audio(c) + 0.050000000000000003));
+    (out$2741 = gain_node$27audio(c));
+    (echo$2742 = delay_node$27audio(c, 1.0));
+    (feedback$2743 = gain_node$27audio(c));
+    (wet$2744 = gain_node$27audio(c));
+    set_value$21$27audio(param$27audio(out$2741, "gain"), 0.69999999999999996);
+    connect$21$27audio(out$2741, destination$27audio(c));
+    set_value$21$27audio(param$27audio(echo$2742, "delayTime"), 0.27000000000000002);
+    set_value$21$27audio(param$27audio(feedback$2743, "gain"), 0.32000000000000001);
+    set_value$21$27audio(param$27audio(wet$2744, "gain"), 0.28000000000000003);
+    connect$21$27audio(echo$2742, feedback$2743);
+    connect$21$27audio(feedback$2743, echo$2742);
+    connect$21$27audio(echo$2742, wet$2744);
+    connect$21$27audio(wet$2744, destination$27audio(c));
+    connect$21$27audio(out$2741, echo$2742);
     each_of$27intro(new Pair(49.0, new Pair(49.600000000000001, null)), function (f) {
-      let g$2744, o$2743;
-      (o$2743 = oscillator$27audio(c, "sine"));
-      (g$2744 = gain_node$27audio(c));
-      set_at$21$27audio(param$27audio(o$2743, "frequency"), f, t0$2738);
-      ramp_to$21$27audio(param$27audio(o$2743, "frequency"), (f * 1.1200000000000001), (t0$2738 + 2.2999999999999998));
-      envelope$27intro(g$2744, t0$2738, 1.6000000000000001, 0.32000000000000001, 0.59999999999999998, 1.6000000000000001);
-      connect$21$27audio(o$2743, g$2744);
-      connect$21$27audio(g$2744, out$2739);
-      start$21$27audio(o$2743, t0$2738);
-      return stop$21$27audio(o$2743, (t0$2738 + 4.2000000000000002));
+      let g$2746, o$2745;
+      (o$2745 = oscillator$27audio(c, "sine"));
+      (g$2746 = gain_node$27audio(c));
+      set_at$21$27audio(param$27audio(o$2745, "frequency"), f, t0$2740);
+      ramp_to$21$27audio(param$27audio(o$2745, "frequency"), (f * 1.1200000000000001), (t0$2740 + 2.2999999999999998));
+      envelope$27intro(g$2746, t0$2740, 1.6000000000000001, 0.32000000000000001, 0.59999999999999998, 1.6000000000000001);
+      connect$21$27audio(o$2745, g$2746);
+      connect$21$27audio(g$2746, out$2741);
+      start$21$27audio(o$2745, t0$2740);
+      return stop$21$27audio(o$2745, (t0$2740 + 4.2000000000000002));
     });
-    ((hiss$2745 = noise_source$27audio(c, 2.0)), (band$2746 = biquad$27audio(c, "bandpass")), (hg$2747 = gain_node$27audio(c)), set_value$21$27audio(param$27audio(band$2746, "Q"), 6.0), set_at$21$27audio(param$27audio(band$2746, "frequency"), 700.0, (t0$2738 + 1.1000000000000001)), ramp_to$21$27audio(param$27audio(band$2746, "frequency"), 7000.0, (t0$2738 + 2.2999999999999998)), envelope$27intro(hg$2747, (t0$2738 + 1.1000000000000001), 0.69999999999999996, 0.089999999999999997, 0.29999999999999999, 0.5), connect$21$27audio(hiss$2745, band$2746), connect$21$27audio(band$2746, hg$2747), connect$21$27audio(hg$2747, out$2739), start$21$27audio(hiss$2745, (t0$2738 + 1.1000000000000001)), stop$21$27audio(hiss$2745, (t0$2738 + 3.1000000000000001)));
-    (at$2748 = (t0$2738 + 2.2999999999999998));
-    (open$2749 = biquad$27audio(c, "lowpass"));
-    set_at$21$27audio(param$27audio(open$2749, "frequency"), 500.0, at$2748);
-    ramp_to$21$27audio(param$27audio(open$2749, "frequency"), 3000.0, (at$2748 + 1.2));
-    connect$21$27audio(open$2749, out$2739);
-    (note$2750 = function (f, i) {
+    ((hiss$2747 = noise_source$27audio(c, 2.0)), (band$2748 = biquad$27audio(c, "bandpass")), (hg$2749 = gain_node$27audio(c)), set_value$21$27audio(param$27audio(band$2748, "Q"), 6.0), set_at$21$27audio(param$27audio(band$2748, "frequency"), 700.0, (t0$2740 + 1.1000000000000001)), ramp_to$21$27audio(param$27audio(band$2748, "frequency"), 7000.0, (t0$2740 + 2.2999999999999998)), envelope$27intro(hg$2749, (t0$2740 + 1.1000000000000001), 0.69999999999999996, 0.089999999999999997, 0.29999999999999999, 0.5), connect$21$27audio(hiss$2747, band$2748), connect$21$27audio(band$2748, hg$2749), connect$21$27audio(hg$2749, out$2741), start$21$27audio(hiss$2747, (t0$2740 + 1.1000000000000001)), stop$21$27audio(hiss$2747, (t0$2740 + 3.1000000000000001)));
+    (at$2750 = (t0$2740 + 2.2999999999999998));
+    (open$2751 = biquad$27audio(c, "lowpass"));
+    set_at$21$27audio(param$27audio(open$2751, "frequency"), 500.0, at$2750);
+    ramp_to$21$27audio(param$27audio(open$2751, "frequency"), 3000.0, (at$2750 + 1.2));
+    connect$21$27audio(open$2751, out$2741);
+    (note$2752 = function (f, i) {
       return each_of$27intro(new Pair(-6.0, new Pair(6.0, null)), function (cents) {
-        let g$2753, o$2752;
-        (o$2752 = oscillator$27audio(c, "triangle"));
-        (g$2753 = gain_node$27audio(c));
-        set_value$21$27audio(param$27audio(o$2752, "frequency"), f);
-        set_value$21$27audio(param$27audio(o$2752, "detune"), cents);
-        envelope$27intro(g$2753, (at$2748 + (i * 0.02)), 0.40000000000000002, 0.040000000000000001, 0.59999999999999998, 2.3999999999999999);
-        connect$21$27audio(o$2752, g$2753);
-        connect$21$27audio(g$2753, open$2749);
-        start$21$27audio(o$2752, at$2748);
-        return stop$21$27audio(o$2752, (at$2748 + 3.6000000000000001));
+        let g$2755, o$2754;
+        (o$2754 = oscillator$27audio(c, "triangle"));
+        (g$2755 = gain_node$27audio(c));
+        set_value$21$27audio(param$27audio(o$2754, "frequency"), f);
+        set_value$21$27audio(param$27audio(o$2754, "detune"), cents);
+        envelope$27intro(g$2755, (at$2750 + (i * 0.02)), 0.40000000000000002, 0.040000000000000001, 0.59999999999999998, 2.3999999999999999);
+        connect$21$27audio(o$2754, g$2755);
+        connect$21$27audio(g$2755, open$2751);
+        start$21$27audio(o$2754, at$2750);
+        return stop$21$27audio(o$2754, (at$2750 + 3.6000000000000001));
       });
     });
-    (notes$2751 = function (l, i) {
+    (notes$2753 = function (l, i) {
       for (;;) {
         if ($B["null?"](l)) {
           return true;
         } else {
-          note$2750($B["car"](l), i);
+          note$2752($B["car"](l), i);
           const $t0 = $B["cdr"](l);
           const $t1 = (i + 1.0);
           l = $t0;
@@ -1164,39 +1177,39 @@ $run(() => {
         }
       }
     });
-    notes$2751(new Pair(110.0, new Pair(164.81, new Pair(220.0, new Pair(277.18000000000001, new Pair(329.63, null))))), 0.0);
-    return chimes$27intro(c, out$2739, at$2748);
+    notes$2753(new Pair(110.0, new Pair(164.81, new Pair(220.0, new Pair(277.18000000000001, new Pair(329.63, null))))), 0.0);
+    return chimes$27intro(c, out$2741, at$2750);
   });
   (chime_notes$27intro = $B["vector"](880.0, 987.76999999999998, 1108.73, 1318.51, 1479.98, 1760.0, 1975.53, 2217.46));
   (partials$27intro = new Pair(new Pair(1.0, new Pair(1.0, new Pair(3.2000000000000002, null))), new Pair(new Pair(2.7599999999999998, new Pair(0.41999999999999998, new Pair(1.8999999999999999, null))), new Pair(new Pair(5.4000000000000004, new Pair(0.20000000000000001, new Pair(1.1000000000000001, null))), new Pair(new Pair(8.9299999999999997, new Pair(0.089999999999999997, new Pair(0.59999999999999998, null))), null)))));
   (chimes$27intro = function (c, out, at) {
     let strike;
     (strike = function (i, when, gap, last) {
-      let first$2754, n$2755, place$2757, strength$2756;
+      let first$2756, n$2757, place$2759, strength$2758;
       if ((i < 11)) {
-        (first$2754 = $B["exact"]($B["floor"]((random$27page() * 8))));
-        (n$2755 = ((first$2754 === last) ? $B["modulo"]((first$2754 + (1 + $B["exact"]($B["floor"]((random$27page() * 3))))), 8) : first$2754));
-        (strength$2756 = (0.074999999999999997 * ((1.0 - ($B["inexact"](i) / 14.0)) * (0.69999999999999996 + (random$27page() * 0.5)))));
-        (place$2757 = panner$27audio(c));
-        ((place$2757) !== false ? (set_value$21$27audio(param$27audio(place$2757, "pan"), ((random$27page() * 1.3999999999999999) - 0.69999999999999996)), connect$21$27audio(place$2757, out)) : false);
+        (first$2756 = $B["exact"]($B["floor"]((random$27page() * 8))));
+        (n$2757 = ((first$2756 === last) ? $B["modulo"]((first$2756 + (1 + $B["exact"]($B["floor"]((random$27page() * 3))))), 8) : first$2756));
+        (strength$2758 = (0.074999999999999997 * ((1.0 - ($B["inexact"](i) / 14.0)) * (0.69999999999999996 + (random$27page() * 0.5)))));
+        (place$2759 = panner$27audio(c));
+        ((place$2759) !== false ? (set_value$21$27audio(param$27audio(place$2759, "pan"), ((random$27page() * 1.3999999999999999) - 0.69999999999999996)), connect$21$27audio(place$2759, out)) : false);
         each_of$27intro(partials$27intro, function (p) {
           return each_of$27intro(new Pair(-4.0, new Pair(4.0, null)), function (cents) {
-            let g$2759, o$2758, ring$2760;
-            (o$2758 = oscillator$27audio(c, "sine"));
-            (g$2759 = gain_node$27audio(c));
-            (ring$2760 = $B["car"]($B["cdr"]($B["cdr"](p))));
-            set_value$21$27audio(param$27audio(o$2758, "frequency"), ($B["vector-ref"](chime_notes$27intro, n$2755) * $B["car"](p)));
-            set_value$21$27audio(param$27audio(o$2758, "detune"), (cents + ((random$27page() * 4.0) - 2.0)));
-            set_at$21$27audio(param$27audio(g$2759, "gain"), 0.0001, when);
-            ramp_to$21$27audio(param$27audio(g$2759, "gain"), (strength$2756 * $B["car"]($B["cdr"](p))), (when + 0.0040000000000000001));
-            ramp_to$21$27audio(param$27audio(g$2759, "gain"), 0.0001, (when + ring$2760));
-            connect$21$27audio(o$2758, g$2759);
-            connect$21$27audio(g$2759, ((place$2757) !== false ? place$2757 : out));
-            start$21$27audio(o$2758, when);
-            return stop$21$27audio(o$2758, (when + (ring$2760 + 0.050000000000000003)));
+            let g$2761, o$2760, ring$2762;
+            (o$2760 = oscillator$27audio(c, "sine"));
+            (g$2761 = gain_node$27audio(c));
+            (ring$2762 = $B["car"]($B["cdr"]($B["cdr"](p))));
+            set_value$21$27audio(param$27audio(o$2760, "frequency"), ($B["vector-ref"](chime_notes$27intro, n$2757) * $B["car"](p)));
+            set_value$21$27audio(param$27audio(o$2760, "detune"), (cents + ((random$27page() * 4.0) - 2.0)));
+            set_at$21$27audio(param$27audio(g$2761, "gain"), 0.0001, when);
+            ramp_to$21$27audio(param$27audio(g$2761, "gain"), (strength$2758 * $B["car"]($B["cdr"](p))), (when + 0.0040000000000000001));
+            ramp_to$21$27audio(param$27audio(g$2761, "gain"), 0.0001, (when + ring$2762));
+            connect$21$27audio(o$2760, g$2761);
+            connect$21$27audio(g$2761, ((place$2759) !== false ? place$2759 : out));
+            start$21$27audio(o$2760, when);
+            return stop$21$27audio(o$2760, (when + (ring$2762 + 0.050000000000000003)));
           });
         });
-        return strike((i + 1), (when + (gap + (random$27page() * gap))), (gap * 1.22), n$2755);
+        return strike((i + 1), (when + (gap + (random$27page() * gap))), (gap * 1.22), n$2757);
       } else {
         return true;
       }
@@ -1309,11 +1322,18 @@ $run(() => {
     return ((() => { if ("mediaSession" in navigator) { navigator.mediaSession.setActionHandler($text(action), () => ((handler))()); } })());
   });
   (clock$27clock = function (s) {
-    let h$2762, m$2763, n$27i2, n$27i3, t$2761;
-    (t$2761 = ((s > 0.0) ? $B["exact"]($B["floor"](s)) : 0));
-    (h$2762 = $B["quotient"](t$2761, 3600));
-    (m$2763 = $B["quotient"]($B["remainder"](t$2761, 3600), 60));
-    return $B["string-append"](((h$2762 > 0) ? $B["string-append"]($B["number->string"](h$2762), ":", ((n$27i2 = m$2763), ((n$27i2 < 10) ? $B["string-append"]("0", $B["number->string"](n$27i2)) : $B["number->string"](n$27i2)))) : $B["number->string"](m$2763)), ":", ((n$27i3 = $B["remainder"](t$2761, 60)), ((n$27i3 < 10) ? $B["string-append"]("0", $B["number->string"](n$27i3)) : $B["number->string"](n$27i3))));
+    let h$2764, m$2765, n$27i2, n$27i3, t$2763;
+    (t$2763 = ((s > 0.0) ? $B["exact"]($B["floor"](s)) : 0));
+    (h$2764 = $B["quotient"](t$2763, 3600));
+    (m$2765 = $B["quotient"]($B["remainder"](t$2763, 3600), 60));
+    return $B["string-append"](((h$2764 > 0) ? $B["string-append"]($B["number->string"](h$2764), ":", ((n$27i2 = m$2765), ((n$27i2 < 10) ? $B["string-append"]("0", $B["number->string"](n$27i2)) : $B["number->string"](n$27i2)))) : $B["number->string"](m$2765)), ":", ((n$27i3 = $B["remainder"](t$2763, 60)), ((n$27i3 < 10) ? $B["string-append"]("0", $B["number->string"](n$27i3)) : $B["number->string"](n$27i3))));
+  });
+  (real_of$27said = function (x) {
+    if ($B["number?"](x)) {
+      return $theReal((x + 0.0));
+    } else {
+      return 0.0;
+    }
   });
   ($B["%record-register"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|"), (make_player_options$27player = function (asleep, bar, film, on_load, on_wake, on_sleep) {
     return $B["%record-make"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", asleep, bar, film, on_load, on_wake, on_sleep);
@@ -1383,196 +1403,199 @@ $run(() => {
     }
   });
   (start_player$27player = function (root, options) {
-    let art$2767, asleep$2779, bar$2780, current$2784, current$27i87, dragging$2776, expected$2785, film_of$2781, handler$27i65, handler$27i66, handler$27i68, handler$27i71, heard$2775, items$2782, labels$21$2787, list_items$2792, listed$2777, live$2778, load$27dom$2788, loaded$2773, media$2766, media$27i92, number_in$2796, offset$2774, play_or_not$2789, playing$3f$27i88, position$2786, position$27i86, queue$27i89, queues$21$2793, received$2772, reload$27i91, render$2790, row$21$2791, seek$2768, select$27143, send$2783, send$27i85, sleep$2795, sleep$27i84, start$2769, state$2771, state$27i90, volume$27media$27159, wake$2794, wake$27i83, wanted$2770, x$27i4;
-    (media$2766 = media_in$27media(root, "[data-p=media]"));
-    (art$2767 = part_in$27dom(root, $B["string-append"]("[data-p=", "art", "]"), "img"));
-    (seek$2768 = part_in$27dom(root, $B["string-append"]("[data-p=", "seek", "]"), "input"));
-    (start$2769 = part_in$27dom(root, $B["string-append"]("[data-p=", "start", "]"), "button"));
-    (wanted$2770 = ((x$27i4 = $B["string->number"](data_of$27dom(root, "queue"))), $B["exact"]($B["floor"](($B["number?"](x$27i4) ? (x$27i4 + 0.0) : 0.0)))));
-    (state$2771 = false);
-    (received$2772 = 0.0);
-    (loaded$2773 = 0);
-    (offset$2774 = 0.0);
-    (heard$2775 = false);
-    (dragging$2776 = false);
-    (listed$2777 = "");
-    (live$2778 = false);
-    (asleep$2779 = $B["%record-ref"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", 0, options));
-    (bar$2780 = $B["%record-ref"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", 1, options));
-    (asleep$2779 ? false : (queue_now$27player = wanted$2770));
-    (film_of$2781 = function (item) {
-      let kind$2764$27i5, or$27value$2765$27i6;
-      if (((kind$2764$27i5 = $B["map-ref"](item, "kind", "")), ((or$27value$2765$27i6 = $B["equal?"](kind$2764$27i5, "film")), (or$27value$2765$27i6 ? or$27value$2765$27i6 : $B["equal?"](kind$2764$27i5, "episode"))))) {
+    let art$2769, asleep$2781, bar$2782, current$2787, current$27i80, dragging$2778, expected$2788, film_of$2783, handler$27i62, handler$27i63, handler$27i65, handler$27i68, heard$2777, items$2785, labels$21$2790, list_items$2795, listed$2779, live$2780, load$27dom$2791, loaded$2775, media$2768, media$27i85, number_in$2799, offset$2776, play_or_not$2792, playing$3f$27i81, position$2789, position$27i79, queue$27i82, queues$21$2796, received$2774, reload$27i84, render$2793, row$21$2794, seek$2770, select$27146, send$2786, send$27i78, sleep$2798, sleep$27i77, start$2771, state$2773, state$27i83, told$2784, volume$27media$27162, wake$2797, wake$27i76, wanted$2772, x$27i4;
+    (media$2768 = media_in$27media(root, "[data-p=media]"));
+    (art$2769 = part_in$27dom(root, $B["string-append"]("[data-p=", "art", "]"), "img"));
+    (seek$2770 = part_in$27dom(root, $B["string-append"]("[data-p=", "seek", "]"), "input"));
+    (start$2771 = part_in$27dom(root, $B["string-append"]("[data-p=", "start", "]"), "button"));
+    (wanted$2772 = ((x$27i4 = $B["string->number"](data_of$27dom(root, "queue"))), $B["exact"]($B["floor"](real_of$27said(x$27i4)))));
+    (state$2773 = false);
+    (received$2774 = 0.0);
+    (loaded$2775 = 0);
+    (offset$2776 = 0.0);
+    (heard$2777 = false);
+    (dragging$2778 = false);
+    (listed$2779 = "");
+    (live$2780 = false);
+    (asleep$2781 = $B["%record-ref"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", 0, options));
+    (bar$2782 = $B["%record-ref"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", 1, options));
+    (asleep$2781 ? false : (queue_now$27player = wanted$2772));
+    (film_of$2783 = function (item) {
+      let kind$2766$27i5, or$27value$2767$27i6;
+      if (((kind$2766$27i5 = $B["map-ref"](item, "kind", "")), ((or$27value$2767$27i6 = $B["equal?"](kind$2766$27i5, "film")), (or$27value$2767$27i6 ? or$27value$2767$27i6 : $B["equal?"](kind$2766$27i5, "episode"))))) {
         return $B["%record-ref"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", 2, options)(item);
       } else {
         return false;
       }
     });
-    (items$2782 = function () {
-      if ((state$2771) !== false) {
-        return $B["map-ref"](state$2771, "items", $B["vector"]());
+    (told$2784 = function () {
+      if ((state$2773) !== false) {
+        return state$2773;
       } else {
-        return $B["vector"]();
+        return $B["map-of"]();
       }
     });
-    (send$2783 = function (op, extra) {
+    (items$2785 = function () {
+      return $B["map-ref"](told$2784(), "items", $B["vector"]());
+    });
+    (send$2786 = function (op, extra) {
       let msg$27i7;
-      (msg$27i7 = with_pairs$27player($B["map-of"]("type", "queue", "op", op, "queue", ((state$2771) !== false ? $B["map-ref"](state$2771, "id", 0) : wanted$2770)), extra));
+      (msg$27i7 = with_pairs$27player($B["map-of"]("type", "queue", "op", op, "queue", ((state$2773) !== false ? $B["map-ref"](told$2784(), "id", 0) : wanted$2772)), extra));
       if ((open_socket$27socket) !== false) {
         return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i7));
       } else {
         return false;
       }
     });
-    (current$2784 = function () {
-      if (($B["vector-length"](items$2782()) > 0)) {
-        return $B["vector-ref"](items$2782(), $B["map-ref"](state$2771, "at", 0));
+    (current$2787 = function () {
+      if (($B["vector-length"](items$2785()) > 0)) {
+        return $B["vector-ref"](items$2785(), $B["map-ref"](told$2784(), "at", 0));
       } else {
         return false;
       }
     });
-    (expected$2785 = function () {
-      let x$27i8, x$27i9;
-      return (((x$27i8 = $B["map-ref"](state$2771, "position", 0)), ($B["number?"](x$27i8) ? (x$27i8 + 0.0) : 0.0)) + (((x$27i9 = $B["map-ref"](state$2771, "paused", false)), ((x$27i9) !== false ? (((x$27i9 === $sym("null")) === false) ? (($B["equal?"](x$27i9, 0) === false) ? ($B["equal?"](x$27i9, "") === false) : false) : false) : false)) ? 0.0 : ((now_ms$27page() - received$2772) / 1000.0)));
+    (expected$2788 = function () {
+      let x$27i8;
+      return (real_of$27said($B["map-ref"](told$2784(), "position", 0)) + (((x$27i8 = $B["map-ref"](told$2784(), "paused", false)), ((x$27i8) !== false ? (((x$27i8 === $sym("null")) === false) ? (($B["equal?"](x$27i8, 0) === false) ? ($B["equal?"](x$27i8, "") === false) : false) : false) : false)) ? 0.0 : ((now_ms$27page() - received$2774) / 1000.0)));
     });
-    (position$2786 = function () {
-      return (offset$2774 + media_time$27media(media$2766));
+    (position$2789 = function () {
+      return (offset$2776 + media_time$27media(media$2768));
     });
-    (labels$21$2787 = function (item, artist_text, artist_href, album_text, album_href) {
-      let album$2798, artist$2797, before$2799, x$27i10;
-      set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "title", "]"), "span"), ((x$27i10 = $B["map-ref"](item, "title", "")), ($B["string?"](x$27i10) ? x$27i10 : ($B["number?"](x$27i10) ? $B["number->string"](x$27i10) : ""))));
-      (artist$2797 = part_in$27dom(root, $B["string-append"]("[data-p=", "artist", "]"), "a"));
-      (album$2798 = part_in$27dom(root, $B["string-append"]("[data-p=", "album", "]"), "a"));
-      set_text$21$27dom(artist$2797, artist_text);
-      set_attribute$21$27dom(artist$2797, "href", artist_href);
-      set_text$21$27dom(album$2798, album_text);
-      set_attribute$21$27dom(album$2798, "href", album_href);
-      (before$2799 = previous_of$27dom(album$2798));
-      if ((before$2799) !== false) {
-        return set_hidden$21$27dom(before$2799, $B["equal?"](album_text, ""));
+    (labels$21$2790 = function (item, artist_text, artist_href, album_text, album_href) {
+      let album$27101, artist$27100, before$27102, x$27i9;
+      set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "title", "]"), "span"), ((x$27i9 = $B["map-ref"](item, "title", "")), ($B["string?"](x$27i9) ? x$27i9 : ($B["number?"](x$27i9) ? $B["number->string"](x$27i9) : ""))));
+      (artist$27100 = part_in$27dom(root, $B["string-append"]("[data-p=", "artist", "]"), "a"));
+      (album$27101 = part_in$27dom(root, $B["string-append"]("[data-p=", "album", "]"), "a"));
+      set_text$21$27dom(artist$27100, artist_text);
+      set_attribute$21$27dom(artist$27100, "href", artist_href);
+      set_text$21$27dom(album$27101, album_text);
+      set_attribute$21$27dom(album$27101, "href", album_href);
+      (before$27102 = previous_of$27dom(album$27101));
+      if ((before$27102) !== false) {
+        return set_hidden$21$27dom(before$27102, $B["equal?"](album_text, ""));
       } else {
         return false;
       }
     });
-    (load$27dom$2788 = function (item) {
-      let at$27101, e$27102, or$27value$27105, or$27value$27106, p$27100, pictured$27104, src$27103, x$27i11, x$27i12, x$27i13, x$27i14, x$27i15, x$27i16, x$27i17, x$27i18, x$27i19, x$27i20, x$27i21, x$27i22, x$27i23, x$27i24, x$27i25, x$27i26, x$27i27, x$27i28, x$27i29, x$27i30;
-      (p$27100 = film_of$2781(item));
-      (at$27101 = ((e$27102 = ((x$27i11 = expected$2785()), $B["exact"]($B["floor"](($B["number?"](x$27i11) ? (x$27i11 + 0.0) : 0.0))))), ((e$27102 > 0) ? e$27102 : 0)));
-      (loaded$2773 = $B["map-ref"](item, "id", 0));
-      (heard$2775 = false);
-      ((p$27100) !== false ? ((live$2778 = (((x$27i12 = $B["map-ref"](p$27100, "ready", false)), ((x$27i12) !== false ? (((x$27i12 === $sym("null")) === false) ? (($B["equal?"](x$27i12, 0) === false) ? ($B["equal?"](x$27i12, "") === false) : false) : false) : false)) === false)), (offset$2774 = (live$2778 ? ((x$27i13 = at$27101), ($B["number?"](x$27i13) ? (x$27i13 + 0.0) : 0.0)) : 0.0)), set_source$21$27media(media$2766, (live$2778 ? $B["string-append"]("/live/", ((x$27i14 = $B["map-ref"](p$27100, "file", 0)), ($B["string?"](x$27i14) ? x$27i14 : ($B["number?"](x$27i14) ? $B["number->string"](x$27i14) : ""))), "?t=", $B["number->string"](at$27101), (((x$27i15 = $B["map-ref"](p$27100, "format", 0)), ((x$27i15) !== false ? (((x$27i15 === $sym("null")) === false) ? (($B["equal?"](x$27i15, 0) === false) ? ($B["equal?"](x$27i15, "") === false) : false) : false) : false)) ? $B["string-append"]("&format=", ((x$27i16 = $B["map-ref"](p$27100, "format", 0)), ($B["string?"](x$27i16) ? x$27i16 : ($B["number?"](x$27i16) ? $B["number->string"](x$27i16) : "")))) : "")) : ((x$27i17 = $B["map-ref"](p$27100, "source", "")), ($B["string?"](x$27i17) ? x$27i17 : ($B["number?"](x$27i17) ? $B["number->string"](x$27i17) : "")))))) : ((src$27103 = ((x$27i18 = $B["map-ref"](item, "src", "")), ($B["string?"](x$27i18) ? x$27i18 : ($B["number?"](x$27i18) ? $B["number->string"](x$27i18) : "")))), (live$2778 = ((x$27i19 = $B["map-ref"](item, "live", false)), ((x$27i19) !== false ? (((x$27i19 === $sym("null")) === false) ? (($B["equal?"](x$27i19, 0) === false) ? ($B["equal?"](x$27i19, "") === false) : false) : false) : false))), (offset$2774 = (live$2778 ? ((x$27i20 = at$27101), ($B["number?"](x$27i20) ? (x$27i20 + 0.0) : 0.0)) : 0.0)), set_source$21$27media(media$2766, (live$2778 ? $B["string-append"](src$27103, "?t=", $B["number->string"](at$27101)) : src$27103))));
-      (((live$2778 === false) ? (at$27101 > 0) : false) ? on_once$27dom(media$2766, loadedmetadata$27media, function (e) {
-        return seek$21$27media(media$2766, expected$2785());
+    (load$27dom$2791 = function (item) {
+      let at$27104, e$27105, or$27value$27108, or$27value$27109, p$27103, pictured$27107, src$27106, x$27i10, x$27i11, x$27i12, x$27i13, x$27i14, x$27i15, x$27i16, x$27i17, x$27i18, x$27i19, x$27i20, x$27i21, x$27i22, x$27i23, x$27i24, x$27i25, x$27i26, x$27i27, x$27i28;
+      (p$27103 = film_of$2783(item));
+      (at$27104 = ((e$27105 = ((x$27i10 = expected$2788()), $B["exact"]($B["floor"](real_of$27said(x$27i10))))), ((e$27105 > 0) ? e$27105 : 0)));
+      (loaded$2775 = ((x$27i11 = $B["map-ref"](item, "id", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i11)))));
+      (heard$2777 = false);
+      ((p$27103) !== false ? ((live$2780 = (((x$27i12 = $B["map-ref"](p$27103, "ready", false)), ((x$27i12) !== false ? (((x$27i12 === $sym("null")) === false) ? (($B["equal?"](x$27i12, 0) === false) ? ($B["equal?"](x$27i12, "") === false) : false) : false) : false)) === false)), (offset$2776 = (live$2780 ? real_of$27said(at$27104) : 0.0)), set_source$21$27media(media$2768, (live$2780 ? $B["string-append"]("/live/", ((x$27i13 = $B["map-ref"](p$27103, "file", 0)), ($B["string?"](x$27i13) ? x$27i13 : ($B["number?"](x$27i13) ? $B["number->string"](x$27i13) : ""))), "?t=", $B["number->string"](at$27104), (((x$27i14 = $B["map-ref"](p$27103, "format", 0)), ((x$27i14) !== false ? (((x$27i14 === $sym("null")) === false) ? (($B["equal?"](x$27i14, 0) === false) ? ($B["equal?"](x$27i14, "") === false) : false) : false) : false)) ? $B["string-append"]("&format=", ((x$27i15 = $B["map-ref"](p$27103, "format", 0)), ($B["string?"](x$27i15) ? x$27i15 : ($B["number?"](x$27i15) ? $B["number->string"](x$27i15) : "")))) : "")) : ((x$27i16 = $B["map-ref"](p$27103, "source", "")), ($B["string?"](x$27i16) ? x$27i16 : ($B["number?"](x$27i16) ? $B["number->string"](x$27i16) : "")))))) : ((src$27106 = ((x$27i17 = $B["map-ref"](item, "src", "")), ($B["string?"](x$27i17) ? x$27i17 : ($B["number?"](x$27i17) ? $B["number->string"](x$27i17) : "")))), (live$2780 = ((x$27i18 = $B["map-ref"](item, "live", false)), ((x$27i18) !== false ? (((x$27i18 === $sym("null")) === false) ? (($B["equal?"](x$27i18, 0) === false) ? ($B["equal?"](x$27i18, "") === false) : false) : false) : false))), (offset$2776 = (live$2780 ? real_of$27said(at$27104) : 0.0)), set_source$21$27media(media$2768, (live$2780 ? $B["string-append"](src$27106, "?t=", $B["number->string"](at$27104)) : src$27106))));
+      (((live$2780 === false) ? (at$27104 > 0) : false) ? on_once$27dom(media$2768, loadedmetadata$27media, function (e) {
+        return seek$21$27media(media$2768, expected$2788());
       }) : false);
-      ((pictured$27104 = ((or$27value$27105 = ((p$27100) !== false ? true : false)), (or$27value$27105 ? or$27value$27105 : $B["equal?"]($B["map-ref"](item, "kind", ""), "video")))), set_hidden$21$27dom(media$2766, ((or$27value$27106 = (pictured$27104 === false)), (or$27value$27106 ? or$27value$27106 : bar$2780))), set_hidden$21$27dom(art$2767, (pictured$27104 ? (bar$2780 === false) : false)));
-      set_attribute$21$27dom(art$2767, "src", ((x$27i21 = $B["map-ref"](item, "art", "")), ($B["string?"](x$27i21) ? x$27i21 : ($B["number?"](x$27i21) ? $B["number->string"](x$27i21) : ""))));
-      labels$21$2787(item, ((x$27i22 = $B["map-ref"](item, "artist", "")), ($B["string?"](x$27i22) ? x$27i22 : ($B["number?"](x$27i22) ? $B["number->string"](x$27i22) : ""))), $B["string-append"]("/artist/", ((x$27i23 = $B["map-ref"](item, "artist_id", "")), ($B["string?"](x$27i23) ? x$27i23 : ($B["number?"](x$27i23) ? $B["number->string"](x$27i23) : "")))), ((x$27i24 = $B["map-ref"](item, "album", "")), ($B["string?"](x$27i24) ? x$27i24 : ($B["number?"](x$27i24) ? $B["number->string"](x$27i24) : ""))), (((x$27i25 = $B["map-ref"](item, "album_id", 0)), ((x$27i25) !== false ? (((x$27i25 === $sym("null")) === false) ? (($B["equal?"](x$27i25, 0) === false) ? ($B["equal?"](x$27i25, "") === false) : false) : false) : false)) ? $B["string-append"]("/album/", ((x$27i26 = $B["map-ref"](item, "album_id", 0)), ($B["string?"](x$27i26) ? x$27i26 : ($B["number?"](x$27i26) ? $B["number->string"](x$27i26) : "")))) : "#"));
-      media_session$21$27media(((x$27i27 = $B["map-ref"](item, "title", "")), ($B["string?"](x$27i27) ? x$27i27 : ($B["number?"](x$27i27) ? $B["number->string"](x$27i27) : ""))), ((x$27i28 = $B["map-ref"](item, "artist", "")), ($B["string?"](x$27i28) ? x$27i28 : ($B["number?"](x$27i28) ? $B["number->string"](x$27i28) : ""))), ((x$27i29 = $B["map-ref"](item, "album", "")), ($B["string?"](x$27i29) ? x$27i29 : ($B["number?"](x$27i29) ? $B["number->string"](x$27i29) : ""))), ((x$27i30 = $B["map-ref"](item, "art", "")), ($B["string?"](x$27i30) ? x$27i30 : ($B["number?"](x$27i30) ? $B["number->string"](x$27i30) : ""))));
-      return $B["%record-ref"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", 3, options)(item, p$27100);
+      ((pictured$27107 = ((or$27value$27108 = ((p$27103) !== false ? true : false)), (or$27value$27108 ? or$27value$27108 : $B["equal?"]($B["map-ref"](item, "kind", ""), "video")))), set_hidden$21$27dom(media$2768, ((or$27value$27109 = (pictured$27107 === false)), (or$27value$27109 ? or$27value$27109 : bar$2782))), set_hidden$21$27dom(art$2769, (pictured$27107 ? (bar$2782 === false) : false)));
+      set_attribute$21$27dom(art$2769, "src", ((x$27i19 = $B["map-ref"](item, "art", "")), ($B["string?"](x$27i19) ? x$27i19 : ($B["number?"](x$27i19) ? $B["number->string"](x$27i19) : ""))));
+      labels$21$2790(item, ((x$27i20 = $B["map-ref"](item, "artist", "")), ($B["string?"](x$27i20) ? x$27i20 : ($B["number?"](x$27i20) ? $B["number->string"](x$27i20) : ""))), $B["string-append"]("/artist/", ((x$27i21 = $B["map-ref"](item, "artist_id", "")), ($B["string?"](x$27i21) ? x$27i21 : ($B["number?"](x$27i21) ? $B["number->string"](x$27i21) : "")))), ((x$27i22 = $B["map-ref"](item, "album", "")), ($B["string?"](x$27i22) ? x$27i22 : ($B["number?"](x$27i22) ? $B["number->string"](x$27i22) : ""))), (((x$27i23 = $B["map-ref"](item, "album_id", 0)), ((x$27i23) !== false ? (((x$27i23 === $sym("null")) === false) ? (($B["equal?"](x$27i23, 0) === false) ? ($B["equal?"](x$27i23, "") === false) : false) : false) : false)) ? $B["string-append"]("/album/", ((x$27i24 = $B["map-ref"](item, "album_id", 0)), ($B["string?"](x$27i24) ? x$27i24 : ($B["number?"](x$27i24) ? $B["number->string"](x$27i24) : "")))) : "#"));
+      media_session$21$27media(((x$27i25 = $B["map-ref"](item, "title", "")), ($B["string?"](x$27i25) ? x$27i25 : ($B["number?"](x$27i25) ? $B["number->string"](x$27i25) : ""))), ((x$27i26 = $B["map-ref"](item, "artist", "")), ($B["string?"](x$27i26) ? x$27i26 : ($B["number?"](x$27i26) ? $B["number->string"](x$27i26) : ""))), ((x$27i27 = $B["map-ref"](item, "album", "")), ($B["string?"](x$27i27) ? x$27i27 : ($B["number?"](x$27i27) ? $B["number->string"](x$27i27) : ""))), ((x$27i28 = $B["map-ref"](item, "art", "")), ($B["string?"](x$27i28) ? x$27i28 : ($B["number?"](x$27i28) ? $B["number->string"](x$27i28) : ""))));
+      return $B["%record-ref"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", 3, options)(item, p$27103);
     });
-    (play_or_not$2789 = function () {
-      let x$27i31;
-      if (((x$27i31 = $B["map-ref"](state$2771, "paused", false)), ((x$27i31) !== false ? (((x$27i31 === $sym("null")) === false) ? (($B["equal?"](x$27i31, 0) === false) ? ($B["equal?"](x$27i31, "") === false) : false) : false) : false))) {
-        return pause$21$27media(media$2766);
+    (play_or_not$2792 = function () {
+      let x$27i29;
+      if (((x$27i29 = $B["map-ref"](told$2784(), "paused", false)), ((x$27i29) !== false ? (((x$27i29 === $sym("null")) === false) ? (($B["equal?"](x$27i29, 0) === false) ? ($B["equal?"](x$27i29, "") === false) : false) : false) : false))) {
+        return pause$21$27media(media$2768);
       } else {
-        return play_then$21$27media(media$2766, function () {
-          return set_hidden$21$27dom(start$2769, true);
+        return play_then$21$27media(media$2768, function () {
+          return set_hidden$21$27dom(start$2771, true);
         }, function () {
-          return set_hidden$21$27dom(start$2769, false);
+          return set_hidden$21$27dom(start$2771, false);
         });
       }
     });
-    (render$2790 = function () {
-      let how$27116, item$27107, item$27i32, kind$2764$27i33, me$27111, n$27108, names$27112, off$27109, or$27value$2765$27i34, others$27113, players$27110, repeat$27115, shuffle$27114, title$27117, x$27i35, x$27i36, x$27i37, x$27i38, x$27i39, x$27i40, x$27i41, x$27i43, x$27i44, x$27i45, x$27i46;
-      (item$27107 = current$2784());
-      (n$27108 = $B["vector-length"](items$2782()));
-      set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "count", "]"), "span"), ((n$27108 === 0) ? "" : ((n$27108 === 1) ? "1 item" : $B["string-append"]($B["number->string"](n$27108), " items"))));
-      ((item$27107 === false) ? ((loaded$2773 = 0), pause$21$27media(media$2766), clear_source$21$27media(media$2766), set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "title", "]"), "span"), "Nothing playing")) : ((((item$27i32 = item$27107), ((kind$2764$27i33 = $B["map-ref"](item$27i32, "kind", "")), ((or$27value$2765$27i34 = $B["equal?"](kind$2764$27i33, "film")), (or$27value$2765$27i34 ? or$27value$2765$27i34 : $B["equal?"](kind$2764$27i33, "episode"))))) ? (film_of$2781(item$27107) === false) : false) ? (($B["equal?"]($B["map-ref"](item$27107, "id", 0), loaded$2773) ? false : ((loaded$2773 = $B["map-ref"](item$27107, "id", 0)), pause$21$27media(media$2766), clear_source$21$27media(media$2766), set_hidden$21$27dom(media$2766, true), set_hidden$21$27dom(art$2767, false), set_attribute$21$27dom(art$2767, "src", ((x$27i35 = $B["map-ref"](item$27107, "art", "")), ($B["string?"](x$27i35) ? x$27i35 : ($B["number?"](x$27i35) ? $B["number->string"](x$27i35) : "")))), labels$21$2787(item$27107, ((x$27i36 = $B["map-ref"](item$27107, "label", "")), ($B["string?"](x$27i36) ? x$27i36 : ($B["number?"](x$27i36) ? $B["number->string"](x$27i36) : ""))), ((x$27i37 = $B["map-ref"](item$27107, "src", "")), ($B["string?"](x$27i37) ? x$27i37 : ($B["number?"](x$27i37) ? $B["number->string"](x$27i37) : ""))), "", "#"))), set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "at", "]"), "span"), clock$27clock(expected$2785())), set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "length", "]"), "span"), clock$27clock(((x$27i38 = $B["map-ref"](item$27107, "duration", 0)), ($B["number?"](x$27i38) ? (x$27i38 + 0.0) : 0.0)))), (dragging$2776 ? false : (set_attribute$21$27dom(seek$2768, "max", $B["number->string"](((x$27i39 = $B["map-ref"](item$27107, "duration", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i39) ? (x$27i39 + 0.0) : 0.0)))))), set_field$21$27dom(seek$2768, $B["number->string"](((x$27i40 = expected$2785()), $B["exact"]($B["floor"](($B["number?"](x$27i40) ? (x$27i40 + 0.0) : 0.0))))))))) : (($B["equal?"]($B["map-ref"](item$27107, "id", 0), loaded$2773) === false) ? (load$27dom$2788(item$27107), play_or_not$2789()) : (play_or_not$2789(), ((off$27109 = (position$2786() - expected$2785())), (((((x$27i41 = $B["map-ref"](state$2771, "paused", false)), ((x$27i41) !== false ? (((x$27i41 === $sym("null")) === false) ? (($B["equal?"](x$27i41, 0) === false) ? ($B["equal?"](x$27i41, "") === false) : false) : false) : false)) === false) ? (media_ready$3f$27media(media$2766) ? (((off$27109 < 0.0) ? (0.0 - off$27109) : off$27109) > (live$2778 ? 3.0 : 1.0)) : false) : false) ? (live$2778 ? (load$27dom$2788(item$27107), play_or_not$2789()) : seek$21$27media(media$2766, expected$2785())) : false))))));
-      ((players$27110 = $B["map-ref"](state$2771, "players", $B["vector"]())), (me$27111 = browser_id$27socket()), (names$27112 = function (i) {
-        let x$27i42;
+    (render$2793 = function () {
+      let how$27119, item$27110, item$27i30, kind$2766$27i31, me$27114, n$27111, names$27115, off$27112, or$27value$2767$27i32, others$27116, players$27113, repeat$27118, shuffle$27117, title$27120, x$27i33, x$27i34, x$27i35, x$27i36, x$27i37, x$27i38, x$27i39, x$27i41, x$27i42, x$27i43, x$27i44;
+      (item$27110 = current$2787());
+      (n$27111 = $B["vector-length"](items$2785()));
+      set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "count", "]"), "span"), ((n$27111 === 0) ? "" : ((n$27111 === 1) ? "1 item" : $B["string-append"]($B["number->string"](n$27111), " items"))));
+      ((item$27110 === false) ? ((loaded$2775 = 0), pause$21$27media(media$2768), clear_source$21$27media(media$2768), set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "title", "]"), "span"), "Nothing playing")) : ((((item$27i30 = item$27110), ((kind$2766$27i31 = $B["map-ref"](item$27i30, "kind", "")), ((or$27value$2767$27i32 = $B["equal?"](kind$2766$27i31, "film")), (or$27value$2767$27i32 ? or$27value$2767$27i32 : $B["equal?"](kind$2766$27i31, "episode"))))) ? (film_of$2783(item$27110) === false) : false) ? (($B["equal?"]($B["map-ref"](item$27110, "id", 0), loaded$2775) ? false : ((loaded$2775 = ((x$27i33 = $B["map-ref"](item$27110, "id", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i33))))), pause$21$27media(media$2768), clear_source$21$27media(media$2768), set_hidden$21$27dom(media$2768, true), set_hidden$21$27dom(art$2769, false), set_attribute$21$27dom(art$2769, "src", ((x$27i34 = $B["map-ref"](item$27110, "art", "")), ($B["string?"](x$27i34) ? x$27i34 : ($B["number?"](x$27i34) ? $B["number->string"](x$27i34) : "")))), labels$21$2790(item$27110, ((x$27i35 = $B["map-ref"](item$27110, "label", "")), ($B["string?"](x$27i35) ? x$27i35 : ($B["number?"](x$27i35) ? $B["number->string"](x$27i35) : ""))), ((x$27i36 = $B["map-ref"](item$27110, "src", "")), ($B["string?"](x$27i36) ? x$27i36 : ($B["number?"](x$27i36) ? $B["number->string"](x$27i36) : ""))), "", "#"))), set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "at", "]"), "span"), clock$27clock(expected$2788())), set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "length", "]"), "span"), clock$27clock(real_of$27said($B["map-ref"](item$27110, "duration", 0)))), (dragging$2778 ? false : (set_attribute$21$27dom(seek$2770, "max", $B["number->string"](((x$27i37 = $B["map-ref"](item$27110, "duration", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i37)))))), set_field$21$27dom(seek$2770, $B["number->string"](((x$27i38 = expected$2788()), $B["exact"]($B["floor"](real_of$27said(x$27i38))))))))) : (($B["equal?"]($B["map-ref"](item$27110, "id", 0), loaded$2775) === false) ? (load$27dom$2791(item$27110), play_or_not$2792()) : (play_or_not$2792(), ((off$27112 = (position$2789() - expected$2788())), (((((x$27i39 = $B["map-ref"](told$2784(), "paused", false)), ((x$27i39) !== false ? (((x$27i39 === $sym("null")) === false) ? (($B["equal?"](x$27i39, 0) === false) ? ($B["equal?"](x$27i39, "") === false) : false) : false) : false)) === false) ? (media_ready$3f$27media(media$2768) ? (((off$27112 < 0.0) ? (0.0 - off$27112) : off$27112) > (live$2780 ? 3.0 : 1.0)) : false) : false) ? (live$2780 ? (load$27dom$2791(item$27110), play_or_not$2792()) : seek$21$27media(media$2768, expected$2788())) : false))))));
+      ((players$27113 = $B["map-ref"](told$2784(), "players", $B["vector"]())), (me$27114 = browser_id$27socket()), (names$27115 = function (i) {
+        let x$27i40;
         for (;;) {
-          if ((i >= $B["vector-length"](players$27110))) {
+          if ((i >= $B["vector-length"](players$27113))) {
             return null;
           } else {
-            if ($B["equal?"]($B["map-ref"]($B["vector-ref"](players$27110, i), "id", ""), me$27111)) {
+            if ($B["equal?"]($B["map-ref"]($B["vector-ref"](players$27113, i), "id", ""), me$27114)) {
               const $t0 = (i + 1);
               i = $t0;
               continue;
             } else {
-              return $B["cons"](((x$27i42 = $B["map-ref"]($B["vector-ref"](players$27110, i), "name", "")), ($B["string?"](x$27i42) ? x$27i42 : ($B["number?"](x$27i42) ? $B["number->string"](x$27i42) : ""))), names$27112((i + 1)));
+              return $B["cons"](((x$27i40 = $B["map-ref"]($B["vector-ref"](players$27113, i), "name", "")), ($B["string?"](x$27i40) ? x$27i40 : ($B["number?"](x$27i40) ? $B["number->string"](x$27i40) : ""))), names$27115((i + 1)));
             }
           }
         }
-      }), ((others$27113 = ($B["vector?"](players$27110) ? names$27112(0) : null)), set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "note", "]"), "span"), ($B["null?"](others$27113) ? "" : $B["string-append"]("Also playing on: ", join_names$27player(others$27113))))));
-      set_hidden$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "play", "]"), "button"), (((x$27i43 = $B["map-ref"](state$2771, "paused", false)), ((x$27i43) !== false ? (((x$27i43 === $sym("null")) === false) ? (($B["equal?"](x$27i43, 0) === false) ? ($B["equal?"](x$27i43, "") === false) : false) : false) : false)) === false));
-      set_hidden$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "pause", "]"), "button"), ((x$27i44 = $B["map-ref"](state$2771, "paused", false)), ((x$27i44) !== false ? (((x$27i44 === $sym("null")) === false) ? (($B["equal?"](x$27i44, 0) === false) ? ($B["equal?"](x$27i44, "") === false) : false) : false) : false)));
-      ((shuffle$27114 = query_in$27dom(root, "[data-player=shuffle]")), (repeat$27115 = query_in$27dom(root, "[data-player=repeat]")), (how$27116 = ((x$27i45 = $B["map-ref"](state$2771, "repeat", "off")), ($B["string?"](x$27i45) ? x$27i45 : ($B["number?"](x$27i45) ? $B["number->string"](x$27i45) : "")))), ((shuffle$27114) !== false ? toggle_class$21$27dom(shuffle$27114, "on", ((x$27i46 = $B["map-ref"](state$2771, "shuffle", false)), ((x$27i46) !== false ? (((x$27i46 === $sym("null")) === false) ? (($B["equal?"](x$27i46, 0) === false) ? ($B["equal?"](x$27i46, "") === false) : false) : false) : false))) : false), ((repeat$27115) !== false ? ((title$27117 = $B["string-append"]("Repeat: ", ($B["equal?"](how$27116, "one") ? "this one" : how$27116))), toggle_class$21$27dom(repeat$27115, "on", ($B["equal?"](how$27116, "off") === false)), set_title$21$27dom(repeat$27115, title$27117), set_attribute$21$27dom(repeat$27115, "aria-label", title$27117)) : false));
-      return list_items$2792();
+      }), ((others$27116 = ($B["vector?"](players$27113) ? names$27115(0) : null)), set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "note", "]"), "span"), ($B["null?"](others$27116) ? "" : $B["string-append"]("Also playing on: ", join_names$27player(others$27116))))));
+      set_hidden$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "play", "]"), "button"), (((x$27i41 = $B["map-ref"](told$2784(), "paused", false)), ((x$27i41) !== false ? (((x$27i41 === $sym("null")) === false) ? (($B["equal?"](x$27i41, 0) === false) ? ($B["equal?"](x$27i41, "") === false) : false) : false) : false)) === false));
+      set_hidden$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "pause", "]"), "button"), ((x$27i42 = $B["map-ref"](told$2784(), "paused", false)), ((x$27i42) !== false ? (((x$27i42 === $sym("null")) === false) ? (($B["equal?"](x$27i42, 0) === false) ? ($B["equal?"](x$27i42, "") === false) : false) : false) : false)));
+      ((shuffle$27117 = query_in$27dom(root, "[data-player=shuffle]")), (repeat$27118 = query_in$27dom(root, "[data-player=repeat]")), (how$27119 = ((x$27i43 = $B["map-ref"](told$2784(), "repeat", "off")), ($B["string?"](x$27i43) ? x$27i43 : ($B["number?"](x$27i43) ? $B["number->string"](x$27i43) : "")))), ((shuffle$27117) !== false ? toggle_class$21$27dom(shuffle$27117, "on", ((x$27i44 = $B["map-ref"](told$2784(), "shuffle", false)), ((x$27i44) !== false ? (((x$27i44 === $sym("null")) === false) ? (($B["equal?"](x$27i44, 0) === false) ? ($B["equal?"](x$27i44, "") === false) : false) : false) : false))) : false), ((repeat$27118) !== false ? ((title$27120 = $B["string-append"]("Repeat: ", ($B["equal?"](how$27119, "one") ? "this one" : how$27119))), toggle_class$21$27dom(repeat$27118, "on", ($B["equal?"](how$27119, "off") === false)), set_title$21$27dom(repeat$27118, title$27120), set_attribute$21$27dom(repeat$27118, "aria-label", title$27120)) : false));
+      return list_items$2795();
     });
-    (row$21$2791 = function (box, item, i) {
-      let a$27130, act$21$27125, acts$27122, art$27123, kind$27124, n$27128, pic$27129, row$27118, sub$27121, tile$27127, title$27120, words$27119, x$27i47, x$27i48, x$27i49, x$27i50, x$27i51, x$27i52, x$27i53, x$27i54;
-      (row$27118 = make_element$27dom("div"));
-      (words$27119 = make_element$27dom("div"));
-      (title$27120 = make_element$27dom("div"));
-      (sub$27121 = make_element$27dom("div"));
-      (acts$27122 = make_element$27dom("div"));
-      (art$27123 = ((x$27i47 = $B["map-ref"](item, "art", "")), ($B["string?"](x$27i47) ? x$27i47 : ($B["number?"](x$27i47) ? $B["number->string"](x$27i47) : ""))));
-      (kind$27124 = $B["map-ref"](item, "kind", ""));
-      (act$21$27125 = function (name, mark, label) {
-        let b$27126;
-        (b$27126 = make_element$27dom("button"));
-        set_attribute$21$27dom(b$27126, "type", "button");
-        set_attribute$21$27dom(b$27126, "data-act", name);
-        set_text$21$27dom(b$27126, mark);
-        set_title$21$27dom(b$27126, label);
-        set_attribute$21$27dom(b$27126, "aria-label", label);
-        return append$21$27dom(acts$27122, b$27126);
+    (row$21$2794 = function (box, item, i) {
+      let a$27133, act$21$27128, acts$27125, art$27126, kind$27127, n$27131, pic$27132, row$27121, sub$27124, tile$27130, title$27123, words$27122, x$27i45, x$27i46, x$27i47, x$27i48, x$27i49, x$27i50, x$27i51;
+      (row$27121 = make_element$27dom("div"));
+      (words$27122 = make_element$27dom("div"));
+      (title$27123 = make_element$27dom("div"));
+      (sub$27124 = make_element$27dom("div"));
+      (acts$27125 = make_element$27dom("div"));
+      (art$27126 = ((x$27i45 = $B["map-ref"](item, "art", "")), ($B["string?"](x$27i45) ? x$27i45 : ($B["number?"](x$27i45) ? $B["number->string"](x$27i45) : ""))));
+      (kind$27127 = $B["map-ref"](item, "kind", ""));
+      (act$21$27128 = function (name, mark, label) {
+        let b$27129;
+        (b$27129 = make_element$27dom("button"));
+        set_attribute$21$27dom(b$27129, "type", "button");
+        set_attribute$21$27dom(b$27129, "data-act", name);
+        set_text$21$27dom(b$27129, mark);
+        set_title$21$27dom(b$27129, label);
+        set_attribute$21$27dom(b$27129, "aria-label", label);
+        return append$21$27dom(acts$27125, b$27129);
       });
-      set_class$21$27dom(row$27118, ((i === $B["map-ref"](state$2771, "at", 0)) ? "queue-row now" : "queue-row"));
-      set_attribute$21$27dom(row$27118, "data-item", ((x$27i48 = $B["map-ref"](item, "id", 0)), ($B["string?"](x$27i48) ? x$27i48 : ($B["number?"](x$27i48) ? $B["number->string"](x$27i48) : ""))));
-      ($B["equal?"](art$27123, "") ? ((tile$27127 = make_element$27dom("div")), (n$27128 = (((x$27i49 = $B["map-ref"](item, "song", 0)), ((x$27i49) !== false ? (((x$27i49 === $sym("null")) === false) ? (($B["equal?"](x$27i49, 0) === false) ? ($B["equal?"](x$27i49, "") === false) : false) : false) : false)) ? ((x$27i50 = $B["map-ref"](item, "song", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i50) ? (x$27i50 + 0.0) : 0.0)))) : ((x$27i51 = $B["map-ref"](item, "id", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i51) ? (x$27i51 + 0.0) : 0.0)))))), set_class$21$27dom(tile$27127, "queue-tile"), set_style$21$27dom(tile$27127, "background", $B["string-append"]("hsl(", $B["number->string"]($B["modulo"]((n$27128 * 47), 360)), ", 38%, 30%)")), append$21$27dom(row$27118, tile$27127)) : ((pic$27129 = make_element$27dom("img")), set_attribute$21$27dom(pic$27129, "src", art$27123), set_attribute$21$27dom(pic$27129, "alt", ""), set_attribute$21$27dom(pic$27129, "loading", "lazy"), append$21$27dom(row$27118, pic$27129)));
-      set_style$21$27dom(words$27119, "min-width", "0");
-      set_class$21$27dom(title$27120, "queue-title");
-      set_text$21$27dom(title$27120, $B["string-append"](((x$27i52 = $B["map-ref"](item, "title", "")), ($B["string?"](x$27i52) ? x$27i52 : ($B["number?"](x$27i52) ? $B["number->string"](x$27i52) : ""))), ($B["equal?"](kind$27124, "video") ? "  (video)" : ($B["equal?"](kind$27124, "film") ? "  (film)" : ""))));
-      set_class$21$27dom(sub$27121, "queue-sub");
-      set_text$21$27dom(sub$27121, $B["string-append"](((a$27130 = ((x$27i53 = $B["map-ref"](item, "artist", "")), ($B["string?"](x$27i53) ? x$27i53 : ($B["number?"](x$27i53) ? $B["number->string"](x$27i53) : "")))), ($B["equal?"](a$27130, "") ? "" : $B["string-append"](a$27130, " \xc2\xb7 "))), clock$27clock(((x$27i54 = $B["map-ref"](item, "duration", 0)), ($B["number?"](x$27i54) ? (x$27i54 + 0.0) : 0.0)))));
-      append$21$27dom(words$27119, title$27120);
-      append$21$27dom(words$27119, sub$27121);
-      act$21$27125("up", "\xe2\x96\xb2", "Up");
-      act$21$27125("down", "\xe2\x96\xbc", "Down");
-      act$21$27125("remove", "\xe2\x9c\x95", "Remove");
-      append$21$27dom(row$27118, words$27119);
-      append$21$27dom(row$27118, acts$27122);
-      return append$21$27dom(box, row$27118);
+      set_class$21$27dom(row$27121, ((i === $B["map-ref"](told$2784(), "at", 0)) ? "queue-row now" : "queue-row"));
+      set_attribute$21$27dom(row$27121, "data-item", ((x$27i46 = $B["map-ref"](item, "id", 0)), ($B["string?"](x$27i46) ? x$27i46 : ($B["number?"](x$27i46) ? $B["number->string"](x$27i46) : ""))));
+      ($B["equal?"](art$27126, "") ? ((tile$27130 = make_element$27dom("div")), (n$27131 = (((x$27i47 = $B["map-ref"](item, "song", 0)), ((x$27i47) !== false ? (((x$27i47 === $sym("null")) === false) ? (($B["equal?"](x$27i47, 0) === false) ? ($B["equal?"](x$27i47, "") === false) : false) : false) : false)) ? ((x$27i48 = $B["map-ref"](item, "song", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i48)))) : ((x$27i49 = $B["map-ref"](item, "id", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i49)))))), set_class$21$27dom(tile$27130, "queue-tile"), set_style$21$27dom(tile$27130, "background", $B["string-append"]("hsl(", $B["number->string"]($B["modulo"]((n$27131 * 47), 360)), ", 38%, 30%)")), append$21$27dom(row$27121, tile$27130)) : ((pic$27132 = make_element$27dom("img")), set_attribute$21$27dom(pic$27132, "src", art$27126), set_attribute$21$27dom(pic$27132, "alt", ""), set_attribute$21$27dom(pic$27132, "loading", "lazy"), append$21$27dom(row$27121, pic$27132)));
+      set_style$21$27dom(words$27122, "min-width", "0");
+      set_class$21$27dom(title$27123, "queue-title");
+      set_text$21$27dom(title$27123, $B["string-append"](((x$27i50 = $B["map-ref"](item, "title", "")), ($B["string?"](x$27i50) ? x$27i50 : ($B["number?"](x$27i50) ? $B["number->string"](x$27i50) : ""))), ($B["equal?"](kind$27127, "video") ? "  (video)" : ($B["equal?"](kind$27127, "film") ? "  (film)" : ""))));
+      set_class$21$27dom(sub$27124, "queue-sub");
+      set_text$21$27dom(sub$27124, $B["string-append"](((a$27133 = ((x$27i51 = $B["map-ref"](item, "artist", "")), ($B["string?"](x$27i51) ? x$27i51 : ($B["number?"](x$27i51) ? $B["number->string"](x$27i51) : "")))), ($B["equal?"](a$27133, "") ? "" : $B["string-append"](a$27133, " \xc2\xb7 "))), clock$27clock(real_of$27said($B["map-ref"](item, "duration", 0)))));
+      append$21$27dom(words$27122, title$27123);
+      append$21$27dom(words$27122, sub$27124);
+      act$21$27128("up", "\xe2\x96\xb2", "Up");
+      act$21$27128("down", "\xe2\x96\xbc", "Down");
+      act$21$27128("remove", "\xe2\x9c\x95", "Remove");
+      append$21$27dom(row$27121, words$27122);
+      append$21$27dom(row$27121, acts$27125);
+      return append$21$27dom(box, row$27121);
     });
-    (list_items$2792 = function () {
-      let all$27132, box$27131, each$27137, ids$27133, key$27134, or$27value$27135, p$27136, x$27i56;
-      (box$27131 = query_in$27dom(root, "[data-p=items]"));
-      (all$27132 = items$2782());
-      (ids$27133 = function (i) {
-        let x$27i55;
-        if ((i >= $B["vector-length"](all$27132))) {
+    (list_items$2795 = function () {
+      let all$27135, box$27134, each$27140, ids$27136, key$27137, or$27value$27138, p$27139, x$27i53;
+      (box$27134 = query_in$27dom(root, "[data-p=items]"));
+      (all$27135 = items$2785());
+      (ids$27136 = function (i) {
+        let x$27i52;
+        if ((i >= $B["vector-length"](all$27135))) {
           return "";
         } else {
-          return $B["string-append"](",", ((x$27i55 = $B["map-ref"]($B["vector-ref"](all$27132, i), "id", 0)), ($B["string?"](x$27i55) ? x$27i55 : ($B["number?"](x$27i55) ? $B["number->string"](x$27i55) : ""))), ids$27133((i + 1)));
+          return $B["string-append"](",", ((x$27i52 = $B["map-ref"]($B["vector-ref"](all$27135, i), "id", 0)), ($B["string?"](x$27i52) ? x$27i52 : ($B["number?"](x$27i52) ? $B["number->string"](x$27i52) : ""))), ids$27136((i + 1)));
         }
       });
-      (key$27134 = $B["string-append"](((x$27i56 = $B["map-ref"](state$2771, "at", 0)), ($B["string?"](x$27i56) ? x$27i56 : ($B["number?"](x$27i56) ? $B["number->string"](x$27i56) : ""))), ":", ids$27133(0)));
-      if (((or$27value$27135 = (box$27131 === false)), (or$27value$27135 ? or$27value$27135 : $B["equal?"](key$27134, listed$2777)))) {
+      (key$27137 = $B["string-append"](((x$27i53 = $B["map-ref"](told$2784(), "at", 0)), ($B["string?"](x$27i53) ? x$27i53 : ($B["number?"](x$27i53) ? $B["number->string"](x$27i53) : ""))), ":", ids$27136(0)));
+      if (((or$27value$27138 = (box$27134 === false)), (or$27value$27138 ? or$27value$27138 : $B["equal?"](key$27137, listed$2779)))) {
         return false;
       } else {
-        (listed$2777 = key$27134);
-        clear$21$27dom(box$27131);
-        if (($B["vector-length"](all$27132) === 0)) {
-          (p$27136 = make_element$27dom("p"));
-          set_style$21$27dom(p$27136, "color", "var(--muted, #888)");
-          set_text$21$27dom(p$27136, "Empty. Play an album, an artist or a song from Music, or add one with +.");
-          return append$21$27dom(box$27131, p$27136);
+        (listed$2779 = key$27137);
+        clear$21$27dom(box$27134);
+        if (($B["vector-length"](all$27135) === 0)) {
+          (p$27139 = make_element$27dom("p"));
+          set_style$21$27dom(p$27139, "color", "var(--muted, #888)");
+          set_text$21$27dom(p$27139, "Empty. Play an album, an artist or a song from Music, or add one with +.");
+          return append$21$27dom(box$27134, p$27139);
         } else {
-          (each$27137 = function (i) {
+          (each$27140 = function (i) {
             for (;;) {
-              if ((i < $B["vector-length"](all$27132))) {
-                row$21$2791(box$27131, $B["vector-ref"](all$27132, i), i);
+              if ((i < $B["vector-length"](all$27135))) {
+                row$21$2794(box$27134, $B["vector-ref"](all$27135, i), i);
                 const $t0 = (i + 1);
                 i = $t0;
                 continue;
@@ -1581,24 +1604,24 @@ $run(() => {
               }
             }
           });
-          return each$27137(0);
+          return each$27140(0);
         }
       }
     });
-    (queues$21$2793 = function (l) {
-      let each$27139, select$27138, x$27i60;
-      (select$27138 = query_in$27dom(root, "[data-p=queue]"));
-      if ((select$27138) !== false) {
-        clear$21$27dom(select$27138);
-        ((each$27139 = function (i) {
-          let o$27141, q$27140, x$27i57, x$27i58, x$27i59;
+    (queues$21$2796 = function (l) {
+      let each$27142, select$27141, x$27i57;
+      (select$27141 = query_in$27dom(root, "[data-p=queue]"));
+      if ((select$27141) !== false) {
+        clear$21$27dom(select$27141);
+        ((each$27142 = function (i) {
+          let o$27144, q$27143, x$27i54, x$27i55, x$27i56;
           for (;;) {
             if ((i < $B["vector-length"](l))) {
-              (q$27140 = $B["vector-ref"](l, i));
-              (o$27141 = make_element$27dom("option"));
-              set_attribute$21$27dom(o$27141, "value", ((x$27i57 = $B["map-ref"](q$27140, "id", 0)), ($B["string?"](x$27i57) ? x$27i57 : ($B["number?"](x$27i57) ? $B["number->string"](x$27i57) : ""))));
-              set_text$21$27dom(o$27141, $B["string-append"](((x$27i58 = $B["map-ref"](q$27140, "name", "")), ($B["string?"](x$27i58) ? x$27i58 : ($B["number?"](x$27i58) ? $B["number->string"](x$27i58) : ""))), " (", ((x$27i59 = $B["map-ref"](q$27140, "n", 0)), ($B["string?"](x$27i59) ? x$27i59 : ($B["number?"](x$27i59) ? $B["number->string"](x$27i59) : ""))), ")"));
-              append$21$27dom(select$27138, o$27141);
+              (q$27143 = $B["vector-ref"](l, i));
+              (o$27144 = make_element$27dom("option"));
+              set_attribute$21$27dom(o$27144, "value", ((x$27i54 = $B["map-ref"](q$27143, "id", 0)), ($B["string?"](x$27i54) ? x$27i54 : ($B["number?"](x$27i54) ? $B["number->string"](x$27i54) : ""))));
+              set_text$21$27dom(o$27144, $B["string-append"](((x$27i55 = $B["map-ref"](q$27143, "name", "")), ($B["string?"](x$27i55) ? x$27i55 : ($B["number?"](x$27i55) ? $B["number->string"](x$27i55) : ""))), " (", ((x$27i56 = $B["map-ref"](q$27143, "n", 0)), ($B["string?"](x$27i56) ? x$27i56 : ($B["number?"](x$27i56) ? $B["number->string"](x$27i56) : ""))), ")"));
+              append$21$27dom(select$27141, o$27144);
               const $t0 = (i + 1);
               i = $t0;
               continue;
@@ -1606,9 +1629,9 @@ $run(() => {
               return false;
             }
           }
-        }), each$27139(0));
-        if ((state$2771) !== false) {
-          return set_field$21$27dom(select$27138, ((x$27i60 = $B["map-ref"](state$2771, "id", 0)), ($B["string?"](x$27i60) ? x$27i60 : ($B["number?"](x$27i60) ? $B["number->string"](x$27i60) : ""))));
+        }), each$27142(0));
+        if ((state$2773) !== false) {
+          return set_field$21$27dom(select$27141, ((x$27i57 = $B["map-ref"](told$2784(), "id", 0)), ($B["string?"](x$27i57) ? x$27i57 : ($B["number?"](x$27i57) ? $B["number->string"](x$27i57) : ""))));
         } else {
           return false;
         }
@@ -1616,102 +1639,102 @@ $run(() => {
         return false;
       }
     });
-    (wake$2794 = function (queue) {
-      let msg$27i61;
-      (asleep$2779 = false);
-      (wanted$2770 = queue);
-      (loaded$2773 = 0);
-      (listed$2777 = "");
+    (wake$2797 = function (queue) {
+      let msg$27i58;
+      (asleep$2781 = false);
+      (wanted$2772 = queue);
+      (loaded$2775 = 0);
+      (listed$2779 = "");
       $B["%record-ref"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", 4, options)();
-      (msg$27i61 = $B["map-of"]("type", "player", "queue", wanted$2770));
+      (msg$27i58 = $B["map-of"]("type", "player", "queue", wanted$2772));
       if ((open_socket$27socket) !== false) {
-        return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i61));
+        return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i58));
       } else {
         return false;
       }
     });
-    (sleep$2795 = function () {
-      let msg$27i62;
-      (asleep$2779 = true);
-      (state$2771 = false);
-      (loaded$2773 = 0);
-      pause$21$27media(media$2766);
-      clear_source$21$27media(media$2766);
+    (sleep$2798 = function () {
+      let msg$27i59;
+      (asleep$2781 = true);
+      (state$2773 = false);
+      (loaded$2775 = 0);
+      pause$21$27media(media$2768);
+      clear_source$21$27media(media$2768);
       $B["%record-ref"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", 5, options)();
-      (msg$27i62 = $B["map-of"]("type", "player", "stop", true));
+      (msg$27i59 = $B["map-of"]("type", "player", "stop", true));
       if ((open_socket$27socket) !== false) {
-        return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i62));
+        return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i59));
       } else {
         return false;
       }
     });
-    (number_in$2796 = function (e) {
-      let x$27i63;
-      (x$27i63 = $B["string->number"](value_of$27dom(e)));
-      return $B["exact"]($B["floor"](($B["number?"](x$27i63) ? (x$27i63 + 0.0) : 0.0)));
+    (number_in$2799 = function (e) {
+      let x$27i60;
+      (x$27i60 = $B["string->number"](value_of$27dom(e)));
+      return $B["exact"]($B["floor"](real_of$27said(x$27i60)));
     });
+    ((handler$27i62 = function (text, m) {
+      let msg$27i61;
+      if (asleep$2781) {
+        return false;
+      } else {
+        (msg$27i61 = $B["map-of"]("type", "player", "queue", wanted$2772));
+        if ((open_socket$27socket) !== false) {
+          return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i61));
+        } else {
+          return false;
+        }
+      }
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "you", $B["append"]($B["map-ref"](handlers$27socket, "you", null), $listFromEnd(handler$27i62)))));
+    ((handler$27i63 = function (text, m) {
+      return queues$21$2796($B["map-ref"](m, "queues", $B["vector"]()));
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "queues", $B["append"]($B["map-ref"](handlers$27socket, "queues", null), $listFromEnd(handler$27i63)))));
     ((handler$27i65 = function (text, m) {
-      let msg$27i64;
-      if (asleep$2779) {
+      let or$27value$27145, x$27i64;
+      if ((((or$27value$27145 = asleep$2781), (or$27value$27145 ? or$27value$27145 : ((wanted$2772 > 0) ? ($B["equal?"]($B["map-ref"](m, "id", 0), wanted$2772) === false) : false)))) !== false) {
         return false;
       } else {
-        (msg$27i64 = $B["map-of"]("type", "player", "queue", wanted$2770));
-        if ((open_socket$27socket) !== false) {
-          return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i64));
-        } else {
-          return false;
-        }
+        (wanted$2772 = ((x$27i64 = $B["map-ref"](m, "id", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i64)))));
+        (queue_now$27player = wanted$2772);
+        (state$2773 = m);
+        (received$2774 = now_ms$27page());
+        set_field$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "queue", "]"), "select"), $B["number->string"](wanted$2772));
+        ((($B["equal?"](path$27page(), "/music/player") ? (bar$2782 === false) : false)) !== false ? replace_address$21$27page($B["string-append"]("/music/player?", query_with$27page("queue", $B["number->string"](wanted$2772)))) : false);
+        return render$2793();
       }
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "you", $B["append"]($B["map-ref"](handlers$27socket, "you", null), $listFromEnd(handler$27i65)))));
-    ((handler$27i66 = function (text, m) {
-      return queues$21$2793($B["map-ref"](m, "queues", $B["vector"]()));
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "queues", $B["append"]($B["map-ref"](handlers$27socket, "queues", null), $listFromEnd(handler$27i66)))));
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "queue", $B["append"]($B["map-ref"](handlers$27socket, "queue", null), $listFromEnd(handler$27i65)))));
     ((handler$27i68 = function (text, m) {
-      let or$27value$27142, x$27i67;
-      if ((((or$27value$27142 = asleep$2779), (or$27value$27142 ? or$27value$27142 : ((wanted$2770 > 0) ? ($B["equal?"]($B["map-ref"](m, "id", 0), wanted$2770) === false) : false)))) !== false) {
+      let msg$27i67, x$27i66;
+      if (asleep$2781) {
         return false;
       } else {
-        (wanted$2770 = ((x$27i67 = $B["map-ref"](m, "id", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i67) ? (x$27i67 + 0.0) : 0.0)))));
-        (queue_now$27player = wanted$2770);
-        (state$2771 = m);
-        (received$2772 = now_ms$27page());
-        set_field$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "queue", "]"), "select"), $B["number->string"](wanted$2770));
-        ((($B["equal?"](path$27page(), "/music/player") ? (bar$2780 === false) : false)) !== false ? replace_address$21$27page($B["string-append"]("/music/player?", query_with$27page("queue", $B["number->string"](wanted$2770)))) : false);
-        return render$2790();
-      }
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "queue", $B["append"]($B["map-ref"](handlers$27socket, "queue", null), $listFromEnd(handler$27i68)))));
-    ((handler$27i71 = function (text, m) {
-      let msg$27i70, x$27i69;
-      if (asleep$2779) {
-        return false;
-      } else {
-        (wanted$2770 = ((x$27i69 = $B["map-ref"](m, "queue", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i69) ? (x$27i69 + 0.0) : 0.0)))));
-        (msg$27i70 = $B["map-of"]("type", "player", "queue", wanted$2770));
+        (wanted$2772 = ((x$27i66 = $B["map-ref"](m, "queue", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i66)))));
+        (msg$27i67 = $B["map-of"]("type", "player", "queue", wanted$2772));
         if ((open_socket$27socket) !== false) {
-          return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i70));
+          return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i67));
         } else {
           return false;
         }
       }
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "queue-made", $B["append"]($B["map-ref"](handlers$27socket, "queue-made", null), $listFromEnd(handler$27i71)))));
-    ((select$27143 = part_in$27dom(root, $B["string-append"]("[data-p=", "queue", "]"), "select")), on$27dom(select$27143, change$27dom, function (e) {
-      let msg$27i72;
-      (wanted$2770 = number_in$2796(select$27143));
-      (loaded$2773 = 0);
-      (msg$27i72 = $B["map-of"]("type", "player", "queue", wanted$2770));
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "queue-made", $B["append"]($B["map-ref"](handlers$27socket, "queue-made", null), $listFromEnd(handler$27i68)))));
+    ((select$27146 = part_in$27dom(root, $B["string-append"]("[data-p=", "queue", "]"), "select")), on$27dom(select$27146, change$27dom, function (e) {
+      let msg$27i69;
+      (wanted$2772 = number_in$2799(select$27146));
+      (loaded$2775 = 0);
+      (msg$27i69 = $B["map-of"]("type", "player", "queue", wanted$2772));
       if ((open_socket$27socket) !== false) {
-        return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i72));
+        return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i69));
       } else {
         return false;
       }
     }));
     on$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "new", "]"), "button"), click$27dom, function (e) {
-      let msg$27i73, name$27144;
-      (name$27144 = ask$27page("The new queue's name", ""));
-      if ((name$27144) !== false) {
-        (msg$27i73 = $B["map-of"]("type", "queue", "op", "new", "name", name$27144));
+      let msg$27i70, name$27147;
+      (name$27147 = ask$27page("The new queue's name", ""));
+      if ((name$27147) !== false) {
+        (msg$27i70 = $B["map-of"]("type", "queue", "op", "new", "name", name$27147));
         if ((open_socket$27socket) !== false) {
-          return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i73));
+          return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i70));
         } else {
           return false;
         }
@@ -1720,23 +1743,23 @@ $run(() => {
       }
     });
     on$27dom(root, click$27dom, function (e) {
-      let act$27149, all$27150, button$27148, control$27145, find$27152, item$27147, place$27151, row$27146, x$27i74;
-      (control$27145 = closest_of$27dom(e, "[data-player]"));
-      if ((control$27145) !== false) {
-        return send$2783(data_of$27dom(control$27145, "player"), null);
+      let act$27152, all$27153, button$27151, control$27148, find$27155, item$27150, place$27154, row$27149, x$27i71;
+      (control$27148 = closest_of$27dom(e, "[data-player]"));
+      if ((control$27148) !== false) {
+        return send$2786(data_of$27dom(control$27148, "player"), null);
       } else {
-        (row$27146 = closest_of$27dom(e, ".queue-row"));
-        if ((((row$27146) !== false ? state$2771 : false)) !== false) {
-          (item$27147 = ((x$27i74 = $B["string->number"](data_of$27dom(row$27146, "item"))), $B["exact"]($B["floor"](($B["number?"](x$27i74) ? (x$27i74 + 0.0) : 0.0)))));
-          (button$27148 = closest_of$27dom(e, "[data-act]"));
-          (act$27149 = ((button$27148) !== false ? data_of$27dom(button$27148, "act") : ""));
-          (all$27150 = items$2782());
-          (place$27151 = ((find$27152 = function (i) {
+        (row$27149 = closest_of$27dom(e, ".queue-row"));
+        if ((((row$27149) !== false ? state$2773 : false)) !== false) {
+          (item$27150 = ((x$27i71 = $B["string->number"](data_of$27dom(row$27149, "item"))), $B["exact"]($B["floor"](real_of$27said(x$27i71)))));
+          (button$27151 = closest_of$27dom(e, "[data-act]"));
+          (act$27152 = ((button$27151) !== false ? data_of$27dom(button$27151, "act") : ""));
+          (all$27153 = items$2785());
+          (place$27154 = ((find$27155 = function (i) {
             for (;;) {
-              if ((i >= $B["vector-length"](all$27150))) {
+              if ((i >= $B["vector-length"](all$27153))) {
                 return -1;
               } else {
-                if ($B["equal?"]($B["map-ref"]($B["vector-ref"](all$27150, i), "id", 0), item$27147)) {
+                if ($B["equal?"]($B["map-ref"]($B["vector-ref"](all$27153, i), "id", 0), item$27150)) {
                   return i;
                 } else {
                   const $t0 = (i + 1);
@@ -1745,18 +1768,18 @@ $run(() => {
                 }
               }
             }
-          }), find$27152(0)));
-          if ($B["equal?"](act$27149, "remove")) {
-            return send$2783("remove", $listFromEnd($B["cons"]("item", item$27147)));
+          }), find$27155(0)));
+          if ($B["equal?"](act$27152, "remove")) {
+            return send$2786("remove", $listFromEnd($B["cons"]("item", item$27150)));
           } else {
-            if (($B["equal?"](act$27149, "up") ? (place$27151 > 0) : false)) {
-              return send$2783("move", $listFromEnd($B["cons"]("to", (place$27151 - 1)), $B["cons"]("item", item$27147)));
+            if (($B["equal?"](act$27152, "up") ? (place$27154 > 0) : false)) {
+              return send$2786("move", $listFromEnd($B["cons"]("to", (place$27154 - 1)), $B["cons"]("item", item$27150)));
             } else {
-              if (($B["equal?"](act$27149, "down") ? (place$27151 < ($B["vector-length"](all$27150) - 1)) : false)) {
-                return send$2783("move", $listFromEnd($B["cons"]("to", (place$27151 + 1)), $B["cons"]("item", item$27147)));
+              if (($B["equal?"](act$27152, "down") ? (place$27154 < ($B["vector-length"](all$27153) - 1)) : false)) {
+                return send$2786("move", $listFromEnd($B["cons"]("to", (place$27154 + 1)), $B["cons"]("item", item$27150)));
               } else {
-                if ($B["equal?"](act$27149, "")) {
-                  return send$2783("jump", $listFromEnd($B["cons"]("item", item$27147)));
+                if ($B["equal?"](act$27152, "")) {
+                  return send$2786("jump", $listFromEnd($B["cons"]("item", item$27150)));
                 } else {
                   return false;
                 }
@@ -1768,189 +1791,186 @@ $run(() => {
         }
       }
     });
-    on$27dom(start$2769, click$27dom, function (e) {
-      return play_then$21$27media(media$2766, function () {
-        return set_hidden$21$27dom(start$2769, true);
+    on$27dom(start$2771, click$27dom, function (e) {
+      return play_then$21$27media(media$2768, function () {
+        return set_hidden$21$27dom(start$2771, true);
       }, function () {
         return false;
       });
     });
-    on$27dom(media$2766, ended$27media, function (e) {
-      let item$27153;
-      (item$27153 = current$2784());
-      if ((((item$27153) !== false ? (asleep$2779 === false) : false)) !== false) {
-        return send$2783("ended", $listFromEnd($B["cons"]("item", $B["map-ref"](item$27153, "id", 0))));
+    on$27dom(media$2768, ended$27media, function (e) {
+      let item$27156;
+      (item$27156 = current$2787());
+      if ((((item$27156) !== false ? (asleep$2781 === false) : false)) !== false) {
+        return send$2786("ended", $listFromEnd($B["cons"]("item", $B["map-ref"](item$27156, "id", 0))));
       } else {
         return false;
       }
     });
-    on$27dom(media$2766, timeupdate$27media, function (e) {
-      let at$27155, d$27158, half$27157, item$27154, length$27156, x$27i75, x$27i76, x$27i77, x$27i78, x$27i79;
-      (item$27154 = current$2784());
-      if ((((item$27154) !== false ? (asleep$2779 === false) : false)) !== false) {
-        (at$27155 = position$2786());
-        (length$27156 = ((d$27158 = ((x$27i75 = $B["map-ref"](item$27154, "duration", 0)), ($B["number?"](x$27i75) ? (x$27i75 + 0.0) : 0.0))), ((d$27158 > 0.0) ? d$27158 : media_duration$27media(media$2766))));
-        (half$27157 = (length$27156 / 2.0));
-        (((heard$2775 === false) ? (((x$27i76 = $B["map-ref"](item$27154, "song", 0)), ((x$27i76) !== false ? (((x$27i76 === $sym("null")) === false) ? (($B["equal?"](x$27i76, 0) === false) ? ($B["equal?"](x$27i76, "") === false) : false) : false) : false)) ? (at$27155 > ((half$27157 < 240.0) ? half$27157 : 240.0)) : false) : false) ? ((heard$2775 = true), send$2783("heard", $listFromEnd($B["cons"]("song", $B["map-ref"](item$27154, "song", 0))))) : false);
-        (dragging$2776 ? false : (set_attribute$21$27dom(seek$2768, "max", $B["number->string"](((x$27i77 = length$27156), $B["exact"]($B["floor"](($B["number?"](x$27i77) ? (x$27i77 + 0.0) : 0.0)))))), set_field$21$27dom(seek$2768, $B["number->string"](((x$27i78 = at$27155), $B["exact"]($B["floor"](($B["number?"](x$27i78) ? (x$27i78 + 0.0) : 0.0))))))));
-        set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "at", "]"), "span"), clock$27clock((dragging$2776 ? ((x$27i79 = number_in$2796(seek$2768)), ($B["number?"](x$27i79) ? (x$27i79 + 0.0) : 0.0)) : at$27155)));
-        return set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "length", "]"), "span"), clock$27clock(length$27156));
+    on$27dom(media$2768, timeupdate$27media, function (e) {
+      let at$27158, d$27161, half$27160, item$27157, length$27159, x$27i72, x$27i73, x$27i74;
+      (item$27157 = current$2787());
+      if ((((item$27157) !== false ? (asleep$2781 === false) : false)) !== false) {
+        (at$27158 = position$2789());
+        (length$27159 = ((d$27161 = real_of$27said($B["map-ref"](item$27157, "duration", 0))), ((d$27161 > 0.0) ? d$27161 : media_duration$27media(media$2768))));
+        (half$27160 = (length$27159 / 2.0));
+        (((heard$2777 === false) ? (((x$27i72 = $B["map-ref"](item$27157, "song", 0)), ((x$27i72) !== false ? (((x$27i72 === $sym("null")) === false) ? (($B["equal?"](x$27i72, 0) === false) ? ($B["equal?"](x$27i72, "") === false) : false) : false) : false)) ? (at$27158 > ((half$27160 < 240.0) ? half$27160 : 240.0)) : false) : false) ? ((heard$2777 = true), send$2786("heard", $listFromEnd($B["cons"]("song", $B["map-ref"](item$27157, "song", 0))))) : false);
+        (dragging$2778 ? false : (set_attribute$21$27dom(seek$2770, "max", $B["number->string"](((x$27i73 = length$27159), $B["exact"]($B["floor"](real_of$27said(x$27i73)))))), set_field$21$27dom(seek$2770, $B["number->string"](((x$27i74 = at$27158), $B["exact"]($B["floor"](real_of$27said(x$27i74))))))));
+        set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "at", "]"), "span"), clock$27clock((dragging$2778 ? real_of$27said(number_in$2799(seek$2770)) : at$27158)));
+        return set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "length", "]"), "span"), clock$27clock(length$27159));
       } else {
         return false;
       }
     });
-    on$27dom(seek$2768, input$27dom, function (e) {
-      let x$27i80;
-      (dragging$2776 = true);
-      return set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "at", "]"), "span"), clock$27clock(((x$27i80 = number_in$2796(seek$2768)), ($B["number?"](x$27i80) ? (x$27i80 + 0.0) : 0.0))));
+    on$27dom(seek$2770, input$27dom, function (e) {
+      (dragging$2778 = true);
+      return set_text$21$27dom(part_in$27dom(root, $B["string-append"]("[data-p=", "at", "]"), "span"), clock$27clock(real_of$27said(number_in$2799(seek$2770))));
     });
-    on$27dom(seek$2768, change$27dom, function (e) {
-      (dragging$2776 = false);
-      return send$2783("seek", $listFromEnd($B["cons"]("value", number_in$2796(seek$2768))));
+    on$27dom(seek$2770, change$27dom, function (e) {
+      (dragging$2778 = false);
+      return send$2786("seek", $listFromEnd($B["cons"]("value", number_in$2799(seek$2770))));
     });
-    ((volume$27media$27159 = part_in$27dom(root, $B["string-append"]("[data-p=", "volume", "]"), "input")), on$27dom(volume$27media$27159, input$27dom, function (e) {
-      let x$27i81;
-      return set_volume$21$27media(media$2766, (((x$27i81 = number_in$2796(volume$27media$27159)), ($B["number?"](x$27i81) ? (x$27i81 + 0.0) : 0.0)) / 100.0));
+    ((volume$27media$27162 = part_in$27dom(root, $B["string-append"]("[data-p=", "volume", "]"), "input")), on$27dom(volume$27media$27162, input$27dom, function (e) {
+      return set_volume$21$27media(media$2768, (real_of$27said(number_in$2799(volume$27media$27162)) / 100.0));
     }));
     on_media_key$27media("play", function () {
-      if (asleep$2779) {
+      if (asleep$2781) {
         return false;
       } else {
-        return send$2783("toggle", null);
+        return send$2786("toggle", null);
       }
     });
     on_media_key$27media("pause", function () {
-      if (asleep$2779) {
+      if (asleep$2781) {
         return false;
       } else {
-        return send$2783("toggle", null);
+        return send$2786("toggle", null);
       }
     });
     on_media_key$27media("nexttrack", function () {
-      if (asleep$2779) {
+      if (asleep$2781) {
         return false;
       } else {
-        return send$2783("next", null);
+        return send$2786("next", null);
       }
     });
     on_media_key$27media("previoustrack", function () {
-      if (asleep$2779) {
+      if (asleep$2781) {
         return false;
       } else {
-        return send$2783("prev", null);
+        return send$2786("prev", null);
       }
     });
     every$27page(2000, function () {
-      let x$27i82;
-      if ((((asleep$2779 === false) ? ((state$2771) !== false ? ((((x$27i82 = $B["map-ref"](state$2771, "paused", false)), ((x$27i82) !== false ? (((x$27i82 === $sym("null")) === false) ? (($B["equal?"](x$27i82, 0) === false) ? ($B["equal?"](x$27i82, "") === false) : false) : false) : false)) === false) ? current$2784() : false) : false) : false)) !== false) {
-        return render$2790();
+      let x$27i75;
+      if ((((asleep$2781 === false) ? ((state$2773) !== false ? ((((x$27i75 = $B["map-ref"](told$2784(), "paused", false)), ((x$27i75) !== false ? (((x$27i75 === $sym("null")) === false) ? (($B["equal?"](x$27i75, 0) === false) ? ($B["equal?"](x$27i75, "") === false) : false) : false) : false)) === false) ? current$2787() : false) : false) : false)) !== false) {
+        return render$2793();
       } else {
         return false;
       }
     });
-    (wake$27i83 = wake$2794);
-    (sleep$27i84 = sleep$2795);
-    (send$27i85 = send$2783);
-    (position$27i86 = position$2786);
-    (current$27i87 = current$2784);
-    (playing$3f$27i88 = function () {
-      return (asleep$2779 === false);
+    (wake$27i76 = wake$2797);
+    (sleep$27i77 = sleep$2798);
+    (send$27i78 = send$2786);
+    (position$27i79 = position$2789);
+    (current$27i80 = current$2787);
+    (playing$3f$27i81 = function () {
+      return (asleep$2781 === false);
     });
-    (queue$27i89 = function () {
-      return wanted$2770;
+    (queue$27i82 = function () {
+      return wanted$2772;
     });
-    (state$27i90 = function () {
-      return state$2771;
+    (state$27i83 = function () {
+      return state$2773;
     });
-    (reload$27i91 = function () {
-      (loaded$2773 = 0);
-      if ((((state$2771) !== false ? (asleep$2779 === false) : false)) !== false) {
-        return render$2790();
+    (reload$27i84 = function () {
+      (loaded$2775 = 0);
+      if ((((state$2773) !== false ? (asleep$2781 === false) : false)) !== false) {
+        return render$2793();
       } else {
         return false;
       }
     });
-    (media$27i92 = media$2766);
-    return $B["%record-make"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", wake$27i83, sleep$27i84, send$27i85, position$27i86, current$27i87, playing$3f$27i88, queue$27i89, state$27i90, reload$27i91, media$27i92);
+    (media$27i85 = media$2768);
+    return $B["%record-make"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", wake$27i76, sleep$27i77, send$27i78, position$27i79, current$27i80, playing$3f$27i81, queue$27i82, state$27i83, reload$27i84, media$27i85);
   });
   (note$27ui = function (words) {
-    let n$27160;
-    (n$27160 = make_element$27dom("div"));
-    set_class$21$27dom(n$27160, "music-note");
-    set_text$21$27dom(n$27160, words);
-    append$21$27dom(body$27dom(), n$27160);
+    let n$27163;
+    (n$27163 = make_element$27dom("div"));
+    set_class$21$27dom(n$27163, "music-note");
+    set_text$21$27dom(n$27163, words);
+    append$21$27dom(body$27dom(), n$27163);
     after$27page(2500, function () {
-      return remove$21$27dom(n$27160);
+      return remove$21$27dom(n$27163);
     });
     return false;
   });
   (choose$27ui = function (title, choices) {
-    let d$27161, each$27164, heading$27162, option$27163;
-    (d$27161 = make_element$27dom("dialog"));
-    (heading$27162 = make_element$27dom("h2"));
-    set_class$21$27dom(d$27161, "reel-where");
-    set_text$21$27dom(heading$27162, title);
-    append$21$27dom(d$27161, heading$27162);
-    (option$27163 = function (label, act, $class) {
-      let b$27165;
-      (b$27165 = make_element$27dom("button"));
-      set_text$21$27dom(b$27165, label);
-      ($B["equal?"]($class, "") ? false : set_class$21$27dom(b$27165, $class));
-      on$27dom(b$27165, click$27dom, function (e) {
-        close_dialog$21$27dom(d$27161);
+    let d$27164, each$27167, heading$27165, option$27166;
+    (d$27164 = make_element$27dom("dialog"));
+    (heading$27165 = make_element$27dom("h2"));
+    set_class$21$27dom(d$27164, "reel-where");
+    set_text$21$27dom(heading$27165, title);
+    append$21$27dom(d$27164, heading$27165);
+    (option$27166 = function (label, act, $class) {
+      let b$27168;
+      (b$27168 = make_element$27dom("button"));
+      set_text$21$27dom(b$27168, label);
+      ($B["equal?"]($class, "") ? false : set_class$21$27dom(b$27168, $class));
+      on$27dom(b$27168, click$27dom, function (e) {
+        close_dialog$21$27dom(d$27164);
         return act();
       });
-      return append$21$27dom(d$27161, b$27165);
+      return append$21$27dom(d$27164, b$27168);
     });
-    (each$27164 = function (l) {
+    (each$27167 = function (l) {
       for (;;) {
         if ($B["null?"](l)) {
           return true;
         } else {
-          option$27163($B["car"]($B["car"](l)), $B["cdr"]($B["car"](l)), "");
+          option$27166($B["car"]($B["car"](l)), $B["cdr"]($B["car"](l)), "");
           const $t0 = $B["cdr"](l);
           l = $t0;
           continue;
         }
       }
     });
-    each$27164(choices);
-    option$27163("Cancel", function () {
+    each$27167(choices);
+    option$27166("Cancel", function () {
       return false;
     }, "reel-cancel");
-    on$27dom(d$27161, close$27dom, function (e) {
-      return remove$21$27dom(d$27161);
+    on$27dom(d$27164, close$27dom, function (e) {
+      return remove$21$27dom(d$27164);
     });
-    append$21$27dom(body$27dom(), d$27161);
-    return show_modal$21$27dom(d$27161);
+    append$21$27dom(body$27dom(), d$27164);
+    return show_modal$21$27dom(d$27164);
   });
   (pending$27playlist = false);
-  (choices$27playlist = function (playlists, i, out) {
-    let p$27166;
+  (choices$27playlist = function (what, playlists, i, out) {
+    let p$27169;
     if ((i < 0)) {
       return out;
     } else {
-      (p$27166 = $B["vector-ref"](playlists, i));
-      return choices$27playlist(playlists, (i - 1), $B["cons"]($B["cons"]($B["string-append"]($B["map-ref"](p$27166, "name"), $B["string-append"](" (", $B["string-append"]($B["number->string"]($B["map-ref"](p$27166, "n", 0)), ")"))), function () {
-        let msg$27i93$27i95, playlist$27i94;
-        (playlist$27i94 = $B["map-ref"](p$27166, "id"));
-        (msg$27i93$27i95 = $B["map-of"]("type", "playlist", "op", "add", "playlist", playlist$27i94, "what", $B["map-ref"](pending$27playlist, "what"), "id", $B["map-ref"](pending$27playlist, "id")));
+      (p$27169 = $B["vector-ref"](playlists, i));
+      return choices$27playlist(what, playlists, (i - 1), $B["cons"]($B["cons"]($B["string-append"]($B["map-ref"](p$27169, "name"), $B["string-append"](" (", $B["string-append"]($B["number->string"]($B["map-ref"](p$27169, "n", 0)), ")"))), function () {
+        let msg$27i86$27i88, playlist$27i87;
+        (playlist$27i87 = $B["map-ref"](p$27169, "id"));
+        (msg$27i86$27i88 = $B["map-of"]("type", "playlist", "op", "add", "playlist", playlist$27i87, "what", $B["map-ref"](what, "what"), "id", $B["map-ref"](what, "id")));
         if ((open_socket$27socket) !== false) {
-          return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i93$27i95));
+          return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i86$27i88));
         } else {
           return false;
         }
       }), out));
     }
   });
-  (new_playlist$27playlist = function () {
-    let msg$27i96, name$27168, what$27167;
-    (what$27167 = pending$27playlist);
-    (name$27168 = ask$27page("The new playlist's name", ""));
-    if ((name$27168) !== false) {
-      (msg$27i96 = $B["map-of"]("type", "playlist", "op", "new", "name", name$27168, "what", $B["map-ref"](what$27167, "what"), "id", $B["map-ref"](what$27167, "id")));
+  (new_playlist$27playlist = function (what) {
+    let msg$27i89, name$27170;
+    (name$27170 = ask$27page("The new playlist's name", ""));
+    if ((name$27170) !== false) {
+      (msg$27i89 = $B["map-of"]("type", "playlist", "op", "new", "name", name$27170, "what", $B["map-ref"](what, "what"), "id", $B["map-ref"](what, "id")));
       if ((open_socket$27socket) !== false) {
-        return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i96));
+        return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i89));
       } else {
         return false;
       }
@@ -1959,14 +1979,14 @@ $run(() => {
     }
   });
   (playlists_add$27playlist = function () {
-    let handler$27i98, handler$27i99, save$27171;
+    let handler$27i91, handler$27i92, save$27174;
     on_document$27dom(click$27dom, function (e) {
-      let b$27169, msg$27i97, n$27170;
-      (b$27169 = closest_of$27dom(e, "[data-playlist-add]"));
-      if ((b$27169) !== false) {
+      let b$27171, msg$27i90, n$27172;
+      (b$27171 = closest_of$27dom(e, "[data-playlist-add]"));
+      if ((b$27171) !== false) {
         prevent_default$21$27dom(e);
-        (pending$27playlist = $B["map-of"]("what", data_of$27dom(b$27169, "playlist-add"), "id", ((n$27170 = $B["string->number"](data_of$27dom(b$27169, "id"))), ((n$27170) !== false ? n$27170 : 0))));
-        if (((msg$27i97 = $B["map-of"]("type", "playlist", "op", "list")), ((open_socket$27socket) !== false ? socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i97)) : false))) {
+        (pending$27playlist = $B["map-of"]("what", data_of$27dom(b$27171, "playlist-add"), "id", ((n$27172 = $B["string->number"](data_of$27dom(b$27171, "id"))), ((n$27172) !== false ? n$27172 : 0))));
+        if (((msg$27i90 = $B["map-of"]("type", "playlist", "op", "list")), ((open_socket$27socket) !== false ? socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i90)) : false))) {
           return false;
         } else {
           return note$27ui("Not connected to HazelFlix just now: try again in a moment.");
@@ -1975,27 +1995,31 @@ $run(() => {
         return false;
       }
     });
-    ((handler$27i98 = function (text, m) {
-      if ((pending$27playlist) !== false) {
-        return choose$27ui("Add to a playlist", $B["append"](choices$27playlist($B["map-ref"](m, "playlists", $B["vector"]()), ($B["vector-length"]($B["map-ref"](m, "playlists", $B["vector"]())) - 1), null), $listFromEnd($B["cons"]("New playlist\xe2\x80\xa6", new_playlist$27playlist))));
+    ((handler$27i91 = function (text, m) {
+      let what$27173;
+      (what$27173 = pending$27playlist);
+      if ((what$27173) !== false) {
+        return choose$27ui("Add to a playlist", $B["append"](choices$27playlist(what$27173, $B["map-ref"](m, "playlists", $B["vector"]()), ($B["vector-length"]($B["map-ref"](m, "playlists", $B["vector"]())) - 1), null), $listFromEnd($B["cons"]("New playlist\xe2\x80\xa6", function () {
+          return new_playlist$27playlist(what$27173);
+        }))));
       } else {
         return false;
       }
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "playlists", $B["append"]($B["map-ref"](handlers$27socket, "playlists", null), $listFromEnd(handler$27i98)))));
-    ((handler$27i99 = function (text, m) {
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "playlists", $B["append"]($B["map-ref"](handlers$27socket, "playlists", null), $listFromEnd(handler$27i91)))));
+    ((handler$27i92 = function (text, m) {
       (pending$27playlist = false);
       return note$27ui($B["string-append"]((($B["map-ref"](m, "n", 1) === 1) ? "Added to " : $B["string-append"]($B["number->string"]($B["map-ref"](m, "n", 1)), " added to ")), $B["string-append"]($B["map-ref"](m, "name", ""), ".")));
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "playlist-added", $B["append"]($B["map-ref"](handlers$27socket, "playlist-added", null), $listFromEnd(handler$27i99)))));
-    (save$27171 = by_id$27dom("player-save"));
-    if ((save$27171) !== false) {
-      return on$27dom(save$27171, click$27dom, function (e) {
-        let msg$27i100, name$27172, queue$27173;
-        (name$27172 = ask$27page("The playlist's name", ""));
-        (queue$27173 = queue_now$27player);
-        if (((name$27172) !== false ? (queue$27173 > 0) : false)) {
-          (msg$27i100 = $B["map-of"]("type", "playlist", "op", "new", "name", name$27172, "what", "queue", "id", queue$27173));
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "playlist-added", $B["append"]($B["map-ref"](handlers$27socket, "playlist-added", null), $listFromEnd(handler$27i92)))));
+    (save$27174 = by_id$27dom("player-save"));
+    if ((save$27174) !== false) {
+      return on$27dom(save$27174, click$27dom, function (e) {
+        let msg$27i93, name$27175, queue$27176;
+        (name$27175 = ask$27page("The playlist's name", ""));
+        (queue$27176 = queue_now$27player);
+        if (((name$27175) !== false ? (queue$27176 > 0) : false)) {
+          (msg$27i93 = $B["map-of"]("type", "playlist", "op", "new", "name", name$27175, "what", "queue", "id", queue$27176));
           if ((open_socket$27socket) !== false) {
-            return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i100));
+            return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i93));
           } else {
             return false;
           }
@@ -2008,11 +2032,11 @@ $run(() => {
     }
   });
   (pop_out$27playlist = function () {
-    let buttons$27174, each$27175;
-    (query_has$3f$27page("popout") ? ((buttons$27174 = query_all$27dom("[data-popout]")), (each$27175 = function (i) {
+    let buttons$27177, each$27178;
+    (query_has$3f$27page("popout") ? ((buttons$27177 = query_all$27dom("[data-popout]")), (each$27178 = function (i) {
       for (;;) {
-        if ((i < $B["vector-length"](buttons$27174))) {
-          set_hidden$21$27dom($B["vector-ref"](buttons$27174, i), true);
+        if ((i < $B["vector-length"](buttons$27177))) {
+          set_hidden$21$27dom($B["vector-ref"](buttons$27177, i), true);
           const $t0 = (i + 1);
           i = $t0;
           continue;
@@ -2020,18 +2044,18 @@ $run(() => {
           return false;
         }
       }
-    }), each$27175(0)) : false);
+    }), each$27178(0)) : false);
     return on_document$27dom(click$27dom, function (e) {
-      let b$27176, q$27179, queue$27177, w$27178;
-      (b$27176 = closest_of$27dom(e, "[data-popout]"));
-      if ((b$27176) !== false) {
-        (queue$27177 = ((q$27179 = queue_now$27player), ((q$27179 > 0) ? q$27179 : $B["map-ref"](self$27socket, "queue", 0))));
-        (w$27178 = open_window$27page($B["string-append"]("/music/player?popout=1", ((queue$27177 > 0) ? $B["string-append"]("&queue=", $B["number->string"](queue$27177)) : "")), "hazelflix-player", "popup,width=460,height=780"));
+      let b$27179, q$27182, queue$27180, w$27181;
+      (b$27179 = closest_of$27dom(e, "[data-popout]"));
+      if ((b$27179) !== false) {
+        (queue$27180 = ((q$27182 = queue_now$27player), ((q$27182 > 0) ? q$27182 : $B["map-ref"](self$27socket, "queue", 0))));
+        (w$27181 = open_window$27page($B["string-append"]("/music/player?popout=1", ((queue$27180 > 0) ? $B["string-append"]("&queue=", $B["number->string"](queue$27180)) : "")), "hazelflix-player", "popup,width=460,height=780"));
         prevent_default$21$27dom(e);
-        if ((w$27178 === false)) {
+        if ((w$27181 === false)) {
           return alert$21$27page("The browser didn't open the window: allow pop-ups for HazelFlix.");
         } else {
-          focus_window$21$27page(w$27178);
+          focus_window$21$27page(w$27181);
           if (($B["equal?"](path$27page(), "/music/player") ? (query_has$3f$27page("popout") === false) : false)) {
             return go$21$27page("/music");
           } else {
@@ -2043,92 +2067,99 @@ $run(() => {
       }
     });
   });
+  (number_of$27film = function (e, name) {
+    let n$27183;
+    (n$27183 = $B["string->number"](data_of$27dom(e, name)));
+    if ((n$27183) !== false) {
+      return $theReal((n$27183 + 0.0));
+    } else {
+      return 0.0;
+    }
+  });
   (film_plays$27film = function () {
-    let video$27181;
-    (video$27181 = media_by_id$27media("player"));
-    if ((video$27181) !== false) {
-      return plays$27film(video$27181);
+    let video$27184;
+    (video$27184 = media_by_id$27media("player"));
+    if ((video$27184) !== false) {
+      return plays$27film(video$27184);
     } else {
       return false;
     }
   });
   (plays$27film = function (video) {
-    let dragging$27197, duration$27185, f$27188, file$27183, film$27182, format$27184, live$27186, n$27180$27i101, n$27180$27i102, n$27180$27i106, offset$27187, position$27189, report$27190, seek$27195, show$27198, start$27193, time$27196;
-    (film$27182 = data_of$27dom(video, "film"));
-    (file$27183 = data_of$27dom(video, "file"));
-    (format$27184 = ((f$27188 = data_of$27dom(video, "format")), ($B["equal?"](f$27188, "") ? "0" : f$27188)));
-    (duration$27185 = ((n$27180$27i101 = $B["string->number"](data_of$27dom(video, "duration"))), ((n$27180$27i101) !== false ? (n$27180$27i101 + 0.0) : 0.0)));
-    (live$27186 = $B["equal?"](data_of$27dom(video, "live"), "1"));
-    (offset$27187 = (live$27186 ? ((n$27180$27i102 = $B["string->number"](data_of$27dom(video, "start"))), ((n$27180$27i102) !== false ? (n$27180$27i102 + 0.0) : 0.0)) : 0.0));
-    (position$27189 = function () {
-      return (offset$27187 + media_time$27media(video));
+    let dragging$27200, duration$27188, f$27191, file$27186, film$27185, format$27187, live$27189, offset$27190, position$27192, report$27193, seek$27198, show$27201, start$27196, time$27199;
+    (film$27185 = data_of$27dom(video, "film"));
+    (file$27186 = data_of$27dom(video, "file"));
+    (format$27187 = ((f$27191 = data_of$27dom(video, "format")), ($B["equal?"](f$27191, "") ? "0" : f$27191)));
+    (duration$27188 = number_of$27film(video, "duration"));
+    (live$27189 = $B["equal?"](data_of$27dom(video, "live"), "1"));
+    (offset$27190 = (live$27189 ? number_of$27film(video, "start") : 0.0));
+    (position$27192 = function () {
+      return (offset$27190 + media_time$27media(video));
     });
-    (report$27190 = function (going) {
-      let at$27191, length$27192, msg$27i105, x$27i103, x$27i104;
-      (at$27191 = ((x$27i103 = position$27189()), ($B["round"]((10.0 * x$27i103)) / 10.0)));
-      (length$27192 = ((x$27i104 = ((duration$27185 > 0.0) ? duration$27185 : media_duration$27media(video))), ($B["round"]((10.0 * x$27i104)) / 10.0)));
-      if (((going === false) ? ((msg$27i105 = $B["map-of"]("type", "progress", "film", $B["string->number"](film$27182), "file", $B["string->number"](file$27183), "position", at$27191, "duration", length$27192)), ((open_socket$27socket) !== false ? socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i105)) : false)) : false)) {
+    (report$27193 = function (going) {
+      let at$27194, length$27195, msg$27i96, x$27i94, x$27i95;
+      (at$27194 = ((x$27i94 = position$27192()), ($B["round"]((10.0 * x$27i94)) / 10.0)));
+      (length$27195 = ((x$27i95 = ((duration$27188 > 0.0) ? duration$27188 : media_duration$27media(video))), ($B["round"]((10.0 * x$27i95)) / 10.0)));
+      if (((going === false) ? ((msg$27i96 = $B["map-of"]("type", "progress", "film", $B["string->number"](film$27185), "file", $B["string->number"](file$27186), "position", at$27194, "duration", length$27195)), ((open_socket$27socket) !== false ? socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i96)) : false)) : false)) {
         return false;
       } else {
-        return post_form$21$27fetch("/progress", $B["string-append"]("film=", encode_component$27page(film$27182), "&file=", encode_component$27page(file$27183), "&position=", $B["number->string"](at$27191), "&duration=", $B["number->string"](length$27192)));
+        return post_form$21$27fetch("/progress", $B["string-append"]("film=", encode_component$27page(film$27185), "&file=", encode_component$27page(file$27186), "&position=", $realText(at$27194), "&duration=", $realText(length$27195)));
       }
     });
-    ((live$27186 === false) ? ((start$27193 = ((n$27180$27i106 = $B["string->number"](data_of$27dom(video, "start"))), ((n$27180$27i106) !== false ? (n$27180$27i106 + 0.0) : 0.0))), ((start$27193 > 0.0) ? on_once$27dom(video, loadedmetadata$27media, function (e) {
-      return seek$21$27media(video, start$27193);
+    ((live$27189 === false) ? ((start$27196 = number_of$27film(video, "start")), ((start$27196 > 0.0) ? on_once$27dom(video, loadedmetadata$27media, function (e) {
+      return seek$21$27media(video, start$27196);
     }) : false)) : false);
     every$27page(10000, function () {
       if (media_paused$3f$27media(video)) {
         return false;
       } else {
-        return report$27190(false);
+        return report$27193(false);
       }
     });
     on$27dom(video, pause$27media, function (e) {
-      return report$27190(false);
+      return report$27193(false);
     });
     on$27dom(video, ended$27media, function (e) {
-      let next$27194;
-      report$27190(false);
-      (next$27194 = data_of$27dom(video, "next"));
-      if ($B["equal?"](next$27194, "")) {
+      let next$27197;
+      report$27193(false);
+      (next$27197 = data_of$27dom(video, "next"));
+      if ($B["equal?"](next$27197, "")) {
         return false;
       } else {
         return after$27page(1500, function () {
-          return go$21$27page(next$27194);
+          return go$21$27page(next$27197);
         });
       }
     });
     on_window$27page(pagehide$27page, function (e) {
-      return report$27190(true);
+      return report$27193(true);
     });
-    if (live$27186) {
-      (seek$27195 = by_id$27dom("live-seek"));
-      (time$27196 = by_id$27dom("live-time"));
-      (dragging$27197 = false);
-      (show$27198 = function (s) {
-        if ((time$27196) !== false) {
-          return set_text$21$27dom(time$27196, $B["string-append"](clock$27clock(s), " / ", clock$27clock(duration$27185)));
+    if (live$27189) {
+      (seek$27198 = by_id$27dom("live-seek"));
+      (time$27199 = by_id$27dom("live-time"));
+      (dragging$27200 = false);
+      (show$27201 = function (s) {
+        if ((time$27199) !== false) {
+          return set_text$21$27dom(time$27199, $B["string-append"](clock$27clock(s), " / ", clock$27clock(duration$27188)));
         } else {
           return false;
         }
       });
       on$27dom(video, timeupdate$27media, function (e) {
-        (((seek$27195) !== false ? (dragging$27197 === false) : false) ? set_field$21$27dom(seek$27195, $B["number->string"]($B["exact"]($B["floor"](position$27189())))) : false);
-        return show$27198(position$27189());
+        (((seek$27198) !== false ? (dragging$27200 === false) : false) ? set_field$21$27dom(seek$27198, $B["number->string"]($B["exact"]($B["floor"](position$27192())))) : false);
+        return show$27201(position$27192());
       });
-      if ((seek$27195) !== false) {
-        on$27dom(seek$27195, input$27dom, function (e) {
-          let e$27i107, n$27199$27i108;
-          (dragging$27197 = true);
-          return show$27198((number_of_field$27film, (e$27i107 = seek$27195), ((n$27199$27i108 = $B["string->number"](value_of$27dom(e$27i107))), ((n$27199$27i108) !== false ? (n$27199$27i108 + 0.0) : 0.0))));
+      if ((seek$27198) !== false) {
+        on$27dom(seek$27198, input$27dom, function (e) {
+          (dragging$27200 = true);
+          return show$27201(number_of_field$27film(seek$27198));
         });
-        return on$27dom(seek$27195, change$27dom, function (e) {
-          let e$27i109, n$27199$27i110;
-          (dragging$27197 = false);
-          (offset$27187 = (number_of_field$27film, (e$27i109 = seek$27195), ((n$27199$27i110 = $B["string->number"](value_of$27dom(e$27i109))), ((n$27199$27i110) !== false ? (n$27199$27i110 + 0.0) : 0.0))));
-          const $c0 = $B["floor"](offset$27187);
+        return on$27dom(seek$27198, change$27dom, function (e) {
+          (dragging$27200 = false);
+          (offset$27190 = number_of_field$27film(seek$27198));
+          const $c0 = $B["floor"](offset$27190);
           if (!Number.isInteger($c0)) throw $notInteger;
-          set_source$21$27media(video, $B["string-append"]("/live/", file$27183, "?t=", $B["number->string"]($c0), ($B["equal?"](format$27184, "0") ? "" : $B["string-append"]("&format=", format$27184))));
+          set_source$21$27media(video, $B["string-append"]("/live/", file$27186, "?t=", $B["number->string"]($c0), ($B["equal?"](format$27187, "0") ? "" : $B["string-append"]("&format=", format$27187))));
           return play$21$27media(video);
         });
       } else {
@@ -2139,10 +2170,10 @@ $run(() => {
     }
   });
   (number_of_field$27film = function (e) {
-    let n$27199;
-    (n$27199 = $B["string->number"](value_of$27dom(e)));
-    if ((n$27199) !== false) {
-      return (n$27199 + 0.0);
+    let n$27202;
+    (n$27202 = $B["string->number"](value_of$27dom(e)));
+    if ((n$27202) !== false) {
+      return $theReal((n$27202 + 0.0));
     } else {
       return 0.0;
     }
@@ -2153,24 +2184,24 @@ $run(() => {
   (waiting$27where = 0);
   (sent$27where = 0);
   (other_screens$27where = function () {
-    let from$27201, me$27200;
-    (me$27200 = $B["string-append"](browser_id$27socket(), $B["string-append"](".", tab$27socket)));
-    (from$27201 = function (i) {
+    let from$27204, me$27203;
+    (me$27203 = $B["string-append"](browser_id$27socket(), $B["string-append"](".", tab$27socket)));
+    (from$27204 = function (i) {
       for (;;) {
         if ((i < 0)) {
           return null;
         } else {
-          if ($B["equal?"]($B["map-ref"]($B["vector-ref"](targets$27where, i), "id", ""), me$27200)) {
+          if ($B["equal?"]($B["map-ref"]($B["vector-ref"](targets$27where, i), "id", ""), me$27203)) {
             const $t0 = (i - 1);
             i = $t0;
             continue;
           } else {
-            return $B["cons"]($B["vector-ref"](targets$27where, i), from$27201((i - 1)));
+            return $B["cons"]($B["vector-ref"](targets$27where, i), from$27204((i - 1)));
           }
         }
       }
     });
-    return $B["reverse"](from$27201(($B["vector-length"](targets$27where) - 1)));
+    return $B["reverse"](from$27204(($B["vector-length"](targets$27where) - 1)));
   });
   (screen_of$27where = function (id) {
     let from;
@@ -2192,13 +2223,13 @@ $run(() => {
     return from(($B["vector-length"](targets$27where) - 1));
   });
   (send_to$27where = function (t, href) {
-    let msg$27i111, this$27202;
-    if (((msg$27i111 = $B["map-of"]("type", "play", "target", $B["map-ref"](t, "id", ""), "href", href)), ((open_socket$27socket) !== false ? socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i111)) : false))) {
-      (this$27202 = (sent$27where + 1));
-      (sent$27where = this$27202);
-      (waiting$27where = this$27202);
+    let msg$27i97, this$27205;
+    if (((msg$27i97 = $B["map-of"]("type", "play", "target", $B["map-ref"](t, "id", ""), "href", href)), ((open_socket$27socket) !== false ? socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i97)) : false))) {
+      (this$27205 = (sent$27where + 1));
+      (sent$27where = this$27205);
+      (waiting$27where = this$27205);
       return after$27page(5000, function () {
-        if ((waiting$27where === this$27202)) {
+        if ((waiting$27where === this$27205)) {
           (waiting$27where = 0);
           return alert$21$27page($B["string-append"]($B["map-ref"](t, "name", ""), " didn't answer."));
         } else {
@@ -2212,13 +2243,13 @@ $run(() => {
   (ask_where$27where = function (href, there) {
     let choices;
     (choices = function (l) {
-      let t$27203;
+      let t$27206;
       if ($B["null?"](l)) {
         return null;
       } else {
-        (t$27203 = $B["car"](l));
-        return $B["cons"]($B["cons"]($B["map-ref"](t$27203, "name", ""), function () {
-          return send_to$27where(t$27203, href);
+        (t$27206 = $B["car"](l));
+        return $B["cons"]($B["cons"]($B["map-ref"](t$27206, "name", ""), function () {
+          return send_to$27where(t$27206, href);
         }), choices($B["cdr"](l)));
       }
     });
@@ -2227,13 +2258,13 @@ $run(() => {
     }), choices(there)));
   });
   (ask_which$27where = function (href, there) {
-    let msg$27i112, n$27204;
-    (n$27204 = (asked$27where + 1));
-    (asked$27where = n$27204);
+    let msg$27i98, n$27207;
+    (n$27207 = (asked$27where + 1));
+    (asked$27where = n$27207);
     (asked_href$27where = href);
-    if (((msg$27i112 = $B["map-of"]("type", "can-play", "n", n$27204, "href", href)), ((open_socket$27socket) !== false ? socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i112)) : false))) {
+    if (((msg$27i98 = $B["map-of"]("type", "can-play", "n", n$27207, "href", href)), ((open_socket$27socket) !== false ? socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i98)) : false))) {
       return after$27page(1000, function () {
-        if ((asked$27where === n$27204)) {
+        if ((asked$27where === n$27207)) {
           (asked$27where = 0);
           return ask_where$27where(href, there);
         } else {
@@ -2275,12 +2306,12 @@ $run(() => {
     }
   });
   (player_link$3f$27where = function (href) {
-    let b$27205$27i113, b$27205$27i114;
+    let b$27208$27i100, b$27208$27i99;
     if ($B["string-prefix?"]("/play/", href)) {
       if ((6 < $B["string-length"](href))) {
-        (b$27205$27i113 = $B["byte-ref"](href, 6));
-        if ((b$27205$27i113 >= 48)) {
-          return (b$27205$27i113 <= 57);
+        (b$27208$27i99 = $B["byte-ref"](href, 6));
+        if ((b$27208$27i99 >= 48)) {
+          return (b$27208$27i99 <= 57);
         } else {
           return false;
         }
@@ -2290,9 +2321,9 @@ $run(() => {
     } else {
       if ($B["string-prefix?"]("/watch/", href)) {
         if ((7 < $B["string-length"](href))) {
-          (b$27205$27i114 = $B["byte-ref"](href, 7));
-          if ((b$27205$27i114 >= 48)) {
-            return (b$27205$27i114 <= 57);
+          (b$27208$27i100 = $B["byte-ref"](href, 7));
+          if ((b$27208$27i100 >= 48)) {
+            return (b$27208$27i100 <= 57);
           } else {
             return false;
           }
@@ -2305,50 +2336,50 @@ $run(() => {
     }
   });
   (play_where$27where = function () {
-    let handler$27i115, handler$27i116, handler$27i117, handler$27i118;
-    ((handler$27i115 = function (text, m) {
-      return (targets$27where = $B["map-ref"](m, "targets", $B["vector"]()));
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "targets", $B["append"]($B["map-ref"](handlers$27socket, "targets", null), $listFromEnd(handler$27i115)))));
-    ((handler$27i116 = function (text, m) {
+    let handler$27i101, handler$27i102, handler$27i103, handler$27i104;
+    ((handler$27i101 = function (text, m) {
+      return (targets$27where = $theVector($B["map-ref"](m, "targets", $B["vector"]())));
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "targets", $B["append"]($B["map-ref"](handlers$27socket, "targets", null), $listFromEnd(handler$27i101)))));
+    ((handler$27i102 = function (text, m) {
       if ((waiting$27where > 0)) {
         (waiting$27where = 0);
         return go$21$27page($B["string-append"]("/remote?target=", encode_component$27page($B["map-ref"](m, "target", ""))));
       } else {
         return false;
       }
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "played", $B["append"]($B["map-ref"](handlers$27socket, "played", null), $listFromEnd(handler$27i116)))));
-    ((handler$27i117 = function (text, m) {
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "played", $B["append"]($B["map-ref"](handlers$27socket, "played", null), $listFromEnd(handler$27i102)))));
+    ((handler$27i103 = function (text, m) {
       if ((waiting$27where > 0)) {
         (waiting$27where = 0);
         return alert$21$27page($B["map-ref"](m, "why", ""));
       } else {
         return false;
       }
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "failed", $B["append"]($B["map-ref"](handlers$27socket, "failed", null), $listFromEnd(handler$27i117)))));
-    ((handler$27i118 = function (text, m) {
-      let able$27206, href$27207;
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "failed", $B["append"]($B["map-ref"](handlers$27socket, "failed", null), $listFromEnd(handler$27i103)))));
+    ((handler$27i104 = function (text, m) {
+      let able$27209, href$27210;
       if (((asked$27where > 0) ? ($B["map-ref"](m, "n", 0) === asked$27where) : false)) {
-        (able$27206 = only_able$27where(other_screens$27where(), $B["map-ref"](m, "targets", $B["vector"]())));
-        (href$27207 = asked_href$27where);
+        (able$27209 = only_able$27where(other_screens$27where(), $B["map-ref"](m, "targets", $B["vector"]())));
+        (href$27210 = asked_href$27where);
         (asked$27where = 0);
-        if ($B["null?"](able$27206)) {
-          return go$21$27page(href$27207);
+        if ($B["null?"](able$27209)) {
+          return go$21$27page(href$27210);
         } else {
-          return ask_where$27where(href$27207, able$27206);
+          return ask_where$27where(href$27210, able$27209);
         }
       } else {
         return false;
       }
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "can-play", $B["append"]($B["map-ref"](handlers$27socket, "can-play", null), $listFromEnd(handler$27i118)))));
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "can-play", $B["append"]($B["map-ref"](handlers$27socket, "can-play", null), $listFromEnd(handler$27i104)))));
     return on_document$27dom(click$27dom, function (e) {
-      let a$27208, href$27209, there$27210;
-      (a$27208 = closest_of$27dom(e, "a[href]"));
-      if (((a$27208) !== false ? ((default_prevented$3f$27dom(e) === false) ? (plain_click$3f$27dom(e) ? (by_id$27dom("ready") === false) : false) : false) : false)) {
-        (href$27209 = attribute_of$27dom(a$27208, "href"));
-        (there$27210 = other_screens$27where());
-        if ((player_link$3f$27where(href$27209) ? (($B["null?"](there$27210) === false) ? dialogs$3f$27dom() : false) : false)) {
+      let a$27211, href$27212, there$27213;
+      (a$27211 = closest_of$27dom(e, "a[href]"));
+      if (((a$27211) !== false ? ((default_prevented$3f$27dom(e) === false) ? (plain_click$3f$27dom(e) ? (by_id$27dom("ready") === false) : false) : false) : false)) {
+        (href$27212 = attribute_of$27dom(a$27211, "href"));
+        (there$27213 = other_screens$27where());
+        if ((player_link$3f$27where(href$27212) ? (($B["null?"](there$27213) === false) ? dialogs$3f$27dom() : false) : false)) {
           prevent_default$21$27dom(e);
-          return ask_which$27where(href$27209, there$27210);
+          return ask_which$27where(href$27212, there$27213);
         } else {
           return false;
         }
@@ -2358,83 +2389,75 @@ $run(() => {
     });
   });
   (text$21$27ready = function (id, text) {
-    let e$27211;
-    (e$27211 = by_id$27dom(id));
-    if ((e$27211) !== false) {
-      return set_text$21$27dom(e$27211, text);
+    let e$27214;
+    (e$27214 = by_id$27dom(id));
+    if ((e$27214) !== false) {
+      return set_text$21$27dom(e$27214, text);
     } else {
       return false;
     }
   });
   (ready_to_play$27ready = function () {
-    let ready$27212, video$27213;
-    (ready$27212 = by_id$27dom("ready"));
-    (video$27213 = media_by_id$27media("screen"));
-    if ((((ready$27212) !== false ? video$27213 : false)) !== false) {
-      return screen_plays$27ready(video$27213);
+    let ready$27215, video$27216;
+    (ready$27215 = by_id$27dom("ready"));
+    (video$27216 = media_by_id$27media("screen"));
+    if ((((ready$27215) !== false ? video$27216 : false)) !== false) {
+      return screen_plays$27ready(video$27216);
     } else {
       return false;
     }
   });
   (screen_plays$27ready = function (video) {
-    let card$27217, duration$27225, film$27220, film$27i146, films$27218, handler$27i152, handler$27i159, handler$27i162, handler$27i178, item$27219, loaded$27229, on_load$27i147, on_sleep$27i149, on_wake$27i148, player$27222, reached$27221, report$27227, screen$27216, show_name$27224, start$27214, state$27226, still$27223, stirred$27228, stop$27230, wait$27215;
-    (start$27214 = by_id$27dom("ready-start"));
-    (wait$27215 = by_id$27dom("ready-wait"));
-    (screen$27216 = by_id$27dom("ready-screen"));
-    (card$27217 = by_id$27dom("ready-card"));
-    (films$27218 = $B["map-of"]());
-    (item$27219 = false);
-    (film$27220 = false);
-    (reached$27221 = 0.0);
-    (player$27222 = false);
-    (still$27223 = 0);
-    (show_name$27224 = function () {
-      let name$27231;
-      (name$27231 = $B["map-ref"](self$27socket, "name", ""));
-      if ($B["equal?"](name$27231, "")) {
+    let card$27220, duration$27229, film$27223, film$27i129, films$27221, handler$27i135, handler$27i142, handler$27i145, handler$27i161, item$27222, loaded$27233, on_load$27i130, on_sleep$27i132, on_wake$27i131, player$27225, reached$27224, report$27231, screen$27219, show_name$27228, start$27217, started$27227, state$27230, still$27226, stirred$27232, stop$27234, wait$27218;
+    (start$27217 = by_id$27dom("ready-start"));
+    (wait$27218 = by_id$27dom("ready-wait"));
+    (screen$27219 = by_id$27dom("ready-screen"));
+    (card$27220 = by_id$27dom("ready-card"));
+    (films$27221 = $B["map-of"]());
+    (item$27222 = false);
+    (film$27223 = false);
+    (reached$27224 = 0.0);
+    (player$27225 = false);
+    (still$27226 = 0);
+    (started$27227 = function () {
+      return player$27225;
+    });
+    (show_name$27228 = function () {
+      let name$27235;
+      (name$27235 = $B["map-ref"](self$27socket, "name", ""));
+      if ($B["equal?"](name$27235, "")) {
         return false;
       } else {
-        text$21$27ready("ready-hint-name", $B["string-append"]("\xe2\x80\x9c", name$27231, "\xe2\x80\x9d"));
-        return text$21$27ready("ready-name", ($B["equal?"]($B["map-ref"](self$27socket, "role", ""), "play") ? $B["string-append"]("This screen is ", name$27231, ".") : $B["string-append"]("This screen is ", name$27231, ": set it to Play in Settings, Browsers, so others can send to it.")));
+        text$21$27ready("ready-hint-name", $B["string-append"]("\xe2\x80\x9c", name$27235, "\xe2\x80\x9d"));
+        return text$21$27ready("ready-name", ($B["equal?"]($B["map-ref"](self$27socket, "role", ""), "play") ? $B["string-append"]("This screen is ", name$27235, ".") : $B["string-append"]("This screen is ", name$27235, ": set it to Play in Settings, Browsers, so others can send to it.")));
       }
     });
-    (duration$27225 = function () {
-      let x$27i119, x$27i120;
-      if ($B["map?"](film$27220)) {
-        (x$27i119 = $B["map-ref"](film$27220, "duration", 0));
-        if ($B["number?"](x$27i119)) {
-          return (x$27i119 + 0.0);
-        } else {
-          return 0.0;
-        }
+    (duration$27229 = function () {
+      if ($B["map?"](film$27223)) {
+        return real_of$27said($B["map-ref"](film$27223, "duration", 0));
       } else {
-        if ($B["map?"](item$27219)) {
-          (x$27i120 = $B["map-ref"](item$27219, "duration", 0));
-          if ($B["number?"](x$27i120)) {
-            return (x$27i120 + 0.0);
-          } else {
-            return 0.0;
-          }
+        if ($B["map?"](item$27222)) {
+          return real_of$27said($B["map-ref"](item$27222, "duration", 0));
         } else {
           return 0.0;
         }
       }
     });
-    (state$27226 = function () {
-      let msg$27i127, r$27i121, x$27i122, x$27i123, x$27i124, x$27i125, x$27i126;
-      (msg$27i127 = $B["map-of"]("type", "state", "playing", ($B["map?"](item$27219) ? true : false), "paused", media_paused$3f$27media(video), "position", ((x$27i122 = ((r$27i121 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 3, r$27i121))()), $B["exact"]($B["floor"](($B["number?"](x$27i122) ? (x$27i122 + 0.0) : 0.0)))), "duration", ((x$27i123 = duration$27225()), $B["exact"]($B["floor"](($B["number?"](x$27i123) ? (x$27i123 + 0.0) : 0.0)))), "title", ($B["map?"](item$27219) ? ((x$27i124 = $B["map-ref"](item$27219, "title", "")), ($B["string?"](x$27i124) ? x$27i124 : ($B["number?"](x$27i124) ? $B["number->string"](x$27i124) : ""))) : ""), "label", text_of$27dom(by_id$27dom("ready-label")), "poster", ($B["map?"](film$27220) ? ((x$27i125 = $B["map-ref"](film$27220, "poster", "")), ($B["string?"](x$27i125) ? x$27i125 : ($B["number?"](x$27i125) ? $B["number->string"](x$27i125) : ""))) : ($B["map?"](item$27219) ? ((x$27i126 = $B["map-ref"](item$27219, "art", "")), ($B["string?"](x$27i126) ? x$27i126 : ($B["number?"](x$27i126) ? $B["number->string"](x$27i126) : ""))) : "")), "volume", volume$27media(video), "muted", muted$3f$27media(video), "subtitles", ($B["map?"](film$27220) ? $B["map-ref"](film$27220, "subtitles", 0) : 0), "subtitlesOn", subtitles_showing$3f$27media(video), "next", ($B["map?"](film$27220) ? $B["map-ref"](film$27220, "next", 0) : 0)));
+    (state$27230 = function () {
+      let msg$27i111, r$27i105, x$27i106, x$27i107, x$27i108, x$27i109, x$27i110;
+      (msg$27i111 = $B["map-of"]("type", "state", "playing", ($B["map?"](item$27222) ? true : false), "paused", media_paused$3f$27media(video), "position", ((x$27i106 = ((r$27i105 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 3, r$27i105))()), $B["exact"]($B["floor"](real_of$27said(x$27i106)))), "duration", ((x$27i107 = duration$27229()), $B["exact"]($B["floor"](real_of$27said(x$27i107)))), "title", ($B["map?"](item$27222) ? ((x$27i108 = $B["map-ref"](item$27222, "title", "")), ($B["string?"](x$27i108) ? x$27i108 : ($B["number?"](x$27i108) ? $B["number->string"](x$27i108) : ""))) : ""), "label", text_of$27dom(by_id$27dom("ready-label")), "poster", ($B["map?"](film$27223) ? ((x$27i109 = $B["map-ref"](film$27223, "poster", "")), ($B["string?"](x$27i109) ? x$27i109 : ($B["number?"](x$27i109) ? $B["number->string"](x$27i109) : ""))) : ($B["map?"](item$27222) ? ((x$27i110 = $B["map-ref"](item$27222, "art", "")), ($B["string?"](x$27i110) ? x$27i110 : ($B["number?"](x$27i110) ? $B["number->string"](x$27i110) : ""))) : "")), "volume", volume$27media(video), "muted", muted$3f$27media(video), "subtitles", ($B["map?"](film$27223) ? $B["map-ref"](film$27223, "subtitles", 0) : 0), "subtitlesOn", subtitles_showing$3f$27media(video), "next", ($B["map?"](film$27223) ? $B["map-ref"](film$27223, "next", 0) : 0)));
       if ((open_socket$27socket) !== false) {
-        return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i127));
+        return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i111));
       } else {
         return false;
       }
     });
-    (report$27227 = function () {
-      let msg$27i131, x$27i128, x$27i129, x$27i130;
-      if (($B["map?"](film$27220) ? (reached$27221 > 0.0) : false)) {
-        (msg$27i131 = $B["map-of"]("type", "progress", "film", $B["map-ref"](film$27220, "film", 0), "file", $B["map-ref"](film$27220, "file", 0), "position", ((x$27i128 = reached$27221), ($B["round"]((10.0 * x$27i128)) / 10.0)), "duration", ((x$27i130 = ((x$27i129 = $B["map-ref"](film$27220, "duration", 0)), ($B["number?"](x$27i129) ? (x$27i129 + 0.0) : 0.0))), ($B["round"]((10.0 * x$27i130)) / 10.0))));
+    (report$27231 = function () {
+      let msg$27i114, x$27i112, x$27i113;
+      if (($B["map?"](film$27223) ? (reached$27224 > 0.0) : false)) {
+        (msg$27i114 = $B["map-of"]("type", "progress", "film", $B["map-ref"](film$27223, "film", 0), "file", $B["map-ref"](film$27223, "file", 0), "position", ((x$27i112 = reached$27224), ($B["round"]((10.0 * x$27i112)) / 10.0)), "duration", ((x$27i113 = real_of$27said($B["map-ref"](film$27223, "duration", 0))), ($B["round"]((10.0 * x$27i113)) / 10.0))));
         if ((open_socket$27socket) !== false) {
-          return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i131));
+          return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i114));
         } else {
           return false;
         }
@@ -2442,26 +2465,26 @@ $run(() => {
         return false;
       }
     });
-    (stirred$27228 = function () {
-      remove_class$21$27dom(screen$27216, "still");
-      cancel_timer$21$27page(still$27223);
-      return (still$27223 = after$27page(3000, function () {
-        return add_class$21$27dom(screen$27216, "still");
+    (stirred$27232 = function () {
+      remove_class$21$27dom(screen$27219, "still");
+      cancel_timer$21$27page(still$27226);
+      return (still$27226 = after$27page(3000, function () {
+        return add_class$21$27dom(screen$27219, "still");
       }));
     });
-    (loaded$27229 = function (i, p) {
-      let album$27233, art$27239, artist$27232, each$27235, each$27236, or$27value$27238, tracks$27234, x$27i132, x$27i133, x$27i134, x$27i135, x$27i138, x$27i139, x$27i140, x$27i141, x$27i142;
-      report$27227();
-      (item$27219 = i);
-      (film$27220 = p);
-      (reached$27221 = 0.0);
-      text$21$27ready("ready-title", ((x$27i132 = $B["map-ref"](i, "title", "")), ($B["string?"](x$27i132) ? x$27i132 : ($B["number?"](x$27i132) ? $B["number->string"](x$27i132) : ""))));
-      text$21$27ready("ready-label", ($B["map?"](p) ? ((x$27i133 = $B["map-ref"](p, "label", "")), ($B["string?"](x$27i133) ? x$27i133 : ($B["number?"](x$27i133) ? $B["number->string"](x$27i133) : ""))) : ((artist$27232 = ((x$27i134 = $B["map-ref"](i, "artist", "")), ($B["string?"](x$27i134) ? x$27i134 : ($B["number?"](x$27i134) ? $B["number->string"](x$27i134) : "")))), (album$27233 = ((x$27i135 = $B["map-ref"](i, "album", "")), ($B["string?"](x$27i135) ? x$27i135 : ($B["number?"](x$27i135) ? $B["number->string"](x$27i135) : "")))), ($B["equal?"](artist$27232, "") ? album$27233 : ($B["equal?"](album$27233, "") ? artist$27232 : $B["string-append"](artist$27232, " \xc2\xb7 ", album$27233))))));
+    (loaded$27233 = function (i, p) {
+      let album$27237, art$27243, artist$27236, each$27239, each$27240, or$27value$27242, tracks$27238, x$27i115, x$27i116, x$27i117, x$27i118, x$27i121, x$27i122, x$27i123, x$27i124, x$27i125;
+      report$27231();
+      (item$27222 = i);
+      (film$27223 = p);
+      (reached$27224 = 0.0);
+      text$21$27ready("ready-title", ((x$27i115 = $B["map-ref"](i, "title", "")), ($B["string?"](x$27i115) ? x$27i115 : ($B["number?"](x$27i115) ? $B["number->string"](x$27i115) : ""))));
+      text$21$27ready("ready-label", ($B["map?"](p) ? ((x$27i116 = $B["map-ref"](p, "label", "")), ($B["string?"](x$27i116) ? x$27i116 : ($B["number?"](x$27i116) ? $B["number->string"](x$27i116) : ""))) : ((artist$27236 = ((x$27i117 = $B["map-ref"](i, "artist", "")), ($B["string?"](x$27i117) ? x$27i117 : ($B["number?"](x$27i117) ? $B["number->string"](x$27i117) : "")))), (album$27237 = ((x$27i118 = $B["map-ref"](i, "album", "")), ($B["string?"](x$27i118) ? x$27i118 : ($B["number?"](x$27i118) ? $B["number->string"](x$27i118) : "")))), ($B["equal?"](artist$27236, "") ? album$27237 : ($B["equal?"](album$27237, "") ? artist$27236 : $B["string-append"](artist$27236, " \xc2\xb7 ", album$27237))))));
       text$21$27ready("ready-time", "");
-      ((tracks$27234 = query_all_in$27dom(video, "track")), ((each$27235 = function (n) {
+      ((tracks$27238 = query_all_in$27dom(video, "track")), ((each$27239 = function (n) {
         for (;;) {
-          if ((n < $B["vector-length"](tracks$27234))) {
-            remove$21$27dom($B["vector-ref"](tracks$27234, n));
+          if ((n < $B["vector-length"](tracks$27238))) {
+            remove$21$27dom($B["vector-ref"](tracks$27238, n));
             const $t0 = (n + 1);
             n = $t0;
             continue;
@@ -2469,17 +2492,17 @@ $run(() => {
             return false;
           }
         }
-      }), each$27235(0)));
-      ($B["map?"](p) ? ((each$27236 = function (n) {
-        let t$27237, x$27i136, x$27i137;
+      }), each$27239(0)));
+      ($B["map?"](p) ? ((each$27240 = function (n) {
+        let t$27241, x$27i119, x$27i120;
         for (;;) {
-          if ((n < ((x$27i136 = $B["map-ref"](p, "subtitles", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i136) ? (x$27i136 + 0.0) : 0.0)))))) {
-            (t$27237 = make_element$27dom("track"));
-            set_attribute$21$27dom(t$27237, "kind", "subtitles");
-            set_attribute$21$27dom(t$27237, "srclang", "en");
-            set_attribute$21$27dom(t$27237, "src", $B["string-append"]("/subs/", ((x$27i137 = $B["map-ref"](p, "file", 0)), ($B["string?"](x$27i137) ? x$27i137 : ($B["number?"](x$27i137) ? $B["number->string"](x$27i137) : ""))), "/", $B["number->string"](n)));
-            ((n === 0) ? set_attribute$21$27dom(t$27237, "default", "") : false);
-            append$21$27dom(video, t$27237);
+          if ((n < ((x$27i119 = $B["map-ref"](p, "subtitles", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i119)))))) {
+            (t$27241 = make_element$27dom("track"));
+            set_attribute$21$27dom(t$27241, "kind", "subtitles");
+            set_attribute$21$27dom(t$27241, "srclang", "en");
+            set_attribute$21$27dom(t$27241, "src", $B["string-append"]("/subs/", ((x$27i120 = $B["map-ref"](p, "file", 0)), ($B["string?"](x$27i120) ? x$27i120 : ($B["number?"](x$27i120) ? $B["number->string"](x$27i120) : ""))), "/", $B["number->string"](n)));
+            ((n === 0) ? set_attribute$21$27dom(t$27241, "default", "") : false);
+            append$21$27dom(video, t$27241);
             const $t0 = (n + 1);
             n = $t0;
             continue;
@@ -2487,218 +2510,240 @@ $run(() => {
             return false;
           }
         }
-      }), each$27236(0)) : false);
-      set_poster$21$27media(video, ($B["map?"](p) ? ((x$27i138 = $B["map-ref"](p, "poster", "")), ($B["string?"](x$27i138) ? x$27i138 : ($B["number?"](x$27i138) ? $B["number->string"](x$27i138) : ""))) : ""));
-      set_hidden$21$27dom(card$27217, ((or$27value$27238 = $B["map?"](p)), (or$27value$27238 ? or$27value$27238 : $B["equal?"]($B["map-ref"](i, "kind", ""), "video"))));
-      text$21$27ready("ready-card-title", ((x$27i139 = $B["map-ref"](i, "title", "")), ($B["string?"](x$27i139) ? x$27i139 : ($B["number?"](x$27i139) ? $B["number->string"](x$27i139) : ""))));
-      text$21$27ready("ready-card-artist", ((x$27i140 = $B["map-ref"](i, "artist", "")), ($B["string?"](x$27i140) ? x$27i140 : ($B["number?"](x$27i140) ? $B["number->string"](x$27i140) : ""))));
-      text$21$27ready("ready-card-album", ((x$27i141 = $B["map-ref"](i, "album", "")), ($B["string?"](x$27i141) ? x$27i141 : ($B["number?"](x$27i141) ? $B["number->string"](x$27i141) : ""))));
-      ((art$27239 = ((x$27i142 = $B["map-ref"](i, "art", "")), ($B["string?"](x$27i142) ? x$27i142 : ($B["number?"](x$27i142) ? $B["number->string"](x$27i142) : "")))), set_style$21$27dom(by_id$27dom("ready-card-back"), "background-image", ($B["equal?"](art$27239, "") ? "none" : $B["string-append"]("url(\"", art$27239, "\")"))));
-      stirred$27228();
-      return state$27226();
+      }), each$27240(0)) : false);
+      set_poster$21$27media(video, ($B["map?"](p) ? ((x$27i121 = $B["map-ref"](p, "poster", "")), ($B["string?"](x$27i121) ? x$27i121 : ($B["number?"](x$27i121) ? $B["number->string"](x$27i121) : ""))) : ""));
+      set_hidden$21$27dom(card$27220, ((or$27value$27242 = $B["map?"](p)), (or$27value$27242 ? or$27value$27242 : $B["equal?"]($B["map-ref"](i, "kind", ""), "video"))));
+      text$21$27ready("ready-card-title", ((x$27i122 = $B["map-ref"](i, "title", "")), ($B["string?"](x$27i122) ? x$27i122 : ($B["number?"](x$27i122) ? $B["number->string"](x$27i122) : ""))));
+      text$21$27ready("ready-card-artist", ((x$27i123 = $B["map-ref"](i, "artist", "")), ($B["string?"](x$27i123) ? x$27i123 : ($B["number?"](x$27i123) ? $B["number->string"](x$27i123) : ""))));
+      text$21$27ready("ready-card-album", ((x$27i124 = $B["map-ref"](i, "album", "")), ($B["string?"](x$27i124) ? x$27i124 : ($B["number?"](x$27i124) ? $B["number->string"](x$27i124) : ""))));
+      ((art$27243 = ((x$27i125 = $B["map-ref"](i, "art", "")), ($B["string?"](x$27i125) ? x$27i125 : ($B["number?"](x$27i125) ? $B["number->string"](x$27i125) : "")))), set_style$21$27dom(by_id$27dom("ready-card-back"), "background-image", ($B["equal?"](art$27243, "") ? "none" : $B["string-append"]("url(\"", art$27243, "\")"))));
+      stirred$27232();
+      return state$27230();
     });
-    (stop$27230 = function () {
-      let r$27i143, r$27i144, r$27i145;
-      if (((r$27i143 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i143))()) {
-        ((r$27i144 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 2, r$27i144))("pause", null);
-        return ((r$27i145 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 1, r$27i145))();
+    (stop$27234 = function () {
+      let r$27i126, r$27i127, r$27i128;
+      if (((r$27i126 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i126))()) {
+        ((r$27i127 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 2, r$27i127))("pause", null);
+        return ((r$27i128 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 1, r$27i128))();
       } else {
         return false;
       }
     });
-    (player$27222 = start_player$27player(screen$27216, ((film$27i146 = function (i) {
-      return $B["map-ref"](films$27218, $B["map-ref"](i, "file", 0), false);
-    }), (on_load$27i147 = loaded$27229), (on_wake$27i148 = function () {
-      set_hidden$21$27dom(start$27214, true);
-      set_hidden$21$27dom(wait$27215, true);
-      set_hidden$21$27dom(screen$27216, false);
-      stirred$27228();
+    (player$27225 = start_player$27player(screen$27219, ((film$27i129 = function (i) {
+      return $B["map-ref"](films$27221, $B["map-ref"](i, "file", 0), false);
+    }), (on_load$27i130 = loaded$27233), (on_wake$27i131 = function () {
+      set_hidden$21$27dom(start$27217, true);
+      set_hidden$21$27dom(wait$27218, true);
+      set_hidden$21$27dom(screen$27219, false);
+      stirred$27232();
       return false;
-    }), (on_sleep$27i149 = function () {
-      report$27227();
-      (item$27219 = false);
-      (film$27220 = false);
-      set_hidden$21$27dom(screen$27216, true);
-      set_hidden$21$27dom(wait$27215, (hidden$3f$27dom(start$27214) === false));
-      state$27226();
+    }), (on_sleep$27i132 = function () {
+      report$27231();
+      (item$27222 = false);
+      (film$27223 = false);
+      set_hidden$21$27dom(screen$27219, true);
+      set_hidden$21$27dom(wait$27218, (hidden$3f$27dom(start$27217) === false));
+      state$27230();
       return false;
-    }), $B["%record-make"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", true, false, film$27i146, on_load$27i147, on_wake$27i148, on_sleep$27i149))));
+    }), $B["%record-make"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", true, false, film$27i129, on_load$27i130, on_wake$27i131, on_sleep$27i132))));
     on$27dom(by_id$27dom("ready-go"), click$27dom, function (e) {
       play$21$27media(video);
       pause$21$27media(video);
       fullscreen$21$27page();
-      set_hidden$21$27dom(start$27214, true);
-      set_hidden$21$27dom(wait$27215, false);
+      set_hidden$21$27dom(start$27217, true);
+      set_hidden$21$27dom(wait$27218, false);
       add_class$21$27dom(body$27dom(), "ready-on");
-      show_name$27224();
+      show_name$27228();
       return again$27intro();
     });
     on$27dom(by_id$27dom("ready-home"), click$27dom, function (e) {
-      return stop$27230();
+      return stop$27234();
     });
     on$27dom(video, timeupdate$27media, function (e) {
-      let at$27240, length$27241, r$27i150;
-      (at$27240 = ((r$27i150 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 3, r$27i150))());
-      (length$27241 = duration$27225());
-      (($B["map?"](item$27219) ? (media_time$27media(video) > 0.0) : false) ? (reached$27221 = at$27240) : false);
-      return text$21$27ready("ready-time", (($B["map?"](item$27219) ? (length$27241 > 0.0) : false) ? $B["string-append"](clock$27clock(at$27240), " / ", clock$27clock((length$27241 - at$27240))) : ""));
+      let at$27244, length$27245, r$27i133;
+      (at$27244 = ((r$27i133 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 3, r$27i133))());
+      (length$27245 = duration$27229());
+      (($B["map?"](item$27222) ? (media_time$27media(video) > 0.0) : false) ? (reached$27224 = at$27244) : false);
+      return text$21$27ready("ready-time", (($B["map?"](item$27222) ? (length$27245 > 0.0) : false) ? $B["string-append"](clock$27clock(at$27244), " / ", clock$27clock((length$27245 - at$27244))) : ""));
     });
     on$27dom(video, ended$27media, function (e) {
-      let q$27242, r$27i151;
-      (q$27242 = ((r$27i151 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 7, r$27i151))());
-      if (((q$27242) !== false ? (($B["map-ref"](q$27242, "at", 0) >= ($B["vector-length"]($B["map-ref"](q$27242, "items", $B["vector"]())) - 1)) ? $B["equal?"]($B["map-ref"](q$27242, "repeat", ""), "off") : false) : false)) {
-        report$27227();
-        return after$27page(500, stop$27230);
+      let q$27246, r$27i134;
+      (q$27246 = ((r$27i134 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 7, r$27i134))());
+      if (((q$27246) !== false ? (($B["map-ref"](q$27246, "at", 0) >= ($B["vector-length"]($B["map-ref"](q$27246, "items", $B["vector"]())) - 1)) ? $B["equal?"]($B["map-ref"](q$27246, "repeat", ""), "off") : false) : false)) {
+        report$27231();
+        return after$27page(500, stop$27234);
       } else {
         return false;
       }
     });
-    on$27dom(screen$27216, mousemove$27dom, function (e) {
-      return stirred$27228();
+    on$27dom(screen$27219, mousemove$27dom, function (e) {
+      return stirred$27232();
     });
-    on$27dom(screen$27216, pointerdown$27dom, function (e) {
-      return stirred$27228();
+    on$27dom(screen$27219, pointerdown$27dom, function (e) {
+      return stirred$27232();
     });
-    on$27dom(screen$27216, touchstart$27dom, function (e) {
-      return stirred$27228();
+    on$27dom(screen$27219, touchstart$27dom, function (e) {
+      return stirred$27232();
     });
     on_document$27dom(keydown$27dom, function (e) {
-      if (hidden$3f$27dom(screen$27216)) {
+      if (hidden$3f$27dom(screen$27219)) {
         return false;
       } else {
-        return stirred$27228();
+        return stirred$27232();
       }
     });
     on$27dom(video, play$27media, function (e) {
-      return state$27226();
+      return state$27230();
     });
     on$27dom(video, pause$27media, function (e) {
-      state$27226();
-      return report$27227();
+      state$27230();
+      return report$27231();
     });
     on$27dom(video, volumechange$27media, function (e) {
-      return state$27226();
+      return state$27230();
     });
     on$27dom(video, seeked$27media, function (e) {
-      return state$27226();
+      return state$27230();
     });
     every$27page(1000, function () {
-      if (($B["map?"](item$27219) ? (media_paused$3f$27media(video) === false) : false)) {
-        return state$27226();
+      if (($B["map?"](item$27222) ? (media_paused$3f$27media(video) === false) : false)) {
+        return state$27230();
       } else {
         return false;
       }
     });
     every$27page(10000, function () {
-      if (($B["map?"](item$27219) ? (media_paused$3f$27media(video) === false) : false)) {
-        return report$27227();
+      if (($B["map?"](item$27222) ? (media_paused$3f$27media(video) === false) : false)) {
+        return report$27231();
       } else {
         return false;
       }
     });
-    ((handler$27i152 = function (text, m) {
-      return show_name$27224();
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "you", $B["append"]($B["map-ref"](handlers$27socket, "you", null), $listFromEnd(handler$27i152)))));
-    ((handler$27i159 = function (text, p) {
-      let r$27i153, r$27i154, r$27i156, r$27i157, x$27i155, x$27i158;
-      (films$27218 = $B["map-set"](films$27218, $B["map-ref"](p, "file", 0), p));
-      if ((((r$27i153 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i153))() ? (((r$27i154 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 6, r$27i154))() === ((x$27i155 = $B["map-ref"](p, "queue", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i155) ? (x$27i155 + 0.0) : 0.0))))) : false)) {
-        return ((r$27i156 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 8, r$27i156))();
+    ((handler$27i135 = function (text, m) {
+      return show_name$27228();
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "you", $B["append"]($B["map-ref"](handlers$27socket, "you", null), $listFromEnd(handler$27i135)))));
+    ((handler$27i142 = function (text, p) {
+      let r$27i136, r$27i137, r$27i139, r$27i140, x$27i138, x$27i141;
+      (films$27221 = $B["map-set"](films$27221, $B["map-ref"](p, "file", 0), p));
+      if ((((r$27i136 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i136))() ? (((r$27i137 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 6, r$27i137))() === ((x$27i138 = $B["map-ref"](p, "queue", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i138))))) : false)) {
+        return ((r$27i139 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 8, r$27i139))();
       } else {
-        return ((r$27i157 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 0, r$27i157))(((x$27i158 = $B["map-ref"](p, "queue", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i158) ? (x$27i158 + 0.0) : 0.0)))));
+        return ((r$27i140 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 0, r$27i140))(((x$27i141 = $B["map-ref"](p, "queue", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i141)))));
       }
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "play", $B["append"]($B["map-ref"](handlers$27socket, "play", null), $listFromEnd(handler$27i159)))));
-    ((handler$27i162 = function (text, m) {
-      let r$27i160, x$27i161;
-      return ((r$27i160 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 0, r$27i160))(((x$27i161 = $B["map-ref"](m, "queue", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i161) ? (x$27i161 + 0.0) : 0.0)))));
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "music", $B["append"]($B["map-ref"](handlers$27socket, "music", null), $listFromEnd(handler$27i162)))));
-    (handler$27i178 = function (text, m) {
-      let at$27245, c$27243, or$27value$27246, or$27value$27247, or$27value$27249, q$27244, r$27i163, r$27i164, r$27i165, r$27i168, r$27i169, r$27i171, r$27i173, r$27i175, r$27i176, r$27i177, v$27248, x$27i166, x$27i167, x$27i170, x$27i172, x$27i174;
-      (c$27243 = $B["map-ref"](m, "command", ""));
-      (q$27244 = ((r$27i163 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 7, r$27i163))());
-      (at$27245 = ((r$27i164 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 3, r$27i164))());
-      ($B["equal?"](c$27243, "stop") ? stop$27230() : ((((r$27i165 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i165))() === false) ? false : (((or$27value$27246 = $B["equal?"](c$27243, "toggle")), (or$27value$27246 ? or$27value$27246 : ((or$27value$27247 = ($B["equal?"](c$27243, "play") ? ((q$27244) !== false ? ((x$27i166 = $B["map-ref"](q$27244, "paused", false)), ((x$27i166) !== false ? (((x$27i166 === $sym("null")) === false) ? (($B["equal?"](x$27i166, 0) === false) ? ($B["equal?"](x$27i166, "") === false) : false) : false) : false)) : false) : false)), (or$27value$27247 ? or$27value$27247 : ($B["equal?"](c$27243, "pause") ? ((q$27244) !== false ? (((x$27i167 = $B["map-ref"](q$27244, "paused", false)), ((x$27i167) !== false ? (((x$27i167 === $sym("null")) === false) ? (($B["equal?"](x$27i167, 0) === false) ? ($B["equal?"](x$27i167, "") === false) : false) : false) : false)) === false) : false) : false))))) ? ((r$27i168 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 2, r$27i168))("toggle", null) : ($B["equal?"](c$27243, "back") ? ((r$27i169 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 2, r$27i169))("seek", $listFromEnd($B["cons"]("value", ((v$27248 = ((x$27i170 = (at$27245 - 10.0)), $B["exact"]($B["floor"](($B["number?"](x$27i170) ? (x$27i170 + 0.0) : 0.0))))), ((v$27248 > 0) ? v$27248 : 0))))) : ($B["equal?"](c$27243, "forward") ? ((r$27i171 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 2, r$27i171))("seek", $listFromEnd($B["cons"]("value", ((x$27i172 = (at$27245 + 30.0)), $B["exact"]($B["floor"](($B["number?"](x$27i172) ? (x$27i172 + 0.0) : 0.0))))))) : ($B["equal?"](c$27243, "seek") ? ((r$27i173 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 2, r$27i173))("seek", $listFromEnd($B["cons"]("value", ((x$27i174 = $B["map-ref"](m, "value", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i174) ? (x$27i174 + 0.0) : 0.0))))))) : ($B["equal?"](c$27243, "next") ? ((r$27i175 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 2, r$27i175))("next", null) : ($B["equal?"](c$27243, "prev") ? ((r$27i176 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 2, r$27i176))("prev", null) : ($B["equal?"](c$27243, "volume-down") ? set_volume$21$27media(video, (volume$27media(video) - 0.10000000000000001)) : ($B["equal?"](c$27243, "volume-up") ? (set_muted$21$27media(video, false), set_volume$21$27media(video, (volume$27media(video) + 0.10000000000000001))) : ($B["equal?"](c$27243, "mute") ? set_muted$21$27media(video, (muted$3f$27media(video) === false)) : ($B["equal?"](c$27243, "subtitles") ? show_subtitles$21$27media(video, (subtitles_showing$3f$27media(video) ? -1 : 0)) : false))))))))))));
-      if ((((or$27value$27249 = $B["equal?"](c$27243, "stop")), (or$27value$27249 ? or$27value$27249 : ((r$27i177 = player$27222), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i177))()))) !== false) {
-        return state$27226();
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "play", $B["append"]($B["map-ref"](handlers$27socket, "play", null), $listFromEnd(handler$27i142)))));
+    ((handler$27i145 = function (text, m) {
+      let r$27i143, x$27i144;
+      return ((r$27i143 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 0, r$27i143))(((x$27i144 = $B["map-ref"](m, "queue", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i144)))));
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "music", $B["append"]($B["map-ref"](handlers$27socket, "music", null), $listFromEnd(handler$27i145)))));
+    (handler$27i161 = function (text, m) {
+      let at$27249, c$27247, or$27value$27250, or$27value$27251, or$27value$27253, q$27248, r$27i146, r$27i147, r$27i148, r$27i151, r$27i152, r$27i154, r$27i156, r$27i158, r$27i159, r$27i160, v$27252, x$27i149, x$27i150, x$27i153, x$27i155, x$27i157;
+      (c$27247 = $B["map-ref"](m, "command", ""));
+      (q$27248 = ((r$27i146 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 7, r$27i146))());
+      (at$27249 = ((r$27i147 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 3, r$27i147))());
+      ($B["equal?"](c$27247, "stop") ? stop$27234() : ((((r$27i148 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i148))() === false) ? false : (((or$27value$27250 = $B["equal?"](c$27247, "toggle")), (or$27value$27250 ? or$27value$27250 : ((or$27value$27251 = ($B["equal?"](c$27247, "play") ? ((q$27248) !== false ? ((x$27i149 = $B["map-ref"](q$27248, "paused", false)), ((x$27i149) !== false ? (((x$27i149 === $sym("null")) === false) ? (($B["equal?"](x$27i149, 0) === false) ? ($B["equal?"](x$27i149, "") === false) : false) : false) : false)) : false) : false)), (or$27value$27251 ? or$27value$27251 : ($B["equal?"](c$27247, "pause") ? ((q$27248) !== false ? (((x$27i150 = $B["map-ref"](q$27248, "paused", false)), ((x$27i150) !== false ? (((x$27i150 === $sym("null")) === false) ? (($B["equal?"](x$27i150, 0) === false) ? ($B["equal?"](x$27i150, "") === false) : false) : false) : false)) === false) : false) : false))))) ? ((r$27i151 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 2, r$27i151))("toggle", null) : ($B["equal?"](c$27247, "back") ? ((r$27i152 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 2, r$27i152))("seek", $listFromEnd($B["cons"]("value", ((v$27252 = ((x$27i153 = (at$27249 - 10.0)), $B["exact"]($B["floor"](real_of$27said(x$27i153))))), ((v$27252 > 0) ? v$27252 : 0))))) : ($B["equal?"](c$27247, "forward") ? ((r$27i154 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 2, r$27i154))("seek", $listFromEnd($B["cons"]("value", ((x$27i155 = (at$27249 + 30.0)), $B["exact"]($B["floor"](real_of$27said(x$27i155))))))) : ($B["equal?"](c$27247, "seek") ? ((r$27i156 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 2, r$27i156))("seek", $listFromEnd($B["cons"]("value", ((x$27i157 = $B["map-ref"](m, "value", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i157))))))) : ($B["equal?"](c$27247, "next") ? ((r$27i158 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 2, r$27i158))("next", null) : ($B["equal?"](c$27247, "prev") ? ((r$27i159 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 2, r$27i159))("prev", null) : ($B["equal?"](c$27247, "volume-down") ? set_volume$21$27media(video, (volume$27media(video) - 0.10000000000000001)) : ($B["equal?"](c$27247, "volume-up") ? (set_muted$21$27media(video, false), set_volume$21$27media(video, (volume$27media(video) + 0.10000000000000001))) : ($B["equal?"](c$27247, "mute") ? set_muted$21$27media(video, (muted$3f$27media(video) === false)) : ($B["equal?"](c$27247, "subtitles") ? show_subtitles$21$27media(video, (subtitles_showing$3f$27media(video) ? -1 : 0)) : false))))))))))));
+      if ((((or$27value$27253 = $B["equal?"](c$27247, "stop")), (or$27value$27253 ? or$27value$27253 : ((r$27i160 = started$27227()), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i160))()))) !== false) {
+        return state$27230();
       } else {
         return false;
       }
     });
-    return (handlers$27socket = $B["map-set"](handlers$27socket, "control", $B["append"]($B["map-ref"](handlers$27socket, "control", null), $listFromEnd(handler$27i178))));
+    return (handlers$27socket = $B["map-set"](handlers$27socket, "control", $B["append"]($B["map-ref"](handlers$27socket, "control", null), $listFromEnd(handler$27i161))));
   });
   (hide$21$27remote = function (id, hidden) {
-    let e$27250;
-    (e$27250 = by_id$27dom(id));
-    if ((e$27250) !== false) {
-      return set_hidden$21$27dom(e$27250, hidden);
+    let e$27254;
+    (e$27254 = by_id$27dom(id));
+    if ((e$27254) !== false) {
+      return set_hidden$21$27dom(e$27254, hidden);
     } else {
       return false;
     }
   });
   (text$21$27remote = function (id, text) {
-    let e$27251;
-    (e$27251 = by_id$27dom(id));
-    if ((e$27251) !== false) {
-      return set_text$21$27dom(e$27251, text);
+    let e$27255;
+    (e$27255 = by_id$27dom(id));
+    if ((e$27255) !== false) {
+      return set_text$21$27dom(e$27255, text);
     } else {
       return false;
     }
   });
   (as_queue$27remote = $B["map-of"]("toggle", "toggle", "play", "toggle", "pause", "toggle", "next", "next", "prev", "prev", "seek", "seek", "back", "seek", "forward", "seek"));
   (remote_controls$27remote = function () {
-    let remote$27252;
-    (remote$27252 = by_id$27dom("remote"));
-    if ((remote$27252) !== false) {
-      return controls$27remote(remote$27252);
+    let remote$27256;
+    (remote$27256 = by_id$27dom("remote"));
+    if ((remote$27256) !== false) {
+      return controls$27remote(remote$27256);
     } else {
       return false;
     }
   });
   (controls$27remote = function (remote) {
-    let button$27320, chosen$27253, command$27273, dragging$27254, find_playing$27265, from_queue$27263, handler$27i205, handler$27i208, handler$27i209, handler$27i210, has$3f$27266, list$27321, listed$27261, listing$27260, names$27255, names_of$27267, others$27264, queue_of$27262, queue_row$27272, queue_shape$27271, queues$27257, render$27269, seek$27259, seek_value$27274, show_queue$27270, states$27256, tab$21$27268, tabs$27258;
-    (chosen$27253 = data_of$27dom(remote, "target"));
-    (dragging$27254 = false);
-    (names$27255 = "");
-    (states$27256 = $B["map-of"]());
-    (queues$27257 = $B["map-of"]());
-    (tabs$27258 = by_id$27dom("remote-tabs"));
-    (seek$27259 = by_id$27dom("remote-seek"));
-    (listing$27260 = false);
-    (listed$27261 = "");
-    (queue_of$27262 = function (t) {
-      let x$27i179;
-      if (($B["map?"](t) ? (((x$27i179 = $B["map-ref"](t, "queue", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i179) ? (x$27i179 + 0.0) : 0.0)))) > 0) : false)) {
-        return $B["map-ref"](queues$27257, $B["map-ref"](t, "queue", 0), false);
+    let button$27329, chosen$27257, command$27279, dragging$27258, find_playing$27271, from_queue$27268, handler$27i186, handler$27i189, handler$27i190, handler$27i191, has$3f$27272, list$27330, listed$27266, listing$27265, names$27259, names_of$27273, others$27269, picked$27260, playing$3f$27270, queue_of$27267, queue_row$27278, queue_shape$27277, queues$27262, render$27275, seek$27264, seek_value$27280, show_queue$27276, states$27261, tab$21$27274, tabs$27263;
+    (chosen$27257 = data_of$27dom(remote, "target"));
+    (dragging$27258 = false);
+    (names$27259 = "");
+    (picked$27260 = ($B["equal?"](data_of$27dom(remote, "target"), "") === false));
+    (states$27261 = $B["map-of"]());
+    (queues$27262 = $B["map-of"]());
+    (tabs$27263 = by_id$27dom("remote-tabs"));
+    (seek$27264 = by_id$27dom("remote-seek"));
+    (listing$27265 = false);
+    (listed$27266 = "");
+    (queue_of$27267 = function (t) {
+      let x$27i162;
+      if (($B["map?"](t) ? (((x$27i162 = $B["map-ref"](t, "queue", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i162)))) > 0) : false)) {
+        return $B["map-ref"](queues$27262, $B["map-ref"](t, "queue", 0), false);
       } else {
         return false;
       }
     });
-    (from_queue$27263 = function (t) {
-      let item$27276, kind$27277, or$27value$27279, paused$27278, q$27275, x$27i180, x$27i181, x$27i182, x$27i183, x$27i184, x$27i185, x$27i186, x$27i187;
-      (q$27275 = queue_of$27262(t));
-      if (((q$27275) !== false ? ($B["vector-length"]($B["map-ref"](q$27275, "items", $B["vector"]())) > 0) : false)) {
-        (item$27276 = $B["vector-ref"]($B["map-ref"](q$27275, "items", $B["vector"]()), $B["map-ref"](q$27275, "at", 0)));
-        (kind$27277 = $B["map-ref"](item$27276, "kind", ""));
-        (paused$27278 = ((x$27i180 = $B["map-ref"](q$27275, "paused", false)), ((x$27i180) !== false ? (((x$27i180 === $sym("null")) === false) ? (($B["equal?"](x$27i180, 0) === false) ? ($B["equal?"](x$27i180, "") === false) : false) : false) : false)));
-        if (((or$27value$27279 = $B["equal?"](kind$27277, "film")), (or$27value$27279 ? or$27value$27279 : $B["equal?"](kind$27277, "episode")))) {
+    (from_queue$27268 = function (t) {
+      let item$27282, kind$27283, or$27value$27285, paused$27284, q$27281, x$27i163, x$27i164, x$27i165, x$27i166, x$27i167, x$27i168;
+      (q$27281 = queue_of$27267(t));
+      if (((q$27281) !== false ? ($B["vector-length"]($B["map-ref"](q$27281, "items", $B["vector"]())) > 0) : false)) {
+        (item$27282 = $B["vector-ref"]($B["map-ref"](q$27281, "items", $B["vector"]()), $B["map-ref"](q$27281, "at", 0)));
+        (kind$27283 = $B["map-ref"](item$27282, "kind", ""));
+        (paused$27284 = ((x$27i163 = $B["map-ref"](q$27281, "paused", false)), ((x$27i163) !== false ? (((x$27i163 === $sym("null")) === false) ? (($B["equal?"](x$27i163, 0) === false) ? ($B["equal?"](x$27i163, "") === false) : false) : false) : false)));
+        if (((or$27value$27285 = $B["equal?"](kind$27283, "film")), (or$27value$27285 ? or$27value$27285 : $B["equal?"](kind$27283, "episode")))) {
           return false;
         } else {
-          return $B["map-of"]("playing", true, "paused", paused$27278, "music", true, "title", ((x$27i181 = $B["map-ref"](item$27276, "title", "")), ($B["string?"](x$27i181) ? x$27i181 : ($B["number?"](x$27i181) ? $B["number->string"](x$27i181) : ""))), "label", ((x$27i182 = $B["map-ref"](item$27276, "artist", "")), ($B["string?"](x$27i182) ? x$27i182 : ($B["number?"](x$27i182) ? $B["number->string"](x$27i182) : ""))), "poster", ((x$27i183 = $B["map-ref"](item$27276, "art", "")), ($B["string?"](x$27i183) ? x$27i183 : ($B["number?"](x$27i183) ? $B["number->string"](x$27i183) : ""))), "next", 1, "subtitles", 0, "duration", ((x$27i184 = $B["map-ref"](item$27276, "duration", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i184) ? (x$27i184 + 0.0) : 0.0)))), "position", ((x$27i187 = (((x$27i185 = $B["map-ref"](q$27275, "position", 0)), ($B["number?"](x$27i185) ? (x$27i185 + 0.0) : 0.0)) + (paused$27278 ? 0.0 : ((now_ms$27page() - ((x$27i186 = $B["map-ref"](q$27275, "received", 0)), ($B["number?"](x$27i186) ? (x$27i186 + 0.0) : 0.0))) / 1000.0)))), $B["exact"]($B["floor"](($B["number?"](x$27i187) ? (x$27i187 + 0.0) : 0.0)))), "queue", $B["map-ref"](q$27275, "id", 0));
+          return $B["map-of"]("playing", true, "paused", paused$27284, "music", true, "title", ((x$27i164 = $B["map-ref"](item$27282, "title", "")), ($B["string?"](x$27i164) ? x$27i164 : ($B["number?"](x$27i164) ? $B["number->string"](x$27i164) : ""))), "label", ((x$27i165 = $B["map-ref"](item$27282, "artist", "")), ($B["string?"](x$27i165) ? x$27i165 : ($B["number?"](x$27i165) ? $B["number->string"](x$27i165) : ""))), "poster", ((x$27i166 = $B["map-ref"](item$27282, "art", "")), ($B["string?"](x$27i166) ? x$27i166 : ($B["number?"](x$27i166) ? $B["number->string"](x$27i166) : ""))), "next", 1, "subtitles", 0, "duration", ((x$27i167 = $B["map-ref"](item$27282, "duration", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i167)))), "position", ((x$27i168 = (real_of$27said($B["map-ref"](q$27281, "position", 0)) + (paused$27284 ? 0.0 : ((now_ms$27page() - real_of$27said($B["map-ref"](q$27281, "received", 0))) / 1000.0)))), $B["exact"]($B["floor"](real_of$27said(x$27i168)))), "queue", $B["map-ref"](q$27281, "id", 0));
         }
       } else {
         return false;
       }
     });
-    (others$27264 = function () {
+    (others$27269 = function () {
       return other_screens$27where();
     });
-    (find_playing$27265 = function (l) {
-      let x$27i188;
+    (playing$3f$27270 = function (id) {
+      let or$27value$27287, s$27286, x$27i169;
+      (s$27286 = ((or$27value$27287 = from_queue$27268(screen_of$27where(id))), ((or$27value$27287) !== false ? or$27value$27287 : $B["map-ref"](states$27261, id, false))));
+      if ((s$27286) !== false) {
+        (x$27i169 = $B["map-ref"](s$27286, "playing", false));
+        if ((x$27i169) !== false) {
+          if (((x$27i169 === $sym("null")) === false)) {
+            if (($B["equal?"](x$27i169, 0) === false)) {
+              return ($B["equal?"](x$27i169, "") === false);
+            } else {
+              return false;
+            }
+          } else {
+            return false;
+          }
+        } else {
+          return false;
+        }
+      } else {
+        return false;
+      }
+    });
+    (find_playing$27271 = function (l) {
       for (;;) {
         if ($B["null?"](l)) {
           return false;
         } else {
-          if (((x$27i188 = $B["map-ref"]($B["map-ref"](states$27256, $B["map-ref"]($B["car"](l), "id", ""), $B["map-of"]()), "playing", false)), ((x$27i188) !== false ? (((x$27i188 === $sym("null")) === false) ? (($B["equal?"](x$27i188, 0) === false) ? ($B["equal?"](x$27i188, "") === false) : false) : false) : false))) {
+          if (playing$3f$27270($B["map-ref"]($B["car"](l), "id", ""))) {
             return $B["car"](l);
           } else {
             const $t0 = $B["cdr"](l);
@@ -2708,7 +2753,7 @@ $run(() => {
         }
       }
     });
-    (has$3f$27266 = function (l, id) {
+    (has$3f$27272 = function (l, id) {
       for (;;) {
         if ($B["null?"](l)) {
           return false;
@@ -2725,46 +2770,46 @@ $run(() => {
         }
       }
     });
-    (names_of$27267 = function (l) {
+    (names_of$27273 = function (l) {
       if ($B["null?"](l)) {
         return "";
       } else {
-        return $B["string-append"]($B["map-ref"]($B["car"](l), "id", ""), "\n", $B["map-ref"]($B["car"](l), "name", ""), "\n", names_of$27267($B["cdr"](l)));
+        return $B["string-append"]($B["map-ref"]($B["car"](l), "id", ""), "\n", $B["map-ref"]($B["car"](l), "name", ""), "\n", names_of$27273($B["cdr"](l)));
       }
     });
-    (tab$21$27268 = function (t) {
-      let b$27280;
-      (b$27280 = make_element$27dom("button"));
-      set_attribute$21$27dom(b$27280, "type", "button");
-      set_attribute$21$27dom(b$27280, "role", "tab");
-      set_attribute$21$27dom(b$27280, "data-screen", $B["map-ref"](t, "id", ""));
-      set_text$21$27dom(b$27280, $B["map-ref"](t, "name", ""));
-      return append$21$27dom(tabs$27258, b$27280);
+    (tab$21$27274 = function (t) {
+      let b$27288;
+      (b$27288 = make_element$27dom("button"));
+      set_attribute$21$27dom(b$27288, "type", "button");
+      set_attribute$21$27dom(b$27288, "role", "tab");
+      set_attribute$21$27dom(b$27288, "data-screen", $B["map-ref"](t, "id", ""));
+      set_text$21$27dom(b$27288, $B["map-ref"](t, "name", ""));
+      return append$21$27dom(tabs$27263, b$27288);
     });
-    (render$27269 = function () {
-      let buttons$27285, duration$27297, each$27284, each$27286, list$27281, now$27283, or$27value$27290, or$27value$27291, or$27value$27292, or$27value$27293, or$27value$27294, or$27value$27300, playing$27282, playing$27289, position$27298, poster$27295, q$27299, s$27288, src$27296, subtitles$27301, x$27i189, x$27i190, x$27i191, x$27i192, x$27i193, x$27i194, x$27i195, x$27i196, x$27i197, x$27i198;
-      (list$27281 = others$27264());
+    (render$27275 = function () {
+      let buttons$27294, duration$27306, each$27293, each$27295, list$27289, now$27292, or$27value$27290, or$27value$27299, or$27value$27300, or$27value$27301, or$27value$27302, or$27value$27303, or$27value$27309, playing$27291, playing$27298, position$27307, poster$27304, q$27308, s$27297, src$27305, subtitles$27310, x$27i170, x$27i171, x$27i172, x$27i173, x$27i174, x$27i175, x$27i176, x$27i177, x$27i178, x$27i179;
+      (list$27289 = others$27269());
       hide$21$27remote("remote-ready", ($B["equal?"]($B["map-ref"](self$27socket, "role", ""), "play") === false));
-      hide$21$27remote("remote-none", ($B["null?"](list$27281) === false));
-      ((has$3f$27266(list$27281, chosen$27253)) !== false ? false : ((playing$27282 = find_playing$27265(list$27281)), (chosen$27253 = ((playing$27282) !== false ? $B["map-ref"](playing$27282, "id", "") : ($B["null?"](list$27281) ? "" : $B["map-ref"]($B["car"](list$27281), "id", ""))))));
-      ((now$27283 = names_of$27267(list$27281)), ($B["equal?"](now$27283, names$27255) ? false : ((names$27255 = now$27283), clear$21$27dom(tabs$27258), ((each$27284 = function (l) {
+      hide$21$27remote("remote-none", ($B["null?"](list$27289) === false));
+      (((has$3f$27272(list$27289, chosen$27257)) !== false ? ((or$27value$27290 = picked$27260), (or$27value$27290 ? or$27value$27290 : playing$3f$27270(chosen$27257))) : false) ? false : ((playing$27291 = find_playing$27271(list$27289)), (chosen$27257 = $theString(((playing$27291) !== false ? $B["map-ref"](playing$27291, "id", "") : ((has$3f$27272(list$27289, chosen$27257)) !== false ? chosen$27257 : ($B["null?"](list$27289) ? "" : $B["map-ref"]($B["car"](list$27289), "id", ""))))))));
+      ((now$27292 = names_of$27273(list$27289)), ($B["equal?"](now$27292, names$27259) ? false : ((names$27259 = now$27292), clear$21$27dom(tabs$27263), ((each$27293 = function (l) {
         for (;;) {
           if ($B["null?"](l)) {
             return false;
           } else {
-            tab$21$27268($B["car"](l));
+            tab$21$27274($B["car"](l));
             const $t0 = $B["cdr"](l);
             l = $t0;
             continue;
           }
         }
-      }), each$27284(list$27281)))));
-      ((buttons$27285 = query_all$27dom("#remote-tabs [data-screen]")), (each$27286 = function (i) {
-        let b$27287;
+      }), each$27293(list$27289)))));
+      ((buttons$27294 = query_all$27dom("#remote-tabs [data-screen]")), (each$27295 = function (i) {
+        let b$27296;
         for (;;) {
-          if ((i < $B["vector-length"](buttons$27285))) {
-            (b$27287 = $B["vector-ref"](buttons$27285, i));
-            set_attribute$21$27dom(b$27287, "aria-selected", ($B["equal?"](data_of$27dom(b$27287, "screen"), chosen$27253) ? "true" : "false"));
+          if ((i < $B["vector-length"](buttons$27294))) {
+            (b$27296 = $B["vector-ref"](buttons$27294, i));
+            set_attribute$21$27dom(b$27296, "aria-selected", ($B["equal?"](data_of$27dom(b$27296, "screen"), chosen$27257) ? "true" : "false"));
             const $t0 = (i + 1);
             i = $t0;
             continue;
@@ -2772,53 +2817,53 @@ $run(() => {
             return false;
           }
         }
-      }), each$27286(0));
-      (s$27288 = ((or$27value$27290 = from_queue$27263(screen_of$27where(chosen$27253))), ((or$27value$27290) !== false ? or$27value$27290 : $B["map-ref"](states$27256, chosen$27253, false))));
-      (playing$27289 = ((s$27288) !== false ? ((x$27i189 = $B["map-ref"](s$27288, "playing", false)), ((x$27i189) !== false ? (((x$27i189 === $sym("null")) === false) ? (($B["equal?"](x$27i189, 0) === false) ? ($B["equal?"](x$27i189, "") === false) : false) : false) : false)) : false));
-      hide$21$27remote("remote-now", (playing$27289 === false));
-      hide$21$27remote("remote-idle", ((or$27value$27291 = $B["equal?"](chosen$27253, "")), (or$27value$27291 ? or$27value$27291 : ((or$27value$27292 = playing$27289), (or$27value$27292 ? or$27value$27292 : $B["equal?"]($B["map-ref"](self$27socket, "role", ""), "play"))))));
-      hide$21$27remote("remote-idle-ready", ((or$27value$27293 = $B["equal?"](chosen$27253, "")), (or$27value$27293 ? or$27value$27293 : ((or$27value$27294 = playing$27289), (or$27value$27294 ? or$27value$27294 : ($B["equal?"]($B["map-ref"](self$27socket, "role", ""), "play") === false))))));
-      if (playing$27289) {
-        (poster$27295 = by_id$27dom("remote-poster"));
-        (src$27296 = ((x$27i190 = $B["map-ref"](s$27288, "poster", "")), ($B["string?"](x$27i190) ? x$27i190 : ($B["number?"](x$27i190) ? $B["number->string"](x$27i190) : ""))));
-        (duration$27297 = ((x$27i191 = $B["map-ref"](s$27288, "duration", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i191) ? (x$27i191 + 0.0) : 0.0)))));
-        (position$27298 = ((x$27i192 = $B["map-ref"](s$27288, "position", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i192) ? (x$27i192 + 0.0) : 0.0)))));
-        (q$27299 = queue_of$27262(screen_of$27where(chosen$27253)));
-        ((poster$27295) !== false ? (set_hidden$21$27dom(poster$27295, $B["equal?"](src$27296, "")), ((($B["equal?"](src$27296, "") === false) ? ($B["equal?"](attribute_of$27dom(poster$27295, "src"), src$27296) === false) : false) ? set_attribute$21$27dom(poster$27295, "src", src$27296) : false)) : false);
-        text$21$27remote("remote-title", ((x$27i193 = $B["map-ref"](s$27288, "title", "")), ($B["string?"](x$27i193) ? x$27i193 : ($B["number?"](x$27i193) ? $B["number->string"](x$27i193) : ""))));
-        text$21$27remote("remote-label", ((x$27i194 = $B["map-ref"](s$27288, "label", "")), ($B["string?"](x$27i194) ? x$27i194 : ($B["number?"](x$27i194) ? $B["number->string"](x$27i194) : ""))));
-        (dragging$27254 ? false : (set_attribute$21$27dom(seek$27259, "max", $B["number->string"](duration$27297)), set_field$21$27dom(seek$27259, $B["number->string"](position$27298)), text$21$27remote("remote-time", $B["string-append"](clock$27clock((0.0 + position$27298)), " / ", clock$27clock((0.0 + duration$27297))))));
-        hide$21$27remote("remote-play", (((x$27i195 = $B["map-ref"](s$27288, "paused", false)), ((x$27i195) !== false ? (((x$27i195 === $sym("null")) === false) ? (($B["equal?"](x$27i195, 0) === false) ? ($B["equal?"](x$27i195, "") === false) : false) : false) : false)) === false));
-        hide$21$27remote("remote-pause", ((x$27i196 = $B["map-ref"](s$27288, "paused", false)), ((x$27i196) !== false ? (((x$27i196 === $sym("null")) === false) ? (($B["equal?"](x$27i196, 0) === false) ? ($B["equal?"](x$27i196, "") === false) : false) : false) : false)));
-        hide$21$27remote("remote-next-slot", ((q$27299) !== false ? (((or$27value$27300 = ($B["map-ref"](q$27299, "at", 0) < ($B["vector-length"]($B["map-ref"](q$27299, "items", $B["vector"]())) - 1))), (or$27value$27300 ? or$27value$27300 : $B["equal?"]($B["map-ref"](q$27299, "repeat", ""), "all"))) === false) : (((x$27i197 = $B["map-ref"](s$27288, "next", false)), ((x$27i197) !== false ? (((x$27i197 === $sym("null")) === false) ? (($B["equal?"](x$27i197, 0) === false) ? ($B["equal?"](x$27i197, "") === false) : false) : false) : false)) === false)));
-        hide$21$27remote("remote-prev-slot", (((q$27299) !== false ? ($B["vector-length"]($B["map-ref"](q$27299, "items", $B["vector"]())) > 0) : false) === false));
-        ((subtitles$27301 = query_in$27dom(remote, "[data-command=subtitles]")), ((subtitles$27301) !== false ? set_hidden$21$27dom(subtitles$27301, (((x$27i198 = $B["map-ref"](s$27288, "subtitles", false)), ((x$27i198) !== false ? (((x$27i198 === $sym("null")) === false) ? (($B["equal?"](x$27i198, 0) === false) ? ($B["equal?"](x$27i198, "") === false) : false) : false) : false)) === false)) : false));
-        return show_queue$27270(q$27299);
+      }), each$27295(0));
+      (s$27297 = ((or$27value$27299 = from_queue$27268(screen_of$27where(chosen$27257))), ((or$27value$27299) !== false ? or$27value$27299 : $B["map-ref"](states$27261, chosen$27257, false))));
+      (playing$27298 = ((s$27297) !== false ? ((x$27i170 = $B["map-ref"](s$27297, "playing", false)), ((x$27i170) !== false ? (((x$27i170 === $sym("null")) === false) ? (($B["equal?"](x$27i170, 0) === false) ? ($B["equal?"](x$27i170, "") === false) : false) : false) : false)) : false));
+      hide$21$27remote("remote-now", (playing$27298 === false));
+      hide$21$27remote("remote-idle", ((or$27value$27300 = $B["equal?"](chosen$27257, "")), (or$27value$27300 ? or$27value$27300 : ((or$27value$27301 = playing$27298), (or$27value$27301 ? or$27value$27301 : $B["equal?"]($B["map-ref"](self$27socket, "role", ""), "play"))))));
+      hide$21$27remote("remote-idle-ready", ((or$27value$27302 = $B["equal?"](chosen$27257, "")), (or$27value$27302 ? or$27value$27302 : ((or$27value$27303 = playing$27298), (or$27value$27303 ? or$27value$27303 : ($B["equal?"]($B["map-ref"](self$27socket, "role", ""), "play") === false))))));
+      if (playing$27298) {
+        (poster$27304 = by_id$27dom("remote-poster"));
+        (src$27305 = ((x$27i171 = $B["map-ref"](s$27297, "poster", "")), ($B["string?"](x$27i171) ? x$27i171 : ($B["number?"](x$27i171) ? $B["number->string"](x$27i171) : ""))));
+        (duration$27306 = ((x$27i172 = $B["map-ref"](s$27297, "duration", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i172)))));
+        (position$27307 = ((x$27i173 = $B["map-ref"](s$27297, "position", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i173)))));
+        (q$27308 = queue_of$27267(screen_of$27where(chosen$27257)));
+        ((poster$27304) !== false ? (set_hidden$21$27dom(poster$27304, $B["equal?"](src$27305, "")), ((($B["equal?"](src$27305, "") === false) ? ($B["equal?"](attribute_of$27dom(poster$27304, "src"), src$27305) === false) : false) ? set_attribute$21$27dom(poster$27304, "src", src$27305) : false)) : false);
+        text$21$27remote("remote-title", ((x$27i174 = $B["map-ref"](s$27297, "title", "")), ($B["string?"](x$27i174) ? x$27i174 : ($B["number?"](x$27i174) ? $B["number->string"](x$27i174) : ""))));
+        text$21$27remote("remote-label", ((x$27i175 = $B["map-ref"](s$27297, "label", "")), ($B["string?"](x$27i175) ? x$27i175 : ($B["number?"](x$27i175) ? $B["number->string"](x$27i175) : ""))));
+        (dragging$27258 ? false : (set_attribute$21$27dom(seek$27264, "max", $B["number->string"](duration$27306)), set_field$21$27dom(seek$27264, $B["number->string"](position$27307)), text$21$27remote("remote-time", $B["string-append"](clock$27clock((0.0 + position$27307)), " / ", clock$27clock((0.0 + duration$27306))))));
+        hide$21$27remote("remote-play", (((x$27i176 = $B["map-ref"](s$27297, "paused", false)), ((x$27i176) !== false ? (((x$27i176 === $sym("null")) === false) ? (($B["equal?"](x$27i176, 0) === false) ? ($B["equal?"](x$27i176, "") === false) : false) : false) : false)) === false));
+        hide$21$27remote("remote-pause", ((x$27i177 = $B["map-ref"](s$27297, "paused", false)), ((x$27i177) !== false ? (((x$27i177 === $sym("null")) === false) ? (($B["equal?"](x$27i177, 0) === false) ? ($B["equal?"](x$27i177, "") === false) : false) : false) : false)));
+        hide$21$27remote("remote-next-slot", ((q$27308) !== false ? (((or$27value$27309 = ($B["map-ref"](q$27308, "at", 0) < ($B["vector-length"]($B["map-ref"](q$27308, "items", $B["vector"]())) - 1))), (or$27value$27309 ? or$27value$27309 : $B["equal?"]($B["map-ref"](q$27308, "repeat", ""), "all"))) === false) : (((x$27i178 = $B["map-ref"](s$27297, "next", false)), ((x$27i178) !== false ? (((x$27i178 === $sym("null")) === false) ? (($B["equal?"](x$27i178, 0) === false) ? ($B["equal?"](x$27i178, "") === false) : false) : false) : false)) === false)));
+        hide$21$27remote("remote-prev-slot", (((q$27308) !== false ? ($B["vector-length"]($B["map-ref"](q$27308, "items", $B["vector"]())) > 0) : false) === false));
+        ((subtitles$27310 = query_in$27dom(remote, "[data-command=subtitles]")), ((subtitles$27310) !== false ? set_hidden$21$27dom(subtitles$27310, (((x$27i179 = $B["map-ref"](s$27297, "subtitles", false)), ((x$27i179) !== false ? (((x$27i179 === $sym("null")) === false) ? (($B["equal?"](x$27i179, 0) === false) ? ($B["equal?"](x$27i179, "") === false) : false) : false) : false)) === false)) : false));
+        return show_queue$27276(q$27308);
       } else {
         return false;
       }
     });
-    (show_queue$27270 = function (q) {
-      let at$27304, each$27306, items$27303, list$27302, shape$27305;
-      (list$27302 = by_id$27dom("remote-queue"));
-      if ((list$27302) !== false) {
-        if (((listing$27260 ? q : false) === false)) {
-          set_hidden$21$27dom(list$27302, true);
-          return (listed$27261 = "");
+    (show_queue$27276 = function (q) {
+      let at$27313, each$27315, items$27312, list$27311, shape$27314;
+      (list$27311 = by_id$27dom("remote-queue"));
+      if ((list$27311) !== false) {
+        if (((listing$27265 ? q : false) === false)) {
+          set_hidden$21$27dom(list$27311, true);
+          return (listed$27266 = "");
         } else {
-          (items$27303 = $B["map-ref"](q, "items", $B["vector"]()));
-          (at$27304 = $B["map-ref"](q, "at", 0));
-          (shape$27305 = queue_shape$27271(items$27303, at$27304));
-          set_hidden$21$27dom(list$27302, false);
-          if ($B["equal?"](shape$27305, listed$27261)) {
+          (items$27312 = $B["map-ref"](q, "items", $B["vector"]()));
+          (at$27313 = $B["map-ref"](q, "at", 0));
+          (shape$27314 = queue_shape$27277(items$27312, at$27313));
+          set_hidden$21$27dom(list$27311, false);
+          if ($B["equal?"](shape$27314, listed$27266)) {
             return false;
           } else {
-            (listed$27261 = shape$27305);
-            clear$21$27dom(list$27302);
-            (each$27306 = function (i) {
+            (listed$27266 = shape$27314);
+            clear$21$27dom(list$27311);
+            (each$27315 = function (i) {
               for (;;) {
-                if ((i < $B["vector-length"](items$27303))) {
-                  append$21$27dom(list$27302, queue_row$27272($B["vector-ref"](items$27303, i), (i === at$27304)));
+                if ((i < $B["vector-length"](items$27312))) {
+                  append$21$27dom(list$27311, queue_row$27278($B["vector-ref"](items$27312, i), (i === at$27313)));
                   const $t0 = (i + 1);
                   i = $t0;
                   continue;
@@ -2827,21 +2872,21 @@ $run(() => {
                 }
               }
             });
-            return each$27306(0);
+            return each$27315(0);
           }
         }
       } else {
         return false;
       }
     });
-    (queue_shape$27271 = function (items, at) {
-      let each$27307;
-      (each$27307 = function (i, out) {
-        let x$27i199;
+    (queue_shape$27277 = function (items, at) {
+      let each$27316;
+      (each$27316 = function (i, out) {
+        let x$27i180;
         for (;;) {
           if ((i < $B["vector-length"](items))) {
             const $t0 = (i + 1);
-            const $t1 = $B["string-append"](out, ";", $B["number->string"](((x$27i199 = $B["map-ref"]($B["vector-ref"](items, i), "id", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i199) ? (x$27i199 + 0.0) : 0.0))))));
+            const $t1 = $B["string-append"](out, ";", $B["number->string"](((x$27i180 = $B["map-ref"]($B["vector-ref"](items, i), "id", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i180))))));
             i = $t0;
             out = $t1;
             continue;
@@ -2850,65 +2895,65 @@ $run(() => {
           }
         }
       });
-      return each$27307(0, $B["number->string"](at));
+      return each$27316(0, $B["number->string"](at));
     });
-    (queue_row$27272 = function (item, playing) {
-      let artist$27310, b$27309, li$27308, x$27i200, x$27i201, x$27i202;
-      (li$27308 = make_element$27dom("li"));
-      (b$27309 = make_element$27dom("button"));
-      set_attribute$21$27dom(b$27309, "type", "button");
-      set_attribute$21$27dom(b$27309, "data-item", $B["number->string"](((x$27i200 = $B["map-ref"](item, "id", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i200) ? (x$27i200 + 0.0) : 0.0))))));
-      set_attribute$21$27dom(b$27309, "class", (playing ? "remote-row playing" : "remote-row"));
-      set_text$21$27dom(b$27309, ((artist$27310 = ((x$27i201 = $B["map-ref"](item, "artist", "")), ($B["string?"](x$27i201) ? x$27i201 : ($B["number?"](x$27i201) ? $B["number->string"](x$27i201) : "")))), $B["string-append"](((x$27i202 = $B["map-ref"](item, "title", "")), ($B["string?"](x$27i202) ? x$27i202 : ($B["number?"](x$27i202) ? $B["number->string"](x$27i202) : ""))), ($B["equal?"](artist$27310, "") ? "" : $B["string-append"](" \xc2\xb7 ", artist$27310)))));
-      append$21$27dom(li$27308, b$27309);
-      return li$27308;
+    (queue_row$27278 = function (item, playing) {
+      let artist$27319, b$27318, li$27317, x$27i181, x$27i182, x$27i183;
+      (li$27317 = make_element$27dom("li"));
+      (b$27318 = make_element$27dom("button"));
+      set_attribute$21$27dom(b$27318, "type", "button");
+      set_attribute$21$27dom(b$27318, "data-item", $B["number->string"](((x$27i181 = $B["map-ref"](item, "id", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i181))))));
+      set_attribute$21$27dom(b$27318, "class", (playing ? "remote-row playing" : "remote-row"));
+      set_text$21$27dom(b$27318, ((artist$27319 = ((x$27i182 = $B["map-ref"](item, "artist", "")), ($B["string?"](x$27i182) ? x$27i182 : ($B["number?"](x$27i182) ? $B["number->string"](x$27i182) : "")))), $B["string-append"](((x$27i183 = $B["map-ref"](item, "title", "")), ($B["string?"](x$27i183) ? x$27i183 : ($B["number?"](x$27i183) ? $B["number->string"](x$27i183) : ""))), ($B["equal?"](artist$27319, "") ? "" : $B["string-append"](" \xc2\xb7 ", artist$27319)))));
+      append$21$27dom(li$27317, b$27318);
+      return li$27317;
     });
-    (command$27273 = function (name, value) {
-      let msg$27i203, msg$27i204, op$27312, position$27313, q$27311;
-      if ($B["equal?"](chosen$27253, "")) {
+    (command$27279 = function (name, value) {
+      let msg$27i184, msg$27i185, op$27321, position$27322, q$27320;
+      if ($B["equal?"](chosen$27257, "")) {
         return false;
       } else {
-        (q$27311 = from_queue$27263(screen_of$27where(chosen$27253)));
-        (op$27312 = $B["map-ref"](as_queue$27remote, name, false));
-        if ((((q$27311) !== false ? op$27312 : false)) !== false) {
-          (position$27313 = $B["map-ref"](q$27311, "position", 0));
-          (msg$27i203 = $B["map-of"]("type", "queue", "op", op$27312, "queue", $B["map-ref"](q$27311, "queue", 0), "value", ($B["equal?"](name, "back") ? ((position$27313 > 10) ? (position$27313 - 10) : 0) : ($B["equal?"](name, "forward") ? (position$27313 + 30) : value))));
+        (q$27320 = from_queue$27268(screen_of$27where(chosen$27257)));
+        (op$27321 = $B["map-ref"](as_queue$27remote, name, false));
+        if ((((q$27320) !== false ? op$27321 : false)) !== false) {
+          (position$27322 = $B["map-ref"](q$27320, "position", 0));
+          (msg$27i184 = $B["map-of"]("type", "queue", "op", op$27321, "queue", $B["map-ref"](q$27320, "queue", 0), "value", ($B["equal?"](name, "back") ? ((position$27322 > 10) ? (position$27322 - 10) : 0) : ($B["equal?"](name, "forward") ? (position$27322 + 30) : value))));
           if ((open_socket$27socket) !== false) {
-            return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i203));
+            return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i184));
           } else {
             return false;
           }
         } else {
-          (msg$27i204 = $B["map-of"]("type", "control", "target", chosen$27253, "command", name, "value", value));
+          (msg$27i185 = $B["map-of"]("type", "control", "target", chosen$27257, "command", name, "value", value));
           if ((open_socket$27socket) !== false) {
-            return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i204));
+            return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i185));
           } else {
             return false;
           }
         }
       }
     });
-    (seek_value$27274 = function () {
-      let n$27314;
-      (n$27314 = $B["string->number"](value_of$27dom(seek$27259)));
-      if ((n$27314) !== false) {
-        return n$27314;
+    (seek_value$27280 = function () {
+      let n$27323;
+      (n$27323 = $B["string->number"](value_of$27dom(seek$27264)));
+      if ((n$27323) !== false) {
+        return n$27323;
       } else {
         return 0;
       }
     });
-    ((handler$27i205 = function (text, m) {
-      (queues$27257 = $B["map-set"](queues$27257, $B["map-ref"](m, "id", 0), $B["map-set"](m, "received", now_ms$27page())));
-      return render$27269();
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "queue", $B["append"]($B["map-ref"](handlers$27socket, "queue", null), $listFromEnd(handler$27i205)))));
-    ((handler$27i208 = function (text, m) {
-      let each$27316, l$27315;
-      ((l$27315 = $B["map-ref"](m, "targets", $B["vector"]())), (each$27316 = function (i) {
-        let msg$27i207, q$27317, x$27i206;
+    ((handler$27i186 = function (text, m) {
+      (queues$27262 = $B["map-set"](queues$27262, $B["map-ref"](m, "id", 0), $B["map-set"](m, "received", now_ms$27page())));
+      return render$27275();
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "queue", $B["append"]($B["map-ref"](handlers$27socket, "queue", null), $listFromEnd(handler$27i186)))));
+    ((handler$27i189 = function (text, m) {
+      let each$27325, l$27324;
+      ((l$27324 = $B["map-ref"](m, "targets", $B["vector"]())), (each$27325 = function (i) {
+        let msg$27i188, q$27326, x$27i187;
         for (;;) {
-          if ((i < $B["vector-length"](l$27315))) {
-            (q$27317 = ((x$27i206 = $B["map-ref"]($B["vector-ref"](l$27315, i), "queue", 0)), $B["exact"]($B["floor"](($B["number?"](x$27i206) ? (x$27i206 + 0.0) : 0.0)))));
-            (((q$27317 > 0) ? ($B["map-ref"](queues$27257, q$27317, false) === false) : false) ? ((msg$27i207 = $B["map-of"]("type", "queue", "op", "state", "queue", q$27317)), ((open_socket$27socket) !== false ? socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i207)) : false)) : false);
+          if ((i < $B["vector-length"](l$27324))) {
+            (q$27326 = ((x$27i187 = $B["map-ref"]($B["vector-ref"](l$27324, i), "queue", 0)), $B["exact"]($B["floor"](real_of$27said(x$27i187)))));
+            (((q$27326 > 0) ? ($B["map-ref"](queues$27262, q$27326, false) === false) : false) ? ((msg$27i188 = $B["map-of"]("type", "queue", "op", "state", "queue", q$27326)), ((open_socket$27socket) !== false ? socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i188)) : false)) : false);
             const $t0 = (i + 1);
             i = $t0;
             continue;
@@ -2916,55 +2961,56 @@ $run(() => {
             return false;
           }
         }
-      }), each$27316(0));
-      return render$27269();
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "targets", $B["append"]($B["map-ref"](handlers$27socket, "targets", null), $listFromEnd(handler$27i208)))));
-    ((handler$27i209 = function (text, m) {
-      return render$27269();
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "you", $B["append"]($B["map-ref"](handlers$27socket, "you", null), $listFromEnd(handler$27i209)))));
-    ((handler$27i210 = function (text, s) {
-      (states$27256 = $B["map-set"](states$27256, $B["map-ref"](s, "from", ""), s));
-      return render$27269();
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "state", $B["append"]($B["map-ref"](handlers$27socket, "state", null), $listFromEnd(handler$27i210)))));
+      }), each$27325(0));
+      return render$27275();
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "targets", $B["append"]($B["map-ref"](handlers$27socket, "targets", null), $listFromEnd(handler$27i189)))));
+    ((handler$27i190 = function (text, m) {
+      return render$27275();
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "you", $B["append"]($B["map-ref"](handlers$27socket, "you", null), $listFromEnd(handler$27i190)))));
+    ((handler$27i191 = function (text, s) {
+      (states$27261 = $B["map-set"](states$27261, $B["map-ref"](s, "from", ""), s));
+      return render$27275();
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "state", $B["append"]($B["map-ref"](handlers$27socket, "state", null), $listFromEnd(handler$27i191)))));
     every$27page(1000, function () {
-      if ((from_queue$27263(screen_of$27where(chosen$27253))) !== false) {
-        return render$27269();
+      if ((from_queue$27268(screen_of$27where(chosen$27257))) !== false) {
+        return render$27275();
       } else {
         return false;
       }
     });
-    on$27dom(tabs$27258, click$27dom, function (e) {
-      let b$27318;
-      (b$27318 = closest_of$27dom(e, "[data-screen]"));
-      if ((b$27318) !== false) {
-        (chosen$27253 = data_of$27dom(b$27318, "screen"));
-        return render$27269();
+    on$27dom(tabs$27263, click$27dom, function (e) {
+      let b$27327;
+      (b$27327 = closest_of$27dom(e, "[data-screen]"));
+      if ((b$27327) !== false) {
+        (chosen$27257 = data_of$27dom(b$27327, "screen"));
+        (picked$27260 = true);
+        return render$27275();
       } else {
         return false;
       }
     });
     on$27dom(remote, click$27dom, function (e) {
-      let b$27319;
-      (b$27319 = closest_of$27dom(e, "[data-command]"));
-      if ((b$27319) !== false) {
-        return command$27273(data_of$27dom(b$27319, "command"), 0);
+      let b$27328;
+      (b$27328 = closest_of$27dom(e, "[data-command]"));
+      if ((b$27328) !== false) {
+        return command$27279(data_of$27dom(b$27328, "command"), 0);
       } else {
         return false;
       }
     });
-    ((button$27320 = by_id$27dom("remote-list")), ((button$27320) !== false ? on$27dom(button$27320, click$27dom, function (e) {
-      (listing$27260 = (listing$27260 === false));
-      set_attribute$21$27dom(button$27320, "aria-expanded", (listing$27260 ? "true" : "false"));
-      return render$27269();
+    ((button$27329 = by_id$27dom("remote-list")), ((button$27329) !== false ? on$27dom(button$27329, click$27dom, function (e) {
+      (listing$27265 = (listing$27265 === false));
+      set_attribute$21$27dom(button$27329, "aria-expanded", (listing$27265 ? "true" : "false"));
+      return render$27275();
     }) : false));
-    ((list$27321 = by_id$27dom("remote-queue")), ((list$27321) !== false ? on$27dom(list$27321, click$27dom, function (e) {
-      let b$27322, msg$27i211, n$27324, q$27323;
-      (b$27322 = closest_of$27dom(e, "[data-item]"));
-      (q$27323 = queue_of$27262(screen_of$27where(chosen$27253)));
-      if ((((b$27322) !== false ? q$27323 : false)) !== false) {
-        (msg$27i211 = $B["map-of"]("type", "queue", "op", "jump", "queue", $B["map-ref"](q$27323, "id", 0), "item", ((n$27324 = $B["string->number"](data_of$27dom(b$27322, "item"))), ((n$27324) !== false ? n$27324 : 0))));
+    ((list$27330 = by_id$27dom("remote-queue")), ((list$27330) !== false ? on$27dom(list$27330, click$27dom, function (e) {
+      let b$27331, msg$27i192, n$27333, q$27332;
+      (b$27331 = closest_of$27dom(e, "[data-item]"));
+      (q$27332 = queue_of$27267(screen_of$27where(chosen$27257)));
+      if ((((b$27331) !== false ? q$27332 : false)) !== false) {
+        (msg$27i192 = $B["map-of"]("type", "queue", "op", "jump", "queue", $B["map-ref"](q$27332, "id", 0), "item", ((n$27333 = $B["string->number"](data_of$27dom(b$27331, "item"))), ((n$27333) !== false ? n$27333 : 0))));
         if ((open_socket$27socket) !== false) {
-          return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i211));
+          return socket_send$21$27browser$2fsocket(open_socket$27socket, $B["json-write"](msg$27i192));
         } else {
           return false;
         }
@@ -2972,23 +3018,22 @@ $run(() => {
         return false;
       }
     }) : false));
-    on$27dom(seek$27259, input$27dom, function (e) {
-      let x$27i212, x$27i213;
-      (dragging$27254 = true);
-      return text$21$27remote("remote-time", $B["string-append"](clock$27clock(((x$27i212 = seek_value$27274()), ($B["number?"](x$27i212) ? (x$27i212 + 0.0) : 0.0))), " / ", clock$27clock(((x$27i213 = $B["map-ref"]($B["map-ref"](states$27256, chosen$27253, $B["map-of"]()), "duration", 0)), ($B["number?"](x$27i213) ? (x$27i213 + 0.0) : 0.0)))));
+    on$27dom(seek$27264, input$27dom, function (e) {
+      (dragging$27258 = true);
+      return text$21$27remote("remote-time", $B["string-append"](clock$27clock(real_of$27said(seek_value$27280())), " / ", clock$27clock(real_of$27said($B["map-ref"]($B["map-ref"](states$27261, chosen$27257, $B["map-of"]()), "duration", 0)))));
     });
-    on$27dom(seek$27259, change$27dom, function (e) {
-      (dragging$27254 = false);
-      return command$27273("seek", seek_value$27274());
+    on$27dom(seek$27264, change$27dom, function (e) {
+      (dragging$27258 = false);
+      return command$27279("seek", seek_value$27280());
     });
-    return render$27269();
+    return render$27275();
   });
   (bar_player$27bar = false);
   (bar_key$27bar = "hazelflix-bar");
   (bar_wake$21$27bar = function (queue) {
-    let r$27i215, r$27i216, r$27i217;
+    let r$27i194, r$27i195, r$27i196;
     if ((bar_player$27bar) !== false) {
-      (((((r$27i215 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i215))() ? (((r$27i216 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 6, r$27i216))() === queue) : false)) !== false ? false : ((r$27i217 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 0, r$27i217))(queue));
+      (((((r$27i194 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i194))() ? (((r$27i195 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 6, r$27i195))() === queue) : false)) !== false ? false : ((r$27i196 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 0, r$27i196))(queue));
       return true;
     } else {
       return false;
@@ -2998,62 +3043,63 @@ $run(() => {
     return false;
   });
   (players_start$27bar = function () {
-    let bar$27326, close$27dom$27327, film$27i218, film$27i221, handler$27i229, on_load$27i219, on_load$27i222, on_sleep$27i224, on_wake$27i223, screen$27325;
-    (screen$27325 = by_id$27dom("player-screen"));
-    (bar$27326 = by_id$27dom("music-bar"));
-    if ((screen$27325) !== false) {
-      return start_player$27player(screen$27325, ((film$27i218 = function (item) {
+    let bar$27335, close$27dom$27337, film$27i197, film$27i200, handler$27i208, on_load$27i198, on_load$27i201, on_sleep$27i203, on_wake$27i202, player$27336, screen$27334;
+    (screen$27334 = by_id$27dom("player-screen"));
+    (bar$27335 = by_id$27dom("music-bar"));
+    if ((screen$27334) !== false) {
+      return start_player$27player(screen$27334, ((film$27i197 = function (item) {
         return false;
-      }), (on_load$27i219 = function (item, p) {
+      }), (on_load$27i198 = function (item, p) {
         return false;
-      }), $B["%record-make"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", false, false, film$27i218, on_load$27i219, nothing$27bar, nothing$27bar)));
+      }), $B["%record-make"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", false, false, film$27i197, on_load$27i198, nothing$27bar, nothing$27bar)));
     } else {
-      if ((bar$27326) !== false) {
-        (bar_player$27bar = start_player$27player(bar$27326, ((film$27i221 = function (item) {
+      if ((bar$27335) !== false) {
+        (player$27336 = start_player$27player(bar$27335, ((film$27i200 = function (item) {
           return false;
-        }), (on_load$27i222 = function (item, p) {
+        }), (on_load$27i201 = function (item, p) {
           return false;
-        }), (on_wake$27i223 = function () {
-          let r$27i220;
-          set_hidden$21$27dom(bar$27326, false);
+        }), (on_wake$27i202 = function () {
+          let r$27i199;
+          set_hidden$21$27dom(bar$27335, false);
           add_class$21$27dom(body$27dom(), "with-bar");
-          session_set$21$27page(bar_key$27bar, $B["number->string"](((r$27i220 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 6, r$27i220))()));
+          ((bar_player$27bar) !== false ? session_set$21$27page(bar_key$27bar, $B["number->string"](((r$27i199 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 6, r$27i199))())) : false);
           return false;
-        }), (on_sleep$27i224 = function () {
-          set_hidden$21$27dom(bar$27326, true);
+        }), (on_sleep$27i203 = function () {
+          set_hidden$21$27dom(bar$27335, true);
           remove_class$21$27dom(body$27dom(), "with-bar");
           session_remove$21$27page(bar_key$27bar);
           return false;
-        }), $B["%record-make"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", true, true, film$27i221, on_load$27i222, on_wake$27i223, on_sleep$27i224))));
-        ((close$27dom$27327 = query_in$27dom(bar$27326, "[data-bar-close]")), ((close$27dom$27327) !== false ? on$27dom(close$27dom$27327, click$27dom, function (e) {
-          let r$27i225;
-          return ((r$27i225 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 1, r$27i225))();
+        }), $B["%record-make"]("a3790718d7b36d9f|player-options|asleep bar film on-load on-wake on-sleep|", true, true, film$27i200, on_load$27i201, on_wake$27i202, on_sleep$27i203))));
+        (bar_player$27bar = player$27336);
+        ((close$27dom$27337 = query_in$27dom(bar$27335, "[data-bar-close]")), ((close$27dom$27337) !== false ? on$27dom(close$27dom$27337, click$27dom, function (e) {
+          let r$27i204;
+          return ((r$27i204 = player$27336), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 1, r$27i204))();
         }) : false));
-        (handler$27i229 = function (text, m) {
-          let r$27i227, r$27i228, was$27328, x$27i226;
-          (was$27328 = ((x$27i226 = $B["string->number"](session_get$27page(bar_key$27bar))), $B["exact"]($B["floor"](($B["number?"](x$27i226) ? (x$27i226 + 0.0) : 0.0)))));
-          if ((((was$27328 > 0) ? (((r$27i227 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i227))() === false) : false)) !== false) {
-            return ((r$27i228 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 0, r$27i228))(was$27328);
+        (handler$27i208 = function (text, m) {
+          let r$27i206, r$27i207, was$27338, x$27i205;
+          (was$27338 = ((x$27i205 = $B["string->number"](session_get$27page(bar_key$27bar))), $B["exact"]($B["floor"](real_of$27said(x$27i205)))));
+          if ((((was$27338 > 0) ? (((r$27i206 = player$27336), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i206))() === false) : false)) !== false) {
+            return ((r$27i207 = player$27336), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 0, r$27i207))(was$27338);
           } else {
             return false;
           }
         });
-        return (handlers$27socket = $B["map-set"](handlers$27socket, "you", $B["append"]($B["map-ref"](handlers$27socket, "you", null), $listFromEnd(handler$27i229))));
+        return (handlers$27socket = $B["map-set"](handlers$27socket, "you", $B["append"]($B["map-ref"](handlers$27socket, "you", null), $listFromEnd(handler$27i208))));
       } else {
         return false;
       }
     }
   });
   (digits$3f$27bar = function (s, from) {
-    let loop$27329;
+    let loop$27339;
     if ((from < $B["string-length"](s))) {
-      (loop$27329 = function (i) {
-        let b$27330;
+      (loop$27339 = function (i) {
+        let b$27340;
         for (;;) {
           if ((i === $B["string-length"](s))) {
             return true;
           } else {
-            if (((b$27330 = $B["byte-ref"](s, i)), ((b$27330 >= 48) ? (b$27330 <= 57) : false))) {
+            if (((b$27340 = $B["byte-ref"](s, i)), ((b$27340 >= 48) ? (b$27340 <= 57) : false))) {
               const $t0 = (i + 1);
               i = $t0;
               continue;
@@ -3063,17 +3109,17 @@ $run(() => {
           }
         }
       });
-      return loop$27329(from);
+      return loop$27339(from);
     } else {
       return false;
     }
   });
   (site_path$27bar = function (url) {
-    let cut$27332, origin$27page$27331;
-    (origin$27page$27331 = origin$27page());
-    if (($B["string-prefix?"](origin$27page$27331, url) ? $B["string-prefix?"]("/", $B["substring"](url, $B["string-length"](origin$27page$27331), $B["string-length"](url))) : false)) {
-      (cut$27332 = function (p, i) {
-        let or$27value$27333;
+    let cut$27342, origin$27page$27341;
+    (origin$27page$27341 = origin$27page());
+    if (($B["string-prefix?"](origin$27page$27341, url) ? $B["string-prefix?"]("/", $B["substring"](url, $B["string-length"](origin$27page$27341), $B["string-length"](url))) : false)) {
+      (cut$27342 = function (p, i) {
+        let or$27value$27343;
         for (;;) {
           if ((i === $B["string-length"](p))) {
             if (((i > 1) ? $B["string-suffix?"]("/", p) : false)) {
@@ -3082,7 +3128,7 @@ $run(() => {
               return p;
             }
           } else {
-            if (((or$27value$27333 = ($B["byte-ref"](p, i) === 63)), (or$27value$27333 ? or$27value$27333 : ($B["byte-ref"](p, i) === 35)))) {
+            if (((or$27value$27343 = ($B["byte-ref"](p, i) === 63)), (or$27value$27343 ? or$27value$27343 : ($B["byte-ref"](p, i) === 35)))) {
               const $t0 = $B["substring"](p, 0, i);
               const $t1 = 0;
               p = $t0;
@@ -3098,45 +3144,45 @@ $run(() => {
           }
         }
       });
-      return cut$27332($B["substring"](url, $B["string-length"](origin$27page$27331), $B["string-length"](url)), 0);
+      return cut$27342($B["substring"](url, $B["string-length"](origin$27page$27341), $B["string-length"](url)), 0);
     } else {
       return false;
     }
   });
   (swappable$3f$27bar = function (url) {
-    let or$27value$27335, or$27value$27336, or$27value$27337, or$27value$27338, or$27value$27339, or$27value$27340, or$27value$27341, p$27334;
-    (p$27334 = site_path$27bar(url));
-    if ((p$27334) !== false) {
-      (or$27value$27335 = $B["equal?"](p$27334, "/music"));
-      if (or$27value$27335) {
-        return or$27value$27335;
+    let or$27value$27345, or$27value$27346, or$27value$27347, or$27value$27348, or$27value$27349, or$27value$27350, or$27value$27351, p$27344;
+    (p$27344 = site_path$27bar(url));
+    if ((p$27344) !== false) {
+      (or$27value$27345 = $B["equal?"](p$27344, "/music"));
+      if (or$27value$27345) {
+        return or$27value$27345;
       } else {
-        (or$27value$27336 = $B["equal?"](p$27334, "/music/songs"));
-        if (or$27value$27336) {
-          return or$27value$27336;
+        (or$27value$27346 = $B["equal?"](p$27344, "/music/songs"));
+        if (or$27value$27346) {
+          return or$27value$27346;
         } else {
-          (or$27value$27337 = $B["equal?"](p$27334, "/music/videos"));
-          if (or$27value$27337) {
-            return or$27value$27337;
+          (or$27value$27347 = $B["equal?"](p$27344, "/music/videos"));
+          if (or$27value$27347) {
+            return or$27value$27347;
           } else {
-            (or$27value$27338 = $B["equal?"](p$27334, "/music/artists"));
-            if (or$27value$27338) {
-              return or$27value$27338;
+            (or$27value$27348 = $B["equal?"](p$27344, "/music/artists"));
+            if (or$27value$27348) {
+              return or$27value$27348;
             } else {
-              (or$27value$27339 = $B["equal?"](p$27334, "/music/playlists"));
-              if (or$27value$27339) {
-                return or$27value$27339;
+              (or$27value$27349 = $B["equal?"](p$27344, "/music/playlists"));
+              if (or$27value$27349) {
+                return or$27value$27349;
               } else {
-                (or$27value$27340 = ($B["string-prefix?"]("/album/", p$27334) ? digits$3f$27bar(p$27334, 7) : false));
-                if ((or$27value$27340) !== false) {
-                  return or$27value$27340;
+                (or$27value$27350 = ($B["string-prefix?"]("/album/", p$27344) ? digits$3f$27bar(p$27344, 7) : false));
+                if ((or$27value$27350) !== false) {
+                  return or$27value$27350;
                 } else {
-                  (or$27value$27341 = ($B["string-prefix?"]("/artist/", p$27334) ? digits$3f$27bar(p$27334, 8) : false));
-                  if ((or$27value$27341) !== false) {
-                    return or$27value$27341;
+                  (or$27value$27351 = ($B["string-prefix?"]("/artist/", p$27344) ? digits$3f$27bar(p$27344, 8) : false));
+                  if ((or$27value$27351) !== false) {
+                    return or$27value$27351;
                   } else {
-                    if ($B["string-prefix?"]("/playlist/", p$27334)) {
-                      return digits$3f$27bar(p$27334, 10);
+                    if ($B["string-prefix?"]("/playlist/", p$27344)) {
+                      return digits$3f$27bar(p$27344, 10);
                     } else {
                       return false;
                     }
@@ -3152,14 +3198,14 @@ $run(() => {
     }
   });
   (kept$3f$27bar = function (e) {
-    let or$27value$27342, or$27value$27343;
-    (or$27value$27342 = $B["equal?"](id_of$27dom(e), "music-bar"));
-    if (or$27value$27342) {
-      return or$27value$27342;
+    let or$27value$27352, or$27value$27353;
+    (or$27value$27352 = $B["equal?"](id_of$27dom(e), "music-bar"));
+    if (or$27value$27352) {
+      return or$27value$27352;
     } else {
-      (or$27value$27343 = $B["equal?"](tag_of$27dom(e), "SCRIPT"));
-      if (or$27value$27343) {
-        return or$27value$27343;
+      (or$27value$27353 = $B["equal?"](tag_of$27dom(e), "SCRIPT"));
+      if (or$27value$27353) {
+        return or$27value$27353;
       } else {
         return $B["equal?"](id_of$27dom(e), "intro");
       }
@@ -3167,24 +3213,24 @@ $run(() => {
   });
   (go$27bar = function (url, push) {
     return fetch_text$27fetch(url, function (status, text) {
-      let bar$27348, coming$27353, doc$27344, each$27352, each$27354, fresh$27346, fresh_body$27345, here$27347, new_style$27350, now$27351, old_style$27349;
+      let bar$27358, coming$27363, doc$27354, each$27362, each$27364, fresh$27356, fresh_body$27355, here$27357, new_style$27360, now$27361, old_style$27359;
       if ((status === 0)) {
         return go$21$27page(url);
       } else {
-        (doc$27344 = read_page$27page(text));
-        (fresh_body$27345 = body_of$27dom(doc$27344));
-        (fresh$27346 = ((fresh_body$27345) !== false ? first_element_of$27dom(fresh_body$27345) : false));
-        (here$27347 = first_element_of$27dom(body$27dom()));
-        (bar$27348 = by_id$27dom("music-bar"));
-        if ((((fresh$27346) !== false ? ((here$27347) !== false ? ((bar$27348) !== false ? query_in$27dom(doc$27344, "main") : false) : false) : false)) !== false) {
-          (old_style$27349 = head_style$27page(this_page$27dom()));
-          (new_style$27350 = head_style$27page(doc$27344));
-          ((((old_style$27349) !== false ? new_style$27350 : false)) !== false ? set_text$21$27dom(old_style$27349, text_of$27dom(new_style$27350)) : false);
-          set_page_title$21$27page(page_title$27page(doc$27344));
-          ((now$27351 = children_of$27dom(here$27347)), ((each$27352 = function (i) {
+        (doc$27354 = read_page$27page(text));
+        (fresh_body$27355 = body_of$27dom(doc$27354));
+        (fresh$27356 = ((fresh_body$27355) !== false ? first_element_of$27dom(fresh_body$27355) : false));
+        (here$27357 = first_element_of$27dom(body$27dom()));
+        (bar$27358 = by_id$27dom("music-bar"));
+        if ((((fresh$27356) !== false ? ((here$27357) !== false ? ((bar$27358) !== false ? query_in$27dom(doc$27354, "main") : false) : false) : false)) !== false) {
+          (old_style$27359 = head_style$27page(this_page$27dom()));
+          (new_style$27360 = head_style$27page(doc$27354));
+          ((((old_style$27359) !== false ? new_style$27360 : false)) !== false ? set_text$21$27dom(old_style$27359, text_of$27dom(new_style$27360)) : false);
+          set_page_title$21$27page(page_title$27page(doc$27354));
+          ((now$27361 = children_of$27dom(here$27357)), ((each$27362 = function (i) {
             for (;;) {
-              if ((i < $B["vector-length"](now$27351))) {
-                (kept$3f$27bar($B["vector-ref"](now$27351, i)) ? false : remove$21$27dom($B["vector-ref"](now$27351, i)));
+              if ((i < $B["vector-length"](now$27361))) {
+                (kept$3f$27bar($B["vector-ref"](now$27361, i)) ? false : remove$21$27dom($B["vector-ref"](now$27361, i)));
                 const $t0 = (i + 1);
                 i = $t0;
                 continue;
@@ -3192,11 +3238,11 @@ $run(() => {
                 return false;
               }
             }
-          }), each$27352(0)));
-          ((coming$27353 = children_of$27dom(fresh$27346)), ((each$27354 = function (i) {
+          }), each$27362(0)));
+          ((coming$27363 = children_of$27dom(fresh$27356)), ((each$27364 = function (i) {
             for (;;) {
-              if ((i < $B["vector-length"](coming$27353))) {
-                (kept$3f$27bar($B["vector-ref"](coming$27353, i)) ? false : insert_before$21$27dom(here$27347, import$21$27dom($B["vector-ref"](coming$27353, i)), bar$27348));
+              if ((i < $B["vector-length"](coming$27363))) {
+                (kept$3f$27bar($B["vector-ref"](coming$27363, i)) ? false : insert_before$21$27dom(here$27357, import$21$27dom($B["vector-ref"](coming$27363, i)), bar$27358));
                 const $t0 = (i + 1);
                 i = $t0;
                 continue;
@@ -3204,7 +3250,7 @@ $run(() => {
                 return false;
               }
             }
-          }), each$27354(0)));
+          }), each$27364(0)));
           (push ? push_address$21$27page(url) : false);
           return scroll_to_top$21$27page();
         } else {
@@ -3216,14 +3262,14 @@ $run(() => {
   (pages_swap$27bar = function () {
     if ((by_id$27dom("music-bar")) !== false) {
       on_document$27dom(click$27dom, function (e) {
-        let a$27355, r$27i214$27i230, url$27356;
-        if (((((bar_player$27bar) !== false ? ((r$27i214$27i230 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i214$27i230))() : false)) !== false ? ((default_prevented$3f$27dom(e) === false) ? plain_click$3f$27dom(e) : false) : false)) {
-          (a$27355 = closest_of$27dom(e, "a[href]"));
-          if ((a$27355) !== false) {
-            (url$27356 = link_address$27page(a$27355));
-            if (((($B["equal?"](url$27356, "") === false) ? swappable$3f$27bar(url$27356) : false)) !== false) {
+        let a$27365, r$27i193$27i209, url$27366;
+        if (((((bar_player$27bar) !== false ? ((r$27i193$27i209 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i193$27i209))() : false)) !== false ? ((default_prevented$3f$27dom(e) === false) ? plain_click$3f$27dom(e) : false) : false)) {
+          (a$27365 = closest_of$27dom(e, "a[href]"));
+          if ((a$27365) !== false) {
+            (url$27366 = link_address$27page(a$27365));
+            if (((($B["equal?"](url$27366, "") === false) ? swappable$3f$27bar(url$27366) : false)) !== false) {
               prevent_default$21$27dom(e);
-              return go$27bar(url$27356, true);
+              return go$27bar(url$27366, true);
             } else {
               return false;
             }
@@ -3235,8 +3281,8 @@ $run(() => {
         }
       });
       return on_window$27page(popstate$27page, function (e) {
-        let r$27i214$27i231;
-        if ((((((bar_player$27bar) !== false ? ((r$27i214$27i231 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i214$27i231))() : false)) !== false ? swappable$3f$27bar(address$27page()) : false)) !== false) {
+        let r$27i193$27i210;
+        if ((((((bar_player$27bar) !== false ? ((r$27i193$27i210 = bar_player$27bar), $B["%record-ref"]("43a613ede2ac6af5|player|wake sleep send position current playing? queue state reload media|", 5, r$27i193$27i210))() : false)) !== false ? swappable$3f$27bar(address$27page()) : false)) !== false) {
           return go$27bar(address$27page(), false);
         } else {
           return reload$21$27page();
@@ -3256,13 +3302,13 @@ $run(() => {
   (ask_where$27music = function (msg, there) {
     let choices;
     (choices = function (l) {
-      let t$27358;
+      let t$27368;
       if ($B["null?"](l)) {
         return null;
       } else {
-        (t$27358 = $B["car"](l));
-        return $B["cons"]($B["cons"]($B["map-ref"](t$27358, "name", ""), function () {
-          return send$27music($B["map-set"](msg, "target", $B["map-ref"](t$27358, "id", "")));
+        (t$27368 = $B["car"](l));
+        return $B["cons"]($B["cons"]($B["map-ref"](t$27368, "name", ""), function () {
+          return send$27music($B["map-set"](msg, "target", $B["map-ref"](t$27368, "id", "")));
         }), choices($B["cdr"](l)));
       }
     });
@@ -3271,30 +3317,30 @@ $run(() => {
     }), choices(there)));
   });
   (music_buttons$27music = function () {
-    let handler$27i236, handler$27i237;
+    let handler$27i215, handler$27i216;
     on_document$27dom(click$27dom, function (e) {
-      let b$27359, msg$27360, n$27357$27i233, n$27357$27i235, s$27i232, s$27i234, there$27361;
-      (b$27359 = closest_of$27dom(e, "[data-music]"));
-      if ((b$27359) !== false) {
-        (msg$27360 = $B["map-of"]("type", "queue", "op", data_of$27dom(b$27359, "music"), "what", data_of$27dom(b$27359, "what"), "id", ((s$27i232 = data_of$27dom(b$27359, "id")), ((n$27357$27i233 = $B["string->number"](s$27i232)), ((n$27357$27i233) !== false ? n$27357$27i233 : 0))), "start", ((s$27i234 = data_of$27dom(b$27359, "start")), ((n$27357$27i235 = $B["string->number"](s$27i234)), ((n$27357$27i235) !== false ? n$27357$27i235 : 0))), "shuffle", $B["equal?"](data_of$27dom(b$27359, "shuffle"), "1"), "next", $B["equal?"](data_of$27dom(b$27359, "next"), "1"), "queue", queue_now$27player));
-        (there$27361 = other_screens$27where());
+      let b$27369, msg$27370, n$27367$27i212, n$27367$27i214, s$27i211, s$27i213, there$27371;
+      (b$27369 = closest_of$27dom(e, "[data-music]"));
+      if ((b$27369) !== false) {
+        (msg$27370 = $B["map-of"]("type", "queue", "op", data_of$27dom(b$27369, "music"), "what", data_of$27dom(b$27369, "what"), "id", ((s$27i211 = data_of$27dom(b$27369, "id")), ((n$27367$27i212 = $B["string->number"](s$27i211)), ((n$27367$27i212) !== false ? n$27367$27i212 : 0))), "start", ((s$27i213 = data_of$27dom(b$27369, "start")), ((n$27367$27i214 = $B["string->number"](s$27i213)), ((n$27367$27i214) !== false ? n$27367$27i214 : 0))), "shuffle", $B["equal?"](data_of$27dom(b$27369, "shuffle"), "1"), "next", $B["equal?"](data_of$27dom(b$27369, "next"), "1"), "queue", queue_now$27player));
+        (there$27371 = other_screens$27where());
         prevent_default$21$27dom(e);
-        if (($B["equal?"](data_of$27dom(b$27359, "music"), "play") ? (($B["null?"](there$27361) === false) ? (dialogs$3f$27dom() ? (by_id$27dom("player-screen") === false) : false) : false) : false)) {
-          return ask_where$27music(msg$27360, there$27361);
+        if (($B["equal?"](data_of$27dom(b$27369, "music"), "play") ? (($B["null?"](there$27371) === false) ? (dialogs$3f$27dom() ? (by_id$27dom("player-screen") === false) : false) : false) : false)) {
+          return ask_where$27music(msg$27370, there$27371);
         } else {
-          return send$27music(msg$27360);
+          return send$27music(msg$27370);
         }
       } else {
         return false;
       }
     });
-    ((handler$27i236 = function (text, m) {
-      let name$27362;
+    ((handler$27i215 = function (text, m) {
+      let name$27372;
       if ((by_id$27dom("player-screen")) !== false) {
         return false;
       } else {
         if (($B["map-ref"](m, "elsewhere", false)) !== false) {
-          return note$27ui(((name$27362 = $B["map-ref"](m, "name", "")), ($B["equal?"](name$27362, "") ? "Playing on the player that's open." : $B["string-append"]("Playing on ", name$27362, "."))));
+          return note$27ui(((name$27372 = $B["map-ref"](m, "name", "")), ($B["equal?"](name$27372, "") ? "Playing on the player that's open." : $B["string-append"]("Playing on ", name$27372, "."))));
         } else {
           if (bar_wake$21$27bar($B["map-ref"](m, "queue", 0))) {
             return false;
@@ -3303,13 +3349,13 @@ $run(() => {
           }
         }
       }
-    }), (handlers$27socket = $B["map-set"](handlers$27socket, "queued", $B["append"]($B["map-ref"](handlers$27socket, "queued", null), $listFromEnd(handler$27i236)))));
-    (handler$27i237 = function (text, m) {
-      let n$27363;
-      (n$27363 = $B["map-ref"](m, "n", 1));
-      return note$27ui(((n$27363 === 1) ? "Added to the queue." : $B["string-append"]($B["number->string"](n$27363), " added to the queue.")));
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "queued", $B["append"]($B["map-ref"](handlers$27socket, "queued", null), $listFromEnd(handler$27i215)))));
+    (handler$27i216 = function (text, m) {
+      let n$27373;
+      (n$27373 = $B["map-ref"](m, "n", 1));
+      return note$27ui(((n$27373 === 1) ? "Added to the queue." : $B["string-append"]($B["number->string"](n$27373), " added to the queue.")));
     });
-    return (handlers$27socket = $B["map-set"](handlers$27socket, "added", $B["append"]($B["map-ref"](handlers$27socket, "added", null), $listFromEnd(handler$27i237))));
+    return (handlers$27socket = $B["map-set"](handlers$27socket, "added", $B["append"]($B["map-ref"](handlers$27socket, "added", null), $listFromEnd(handler$27i216))));
   });
   (piece$27photos = 67108864);
   (at_once$27photos = 2);
@@ -3330,92 +3376,92 @@ $run(() => {
     }
   });
   (photos_page$27photos = function () {
-    let chooser$27367, finished$27375, going$27370, handler$27i251, line_for$27372, lines$27368, made$27371, next$27374, queue$27369, send_file$27376, sending$3f$27373, watch$27377;
-    (chooser$27367 = by_id$27dom("photo-files"));
-    (lines$27368 = by_id$27dom("photo-uploads"));
-    (queue$27369 = null);
-    (going$27370 = 0);
-    (made$27371 = 0);
-    (line_for$27372 = function (name) {
-      let l$27378;
-      (l$27378 = make_element$27dom("div"));
-      set_text$21$27dom(l$27378, $B["string-append"](name, ": waiting"));
-      append$21$27dom(lines$27368, l$27378);
-      return l$27378;
+    let chooser$27377, finished$27385, going$27380, handler$27i230, line_for$27382, lines$27378, made$27381, next$27384, queue$27379, send_file$27386, sending$3f$27383, watch$27387;
+    (chooser$27377 = by_id$27dom("photo-files"));
+    (lines$27378 = by_id$27dom("photo-uploads"));
+    (queue$27379 = null);
+    (going$27380 = 0);
+    (made$27381 = 0);
+    (line_for$27382 = function (name) {
+      let l$27388;
+      (l$27388 = make_element$27dom("div"));
+      set_text$21$27dom(l$27388, $B["string-append"](name, ": waiting"));
+      append$21$27dom(lines$27378, l$27388);
+      return l$27388;
     });
-    (sending$3f$27373 = function () {
-      let or$27value$27379;
-      (or$27value$27379 = (going$27370 > 0));
-      if (or$27value$27379) {
-        return or$27value$27379;
+    (sending$3f$27383 = function () {
+      let or$27value$27389;
+      (or$27value$27389 = (going$27380 > 0));
+      if (or$27value$27389) {
+        return or$27value$27389;
       } else {
-        return $B["pair?"](queue$27369);
+        return $B["pair?"](queue$27379);
       }
     });
-    (next$27374 = function () {
-      let f$27380;
+    (next$27384 = function () {
+      let f$27390;
       for (;;) {
-        if (((going$27370 < at_once$27photos) ? $B["pair?"](queue$27369) : false)) {
-          (f$27380 = $B["car"](queue$27369));
-          (queue$27369 = $B["cdr"](queue$27369));
-          (going$27370 = (going$27370 + 1));
-          send_file$27376(f$27380);
+        if (((going$27380 < at_once$27photos) ? $B["pair?"](queue$27379) : false)) {
+          (f$27390 = $B["car"](queue$27379));
+          (queue$27379 = $theList($B["cdr"](queue$27379)));
+          (going$27380 = (going$27380 + 1));
+          send_file$27386(f$27390);
           continue;
         } else {
           return false;
         }
       }
     });
-    (finished$27375 = function () {
-      (going$27370 = (going$27370 - 1));
-      return next$27374();
+    (finished$27385 = function () {
+      (going$27380 = (going$27380 - 1));
+      return next$27384();
     });
-    (send_file$27376 = function (f) {
-      let began$27385, failed$27386, from$27387, id$27383, line$27384, name$27381, size$27382;
-      (name$27381 = file_name$27fetch(f));
-      (size$27382 = file_size$27fetch(f));
-      (id$27383 = $B["random-hex"](16));
-      (line$27384 = line_for$27372(name$27381));
-      (began$27385 = now_ms$27page());
-      (failed$27386 = function (why) {
-        set_text$21$27dom(line$27384, $B["string-append"](name$27381, ": ", why));
-        set_style$21$27dom(line$27384, "color", "#f0b446");
-        return finished$27375();
+    (send_file$27386 = function (f) {
+      let began$27395, failed$27396, from$27397, id$27393, line$27394, name$27391, size$27392;
+      (name$27391 = file_name$27fetch(f));
+      (size$27392 = file_size$27fetch(f));
+      (id$27393 = $B["random-hex"](16));
+      (line$27394 = line_for$27382(name$27391));
+      (began$27395 = now_ms$27page());
+      (failed$27396 = function (why) {
+        set_text$21$27dom(line$27394, $B["string-append"](name$27391, ": ", why));
+        set_style$21$27dom(line$27394, "color", "#f0b446");
+        return finished$27385();
       });
-      (from$27387 = function (at, tried) {
-        let asked$27389, end$27388, id$27i238, most$27390, name$27i239, size$27i240;
-        (end$27388 = (((at + piece$27photos) > size$27382) ? size$27382 : (at + piece$27photos)));
-        (asked$27389 = now_ms$27page());
-        (most$27390 = 0);
-        return post_piece_watched$21$27fetch(((id$27i238 = id$27383), (name$27i239 = name$27381), (size$27i240 = size$27382), $B["string-append"]("/photos/upload?id=", id$27i238, "&name=", encode_component$27page(name$27i239), "&size=", $B["number->string"](size$27i240))), f, at, end$27388, quiet_ms$27photos, function (sent) {
-          let bytes$27i241, mb$27366$27i243, ms$27i242;
-          ((sent > most$27390) ? (most$27390 = sent) : false);
-          return set_text$21$27dom(line$27384, $B["string-append"](name$27381, ": ", $B["number->string"]($B["quotient"]((100 * (at + sent)), size$27382)), "%", ((bytes$27i241 = (at + sent)), (ms$27i242 = (now_ms$27page() - began$27385)), ((ms$27i242 < 500.0) ? "" : ((mb$27366$27i243 = (((bytes$27i241 + 0.0) / 1048576.0) / (ms$27i242 / 1000.0))), $B["string-append"](", ", $realText(($B["round"]((mb$27366$27i243 * 10.0)) / 10.0)), " MB/s"))))));
+      (from$27397 = function (at, tried) {
+        let asked$27399, end$27398, id$27i217, most$27400, name$27i218, size$27i219;
+        (end$27398 = (((at + piece$27photos) > size$27392) ? size$27392 : (at + piece$27photos)));
+        (asked$27399 = now_ms$27page());
+        (most$27400 = 0);
+        return post_piece_watched$21$27fetch(((id$27i217 = id$27393), (name$27i218 = name$27391), (size$27i219 = size$27392), $B["string-append"]("/photos/upload?id=", id$27i217, "&name=", encode_component$27page(name$27i218), "&size=", $B["number->string"](size$27i219))), f, at, end$27398, quiet_ms$27photos, function (sent) {
+          let bytes$27i220, mb$27376$27i222, ms$27i221;
+          ((sent > most$27400) ? (most$27400 = sent) : false);
+          return set_text$21$27dom(line$27394, $B["string-append"](name$27391, ": ", $B["number->string"]($B["quotient"]((100 * (at + sent)), size$27392)), "%", ((bytes$27i220 = (at + sent)), (ms$27i221 = (now_ms$27page() - began$27395)), ((ms$27i221 < 500.0) ? "" : ((mb$27376$27i222 = (((bytes$27i220 + 0.0) / 1048576.0) / (ms$27i221 / 1000.0))), $B["string-append"](", ", $realText(($B["round"]((mb$27376$27i222 * 10.0)) / 10.0)), " MB/s"))))));
         }, function (status, body$27dom) {
-          let bytes$27i248, m$27364$27i244, m$27364$27i246, mb$27366$27i250, ms$27i249, v$27365$27i245, v$27365$27i247, why$27391;
-          post_form$21$27fetch("/photos/log", $B["string-append"]("line=", encode_component$27page($B["string-append"]("page ", $B["substring"](id$27383, 0, 6), " at ", $B["number->string"](at), "-", $B["number->string"](end$27388), " try ", $B["number->string"](tried), ": status ", $B["number->string"](status), " after ", $B["number->string"]($B["exact"]($B["round"]((now_ms$27page() - asked$27389)))), " ms, ", $B["number->string"](most$27390), " bytes seen going, ", (($B["string-length"](body$27dom) > 60) ? $B["substring"](body$27dom, 0, 60) : body$27dom)))));
+          let bytes$27i227, m$27374$27i223, m$27374$27i225, mb$27376$27i229, ms$27i228, v$27375$27i224, v$27375$27i226, why$27401;
+          post_form$21$27fetch("/photos/log", $B["string-append"]("line=", encode_component$27page($B["string-append"]("page ", $B["substring"](id$27393, 0, 6), " at ", $B["number->string"](at), "-", $B["number->string"](end$27398), " try ", $B["number->string"](tried), ": status ", $B["number->string"](status), " after ", $B["number->string"]($B["exact"]($B["round"]((now_ms$27page() - asked$27399)))), " ms, ", $B["number->string"](most$27400), " bytes seen going, ", (($B["string-length"](body$27dom) > 60) ? $B["substring"](body$27dom, 0, 60) : body$27dom)))));
           if ((((status <= 0) ? (tried < tries$27photos) : false)) !== false) {
-            set_text$21$27dom(line$27384, $B["string-append"](name$27381, ": ", ((status === -1) ? $B["string-append"]("the phone wouldn't hand it over (", body$27dom, "), trying again") : "stalled, trying again")));
+            set_text$21$27dom(line$27394, $B["string-append"](name$27391, ": ", ((status === -1) ? $B["string-append"]("the phone wouldn't hand it over (", body$27dom, "), trying again") : "stalled, trying again")));
             return after$27page(2000, function () {
-              return from$27387(at, (tried + 1));
+              return from$27397(at, (tried + 1));
             });
           } else {
             if ((status === -1)) {
-              return failed$27386($B["string-append"]("the phone wouldn't hand it over (", body$27dom, ")"));
+              return failed$27396($B["string-append"]("the phone wouldn't hand it over (", body$27dom, ")"));
             } else {
               if (((status === 200) === false)) {
-                return failed$27386(((why$27391 = ((m$27364$27i244 = $B["json-parse"](body$27dom, false)), ($B["map?"](m$27364$27i244) ? ((v$27365$27i245 = $B["map-ref"](m$27364$27i244, "error", "")), ($B["string?"](v$27365$27i245) ? v$27365$27i245 : "")) : ""))), ($B["equal?"](why$27391, "") ? "couldn't be sent" : why$27391)));
+                return failed$27396(((why$27401 = ((m$27374$27i223 = $B["json-parse"](body$27dom, false)), ($B["map?"](m$27374$27i223) ? ((v$27375$27i224 = $B["map-ref"](m$27374$27i223, "error", "")), ($B["string?"](v$27375$27i224) ? v$27375$27i224 : "")) : ""))), ($B["equal?"](why$27401, "") ? "couldn't be sent" : why$27401)));
               } else {
-                if ((end$27388 < size$27382)) {
-                  return from$27387(end$27388, 1);
+                if ((end$27398 < size$27392)) {
+                  return from$27397(end$27398, 1);
                 } else {
-                  if ($B["equal?"](((m$27364$27i246 = $B["json-parse"](body$27dom, false)), ($B["map?"](m$27364$27i246) ? ((v$27365$27i247 = $B["map-ref"](m$27364$27i246, "state", "")), ($B["string?"](v$27365$27i247) ? v$27365$27i247 : "")) : "")), "known")) {
-                    set_text$21$27dom(line$27384, $B["string-append"](name$27381, ": already here"));
-                    return finished$27375();
+                  if ($B["equal?"](((m$27374$27i225 = $B["json-parse"](body$27dom, false)), ($B["map?"](m$27374$27i225) ? ((v$27375$27i226 = $B["map-ref"](m$27374$27i225, "state", "")), ($B["string?"](v$27375$27i226) ? v$27375$27i226 : "")) : "")), "known")) {
+                    set_text$21$27dom(line$27394, $B["string-append"](name$27391, ": already here"));
+                    return finished$27385();
                   } else {
-                    (made$27371 = (made$27371 + 1));
-                    set_text$21$27dom(line$27384, $B["string-append"](name$27381, ": sent", ((bytes$27i248 = size$27382), (ms$27i249 = (now_ms$27page() - began$27385)), ((ms$27i249 < 500.0) ? "" : ((mb$27366$27i250 = (((bytes$27i248 + 0.0) / 1048576.0) / (ms$27i249 / 1000.0))), $B["string-append"](", ", $realText(($B["round"]((mb$27366$27i250 * 10.0)) / 10.0)), " MB/s")))), ", being made ready"));
-                    return finished$27375();
+                    (made$27381 = (made$27381 + 1));
+                    set_text$21$27dom(line$27394, $B["string-append"](name$27391, ": sent", ((bytes$27i227 = size$27392), (ms$27i228 = (now_ms$27page() - began$27395)), ((ms$27i228 < 500.0) ? "" : ((mb$27376$27i229 = (((bytes$27i227 + 0.0) / 1048576.0) / (ms$27i228 / 1000.0))), $B["string-append"](", ", $realText(($B["round"]((mb$27376$27i229 * 10.0)) / 10.0)), " MB/s")))), ", being made ready"));
+                    return finished$27385();
                   }
                 }
               }
@@ -3423,88 +3469,88 @@ $run(() => {
           }
         });
       });
-      if ((size$27382 === 0)) {
-        return failed$27386("empty");
+      if ((size$27392 === 0)) {
+        return failed$27396("empty");
       } else {
-        if ((size$27382 > piece$27photos)) {
-          return failed$27386("too large: 64 MB at most");
+        if ((size$27392 > piece$27photos)) {
+          return failed$27396("too large: 64 MB at most");
         } else {
-          return from$27387(0, 1);
+          return from$27397(0, 1);
         }
       }
     });
-    if ((chooser$27367 === false)) {
+    if ((chooser$27377 === false)) {
       return false;
     } else {
-      (watch$27377 = function (input$27dom) {
+      (watch$27387 = function (input$27dom) {
         return on$27dom(input$27dom, change$27dom, function (e) {
-          (queue$27369 = $B["append"](queue$27369, $B["vector->list"](chosen_files$27fetch(input$27dom))));
-          watch$27377(file_input_again$21$27fetch(input$27dom));
-          return next$27374();
+          (queue$27379 = $B["append"](queue$27379, $B["vector->list"](chosen_files$27fetch(input$27dom))));
+          watch$27387(file_input_again$21$27fetch(input$27dom));
+          return next$27384();
         });
       });
-      watch$27377(chooser$27367);
-      ((handler$27i251 = function (text, msg) {
-        let or$27value$27392;
-        if (((((or$27value$27392 = (made$27371 > 0)), (or$27value$27392 ? or$27value$27392 : query$27dom("[data-photos-making]")))) !== false ? (sending$3f$27373() === false) : false)) {
+      watch$27387(chooser$27377);
+      ((handler$27i230 = function (text, msg) {
+        let or$27value$27402;
+        if (((((or$27value$27402 = (made$27381 > 0)), (or$27value$27402 ? or$27value$27402 : query$27dom("[data-photos-making]")))) !== false ? (sending$3f$27383() === false) : false)) {
           return reload$21$27page();
         } else {
           return false;
         }
-      }), (handlers$27socket = $B["map-set"](handlers$27socket, "photos", $B["append"]($B["map-ref"](handlers$27socket, "photos", null), $listFromEnd(handler$27i251)))));
+      }), (handlers$27socket = $B["map-set"](handlers$27socket, "photos", $B["append"]($B["map-ref"](handlers$27socket, "photos", null), $listFromEnd(handler$27i230)))));
       return photo_dialog$27photos();
     }
   });
   (place_pin$27photos = function (place) {
-    let pin$27393;
-    (pin$27393 = by_id$27dom("photo-dialog-place"));
-    if ((pin$27393) !== false) {
-      set_attribute$21$27dom(pin$27393, "data-place", place);
-      return set_hidden$21$27dom(pin$27393, $B["equal?"](place, ""));
+    let pin$27403;
+    (pin$27403 = by_id$27dom("photo-dialog-place"));
+    if ((pin$27403) !== false) {
+      set_attribute$21$27dom(pin$27403, "data-place", place);
+      return set_hidden$21$27dom(pin$27403, $B["equal?"](place, ""));
     } else {
       return false;
     }
   });
   (photo_dialog$27photos = function () {
-    let cancel$27397, d$27394, delete$27398, pin$27396;
-    (d$27394 = by_id$27dom("photo-dialog"));
-    if (((d$27394) !== false ? dialogs$3f$27dom() : false)) {
+    let cancel$27407, d$27404, delete$27408, pin$27406;
+    (d$27404 = by_id$27dom("photo-dialog"));
+    if (((d$27404) !== false ? dialogs$3f$27dom() : false)) {
       each_of$27photos($B["vector->list"](query_all$27dom("[data-photo]")), function (card) {
         return on$27dom(card, click$27dom, function (e) {
-          let id$27395;
+          let id$27405;
           if (plain_click$3f$27dom(e)) {
-            (id$27395 = data_of$27dom(card, "photo"));
+            (id$27405 = data_of$27dom(card, "photo"));
             prevent_default$21$27dom(e);
-            set_attribute$21$27dom(by_id$27dom("photo-dialog-img"), "src", $B["string-append"]("/photo/", id$27395));
+            set_attribute$21$27dom(by_id$27dom("photo-dialog-img"), "src", $B["string-append"]("/photo/", id$27405));
             set_text$21$27dom(by_id$27dom("photo-dialog-date"), data_of$27dom(card, "date"));
             set_field$21$27dom(by_id$27dom("photo-dialog-caption"), data_of$27dom(card, "caption"));
             place_pin$27photos(data_of$27dom(card, "place"));
-            set_attribute$21$27dom(by_id$27dom("photo-dialog-form"), "action", $B["string-append"]("/photos/", id$27395));
-            return show_modal$21$27dom(d$27394);
+            set_attribute$21$27dom(by_id$27dom("photo-dialog-form"), "action", $B["string-append"]("/photos/", id$27405));
+            return show_modal$21$27dom(d$27404);
           } else {
             return false;
           }
         });
       });
-      ((pin$27396 = by_id$27dom("photo-dialog-place")), ((pin$27396) !== false ? (place_pin$27photos(data_of$27dom(pin$27396, "place")), on$27dom(pin$27396, click$27dom, function (e) {
-        set_field$21$27dom(by_id$27dom("photo-dialog-caption"), data_of$27dom(pin$27396, "place"));
+      ((pin$27406 = by_id$27dom("photo-dialog-place")), ((pin$27406) !== false ? (place_pin$27photos(data_of$27dom(pin$27406, "place")), on$27dom(pin$27406, click$27dom, function (e) {
+        set_field$21$27dom(by_id$27dom("photo-dialog-caption"), data_of$27dom(pin$27406, "place"));
         return focus$21$27dom(by_id$27dom("photo-dialog-caption"));
       })) : false));
-      ((cancel$27397 = query$27dom("[data-photo-cancel]")), (delete$27398 = query$27dom("[data-photo-delete]")), ((cancel$27397) !== false ? on$27dom(cancel$27397, click$27dom, function (e) {
+      ((cancel$27407 = query$27dom("[data-photo-cancel]")), (delete$27408 = query$27dom("[data-photo-delete]")), ((cancel$27407) !== false ? on$27dom(cancel$27407, click$27dom, function (e) {
         prevent_default$21$27dom(e);
-        return close_dialog$21$27dom(d$27394);
-      }) : false), ((delete$27398) !== false ? on$27dom(delete$27398, click$27dom, function (e) {
+        return close_dialog$21$27dom(d$27404);
+      }) : false), ((delete$27408) !== false ? on$27dom(delete$27408, click$27dom, function (e) {
         if (confirmed$3f$27page("Delete this photo? Its original goes too.")) {
           return false;
         } else {
           return prevent_default$21$27dom(e);
         }
       }) : false));
-      return on$27dom(d$27394, click$27dom, function (e) {
+      return on$27dom(d$27404, click$27dom, function (e) {
         if ((closest_of$27dom(e, "#photo-dialog img, #photo-dialog form")) !== false) {
           return false;
         } else {
-          return close_dialog$21$27dom(d$27394);
+          return close_dialog$21$27dom(d$27404);
         }
       });
     } else {
@@ -3527,96 +3573,104 @@ $run(() => {
   });
   (without$27saver = function (l, i) {
     if ((i === 0)) {
-      return $B["cdr"](l);
+      return $theList($B["cdr"](l));
     } else {
-      return $B["cons"]($B["car"](l), without$27saver($B["cdr"](l), (i - 1)));
+      return $B["cons"]($B["car"](l), without$27saver($theList($B["cdr"](l)), (i - 1)));
     }
   });
   (saver_runs$27saver = function () {
-    let end$27410, front$27403, handler$27i258, handler$27i259, load_photos$27411, next_photo$27406, order$27402, photos$27401, saver$27399, show$27408, showing$27405, start$27409, texts$27407, timer$27404, wait$27400;
-    (saver$27399 = by_id$27dom("saver"));
-    (wait$27400 = by_id$27dom("ready-wait"));
-    (photos$27401 = $B["vector"]());
-    (order$27402 = null);
-    (front$27403 = false);
-    (timer$27404 = 0);
-    (showing$27405 = false);
-    (next_photo$27406 = function () {
-      let i$27412, p$27413;
-      ($B["null?"](order$27402) ? (order$27402 = $B["vector->list"](photos$27401)) : false);
-      (i$27412 = $B["exact"]($B["floor"]((random$27page() * $B["length"](order$27402)))));
-      (p$27413 = nth$27saver(order$27402, i$27412));
-      (order$27402 = without$27saver(order$27402, i$27412));
-      return p$27413;
+    let saver$27409, wait$27410;
+    (saver$27409 = by_id$27dom("saver"));
+    (wait$27410 = by_id$27dom("ready-wait"));
+    if ((((saver$27409) !== false ? wait$27410 : false)) !== false) {
+      return saver_shows$27saver(saver$27409, wait$27410);
+    } else {
+      return false;
+    }
+  });
+  (saver_shows$27saver = function (saver, wait) {
+    let end$27420, front$27413, handler$27i237, handler$27i238, load_photos$27421, next_photo$27416, order$27412, photos$27411, show$27418, showing$27415, start$27419, texts$27417, timer$27414;
+    (photos$27411 = $B["vector"]());
+    (order$27412 = null);
+    (front$27413 = false);
+    (timer$27414 = 0);
+    (showing$27415 = false);
+    (next_photo$27416 = function () {
+      let i$27422, p$27423;
+      ($B["null?"](order$27412) ? (order$27412 = $B["vector->list"](photos$27411)) : false);
+      (i$27422 = $B["exact"]($B["floor"]((random$27page() * $B["length"](order$27412)))));
+      (p$27423 = nth$27saver(order$27412, i$27422));
+      (order$27412 = without$27saver(order$27412, i$27422));
+      return p$27423;
     });
-    (texts$27407 = function (p) {
+    (texts$27417 = function (p) {
       set_text$21$27dom(by_id$27dom("saver-caption"), $B["map-ref"](p, "caption", ""));
       return set_text$21$27dom(by_id$27dom("saver-date"), $B["map-ref"](p, "date", ""));
     });
-    (show$27408 = function (p) {
-      let back$27417, begin_moving$27422, coming$27414, from$27420, going$27415, img$27416, scale$27i252, scale$27i255, to$27421, url$27418, x$27i253, x$27i256, y$27i254, y$27i257, zoom_in$27419;
-      (coming$27414 = by_id$27dom(($B["equal?"](front$27403, "saver-a") ? "saver-b" : "saver-a")));
-      (going$27415 = ((front$27403) !== false ? by_id$27dom(front$27403) : false));
-      (img$27416 = query_in$27dom(coming$27414, "img"));
-      (back$27417 = query_in$27dom(coming$27414, ".saver-back"));
-      (url$27418 = $B["string-append"]("/photo/", $B["number->string"]($B["map-ref"](p, "id", 0))));
-      (zoom_in$27419 = (random$27page() < 0.5));
-      (from$27420 = ((scale$27i252 = (zoom_in$27419 ? 1.0 : 1.1000000000000001)), (x$27i253 = (-2.0 + ((2.0 - -2.0) * random$27page()))), (y$27i254 = (-2.0 + ((2.0 - -2.0) * random$27page()))), $B["string-append"]("scale(", $realText(scale$27i252), ") translate(", $B["string-append"]($realText(($B["round"]((x$27i253 * 100.0)) / 100.0)), "%"), ", ", $B["string-append"]($realText(($B["round"]((y$27i254 * 100.0)) / 100.0)), "%"), ")")));
-      (to$27421 = ((scale$27i255 = (zoom_in$27419 ? 1.1000000000000001 : 1.0)), (x$27i256 = (-2.0 + ((2.0 - -2.0) * random$27page()))), (y$27i257 = (-2.0 + ((2.0 - -2.0) * random$27page()))), $B["string-append"]("scale(", $realText(scale$27i255), ") translate(", $B["string-append"]($realText(($B["round"]((x$27i256 * 100.0)) / 100.0)), "%"), ", ", $B["string-append"]($realText(($B["round"]((y$27i257 * 100.0)) / 100.0)), "%"), ")")));
-      (begin_moving$27422 = function () {
-        set_style$21$27dom(coming$27414, "transition", "none");
-        set_style$21$27dom(coming$27414, "transform", from$27420);
-        set_style$21$27dom(coming$27414, "opacity", "0");
+    (show$27418 = function (p) {
+      let back$27427, begin_moving$27432, coming$27424, from$27430, going$27425, img$27426, scale$27i231, scale$27i234, to$27431, url$27428, x$27i232, x$27i235, y$27i233, y$27i236, zoom_in$27429;
+      (coming$27424 = by_id$27dom(($B["equal?"](front$27413, "saver-a") ? "saver-b" : "saver-a")));
+      (going$27425 = ((front$27413) !== false ? by_id$27dom(front$27413) : false));
+      (img$27426 = query_in$27dom(coming$27424, "img"));
+      (back$27427 = query_in$27dom(coming$27424, ".saver-back"));
+      (url$27428 = $B["string-append"]("/photo/", $B["number->string"]($B["map-ref"](p, "id", 0))));
+      (zoom_in$27429 = (random$27page() < 0.5));
+      (from$27430 = ((scale$27i231 = (zoom_in$27429 ? 1.0 : 1.1000000000000001)), (x$27i232 = (-2.0 + ((2.0 - -2.0) * random$27page()))), (y$27i233 = (-2.0 + ((2.0 - -2.0) * random$27page()))), $B["string-append"]("scale(", $realText(scale$27i231), ") translate(", $B["string-append"]($realText(($B["round"]((x$27i232 * 100.0)) / 100.0)), "%"), ", ", $B["string-append"]($realText(($B["round"]((y$27i233 * 100.0)) / 100.0)), "%"), ")")));
+      (to$27431 = ((scale$27i234 = (zoom_in$27429 ? 1.1000000000000001 : 1.0)), (x$27i235 = (-2.0 + ((2.0 - -2.0) * random$27page()))), (y$27i236 = (-2.0 + ((2.0 - -2.0) * random$27page()))), $B["string-append"]("scale(", $realText(scale$27i234), ") translate(", $B["string-append"]($realText(($B["round"]((x$27i235 * 100.0)) / 100.0)), "%"), ", ", $B["string-append"]($realText(($B["round"]((y$27i236 * 100.0)) / 100.0)), "%"), ")")));
+      (begin_moving$27432 = function () {
+        set_style$21$27dom(coming$27424, "transition", "none");
+        set_style$21$27dom(coming$27424, "transform", from$27430);
+        set_style$21$27dom(coming$27424, "opacity", "0");
         after$27page(50, function () {
-          set_style$21$27dom(coming$27414, "transition", "transform 11.5s linear, opacity 1.5s ease");
-          set_style$21$27dom(coming$27414, "transform", to$27421);
-          set_style$21$27dom(coming$27414, "opacity", "1");
-          texts$27407(p);
-          if ((going$27415) !== false) {
-            return set_style$21$27dom(going$27415, "opacity", "0");
+          set_style$21$27dom(coming$27424, "transition", "transform 11.5s linear, opacity 1.5s ease");
+          set_style$21$27dom(coming$27424, "transform", to$27431);
+          set_style$21$27dom(coming$27424, "opacity", "1");
+          texts$27417(p);
+          if ((going$27425) !== false) {
+            return set_style$21$27dom(going$27425, "opacity", "0");
           } else {
             return false;
           }
         });
-        (front$27403 = id_of$27dom(coming$27414));
-        return (timer$27404 = after$27page(shown_ms$27saver, function () {
-          if (showing$27405) {
-            return show$27408(next_photo$27406());
+        (front$27413 = id_of$27dom(coming$27424));
+        return (timer$27414 = after$27page(shown_ms$27saver, function () {
+          if (showing$27415) {
+            return show$27418(next_photo$27416());
           } else {
             return false;
           }
         }));
       });
-      on_once$27dom(img$27416, load$27dom, function (e) {
-        if (showing$27405) {
-          return begin_moving$27422();
+      on_once$27dom(img$27426, load$27dom, function (e) {
+        if (showing$27415) {
+          return begin_moving$27432();
         } else {
           return false;
         }
       });
-      set_style$21$27dom(back$27417, "background-image", $B["string-append"]("url(", url$27418, ")"));
-      return set_attribute$21$27dom(img$27416, "src", url$27418);
+      set_style$21$27dom(back$27427, "background-image", $B["string-append"]("url(", url$27428, ")"));
+      return set_attribute$21$27dom(img$27426, "src", url$27428);
     });
-    (start$27409 = function () {
-      (showing$27405 = true);
+    (start$27419 = function () {
+      (showing$27415 = true);
       set_text$21$27dom(by_id$27dom("saver-name"), $B["map-ref"](self$27socket, "name", ""));
-      set_hidden$21$27dom(saver$27399, false);
-      return show$27408(next_photo$27406());
+      set_hidden$21$27dom(saver, false);
+      return show$27418(next_photo$27416());
     });
-    (end$27410 = function () {
-      (showing$27405 = false);
-      cancel_timer$21$27page(timer$27404);
-      return set_hidden$21$27dom(saver$27399, true);
+    (end$27420 = function () {
+      (showing$27415 = false);
+      cancel_timer$21$27page(timer$27414);
+      return set_hidden$21$27dom(saver, true);
     });
-    (load_photos$27411 = function () {
+    (load_photos$27421 = function () {
       return fetch_text$27fetch("/photos.json", function (status, body$27dom) {
-        let l$27423;
-        (l$27423 = ((status === 200) ? $B["json-parse"](body$27dom, false) : false));
-        if ($B["vector?"](l$27423)) {
-          (photos$27401 = l$27423);
-          (order$27402 = null);
-          if ((showing$27405 ? ($B["vector-length"](l$27423) === 0) : false)) {
-            return end$27410();
+        let l$27433;
+        (l$27433 = ((status === 200) ? $B["json-parse"](body$27dom, false) : false));
+        if ($B["vector?"](l$27433)) {
+          (photos$27411 = $theVector(l$27433));
+          (order$27412 = null);
+          if ((showing$27415 ? ($B["vector-length"](l$27433) === 0) : false)) {
+            return end$27420();
           } else {
             return false;
           }
@@ -3625,37 +3679,33 @@ $run(() => {
         }
       });
     });
-    if ((((saver$27399) !== false ? wait$27400 : false)) !== false) {
-      load_photos$27411();
-      ((handler$27i258 = function (text, m) {
-        return load_photos$27411();
-      }), (handlers$27socket = $B["map-set"](handlers$27socket, "photos", $B["append"]($B["map-ref"](handlers$27socket, "photos", null), $listFromEnd(handler$27i258)))));
-      ((handler$27i259 = function (text, m) {
-        return set_text$21$27dom(by_id$27dom("saver-name"), $B["map-ref"](self$27socket, "name", ""));
-      }), (handlers$27socket = $B["map-set"](handlers$27socket, "you", $B["append"]($B["map-ref"](handlers$27socket, "you", null), $listFromEnd(handler$27i259)))));
-      return every$27page(1000, function () {
-        let want$27424;
-        (want$27424 = ((hidden$3f$27dom(wait$27400) === false) ? ($B["vector-length"](photos$27401) > 0) : false));
-        if ((want$27424 ? (showing$27405 === false) : false)) {
-          return start$27409();
+    load_photos$27421();
+    ((handler$27i237 = function (text, m) {
+      return load_photos$27421();
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "photos", $B["append"]($B["map-ref"](handlers$27socket, "photos", null), $listFromEnd(handler$27i237)))));
+    ((handler$27i238 = function (text, m) {
+      return set_text$21$27dom(by_id$27dom("saver-name"), $B["map-ref"](self$27socket, "name", ""));
+    }), (handlers$27socket = $B["map-set"](handlers$27socket, "you", $B["append"]($B["map-ref"](handlers$27socket, "you", null), $listFromEnd(handler$27i238)))));
+    return every$27page(1000, function () {
+      let want$27434;
+      (want$27434 = ((hidden$3f$27dom(wait) === false) ? ($B["vector-length"](photos$27411) > 0) : false));
+      if ((want$27434 ? (showing$27415 === false) : false)) {
+        return start$27419();
+      } else {
+        if ((showing$27415 ? (want$27434 === false) : false)) {
+          return end$27420();
         } else {
-          if ((showing$27405 ? (want$27424 === false) : false)) {
-            return end$27410();
-          } else {
-            return false;
-          }
+          return false;
         }
-      });
-    } else {
-      return false;
-    }
+      }
+    });
   });
   (full$3f$27keypad = function (field, pad) {
-    let n$27425;
-    (n$27425 = $B["string->number"](data_of$27dom(pad, "length")));
-    if ((n$27425) !== false) {
-      if ((n$27425 > 0)) {
-        return ($B["string-length"](value_of$27dom(field)) >= n$27425);
+    let n$27435;
+    (n$27435 = $B["string->number"](data_of$27dom(pad, "length")));
+    if ((n$27435) !== false) {
+      if ((n$27435 > 0)) {
+        return ($B["string-length"](value_of$27dom(field)) >= n$27435);
       } else {
         return false;
       }
@@ -3664,20 +3714,20 @@ $run(() => {
     }
   });
   (keypads_work$27keypad = function () {
-    let field$27427, pad$27426;
-    (pad$27426 = query$27dom("[data-keypad]"));
-    (field$27427 = query$27dom("input[data-code]"));
-    if ((((pad$27426) !== false ? field$27427 : false)) !== false) {
+    let field$27437, pad$27436;
+    (pad$27436 = query$27dom("[data-keypad]"));
+    (field$27437 = query$27dom("input[data-code]"));
+    if ((((pad$27436) !== false ? field$27437 : false)) !== false) {
       on_document$27dom(click$27dom, function (e) {
-        let k$27429, key$27428, now$27430;
-        (key$27428 = closest_of$27dom(e, "[data-key]"));
-        if ((key$27428) !== false) {
-          (k$27429 = data_of$27dom(key$27428, "key"));
-          (now$27430 = value_of$27dom(field$27427));
+        let k$27439, key$27438, now$27440;
+        (key$27438 = closest_of$27dom(e, "[data-key]"));
+        if ((key$27438) !== false) {
+          (k$27439 = data_of$27dom(key$27438, "key"));
+          (now$27440 = value_of$27dom(field$27437));
           prevent_default$21$27dom(e);
-          ($B["equal?"](k$27429, "back") ? set_field$21$27dom(field$27427, (($B["string-length"](now$27430) > 0) ? $B["substring"](now$27430, 0, ($B["string-length"](now$27430) - 1)) : "")) : (($B["string-length"](now$27430) < 12) ? set_field$21$27dom(field$27427, $B["string-append"](now$27430, k$27429)) : false));
-          if (full$3f$27keypad(field$27427, pad$27426)) {
-            return submit_form$21$27dom(field$27427);
+          ($B["equal?"](k$27439, "back") ? set_field$21$27dom(field$27437, (($B["string-length"](now$27440) > 0) ? $B["substring"](now$27440, 0, ($B["string-length"](now$27440) - 1)) : "")) : (($B["string-length"](now$27440) < 12) ? set_field$21$27dom(field$27437, $B["string-append"](now$27440, k$27439)) : false));
+          if (full$3f$27keypad(field$27437, pad$27436)) {
+            return submit_form$21$27dom(field$27437);
           } else {
             return false;
           }
@@ -3685,9 +3735,9 @@ $run(() => {
           return false;
         }
       });
-      return on$27dom(field$27427, input$27dom, function (e) {
-        if (full$3f$27keypad(field$27427, pad$27426)) {
-          return submit_form$21$27dom(field$27427);
+      return on$27dom(field$27437, input$27dom, function (e) {
+        if (full$3f$27keypad(field$27437, pad$27436)) {
+          return submit_form$21$27dom(field$27437);
         } else {
           return false;
         }
@@ -3698,8 +3748,8 @@ $run(() => {
   });
   (frame_step$27picker = 0.041666666666666664);
   (each_in$27picker = function (v, f) {
-    let loop$27431;
-    (loop$27431 = function (i) {
+    let loop$27441;
+    (loop$27441 = function (i) {
       for (;;) {
         if ((i < $B["vector-length"](v))) {
           f($B["vector-ref"](v, i));
@@ -3711,38 +3761,27 @@ $run(() => {
         }
       }
     });
-    return loop$27431(0);
-  });
-  (clamp$27picker = function (x, lo, hi) {
-    if ((x < lo)) {
-      return lo;
-    } else {
-      if ((x > hi)) {
-        return hi;
-      } else {
-        return x;
-      }
-    }
+    return loop$27441(0);
   });
   (time_text$27picker = function (t) {
-    let hours$27433, minutes$27434, n$27i260, n$27i261, n$27i262, s$27432, seconds$27435;
+    let hours$27443, minutes$27444, n$27i239, n$27i240, n$27i241, s$27442, seconds$27445;
     const $c1 = $B["floor"](t);
     if (!Number.isInteger($c1)) throw $notInteger;
-    (s$27432 = $c1);
-    (hours$27433 = $B["quotient"](s$27432, 3600));
-    (minutes$27434 = $B["quotient"]($B["remainder"](s$27432, 3600), 60));
-    (seconds$27435 = $B["remainder"](s$27432, 60));
-    if ((hours$27433 > 0)) {
-      return $B["string-append"]($B["number->string"](hours$27433), ":", ((n$27i260 = minutes$27434), ((n$27i260 < 10) ? $B["string-append"]("0", $B["number->string"](n$27i260)) : $B["number->string"](n$27i260))), ":", ((n$27i261 = seconds$27435), ((n$27i261 < 10) ? $B["string-append"]("0", $B["number->string"](n$27i261)) : $B["number->string"](n$27i261))));
+    (s$27442 = $c1);
+    (hours$27443 = $B["quotient"](s$27442, 3600));
+    (minutes$27444 = $B["quotient"]($B["remainder"](s$27442, 3600), 60));
+    (seconds$27445 = $B["remainder"](s$27442, 60));
+    if ((hours$27443 > 0)) {
+      return $B["string-append"]($B["number->string"](hours$27443), ":", ((n$27i239 = minutes$27444), ((n$27i239 < 10) ? $B["string-append"]("0", $B["number->string"](n$27i239)) : $B["number->string"](n$27i239))), ":", ((n$27i240 = seconds$27445), ((n$27i240 < 10) ? $B["string-append"]("0", $B["number->string"](n$27i240)) : $B["number->string"](n$27i240))));
     } else {
-      return $B["string-append"]($B["number->string"](minutes$27434), ":", ((n$27i262 = seconds$27435), ((n$27i262 < 10) ? $B["string-append"]("0", $B["number->string"](n$27i262)) : $B["number->string"](n$27i262))));
+      return $B["string-append"]($B["number->string"](minutes$27444), ":", ((n$27i241 = seconds$27445), ((n$27i241 < 10) ? $B["string-append"]("0", $B["number->string"](n$27i241)) : $B["number->string"](n$27i241))));
     }
   });
   (number_of$27picker = function (text, fallback) {
-    let n$27436;
-    (n$27436 = $B["string->number"](text));
-    if ((n$27436) !== false) {
-      return (n$27436 + 0.0);
+    let n$27446;
+    (n$27446 = $B["string->number"](text));
+    if ((n$27446) !== false) {
+      return $theReal((n$27446 + 0.0));
     } else {
       return fallback;
     }
@@ -3751,193 +3790,202 @@ $run(() => {
     return each_in$27picker(query_all$27dom("[data-picker]"), picker_work$27picker);
   });
   (picker_work$27picker = function (p) {
-    let aspect$27455, box$27438, choose$27470, dragging$27456, draw$27466, duration$27450, fh$27454, file$27449, fit$27467, form$27442, frame$27448, frame_h$27464, frame_w$27463, from_x$27457, from_y$27458, fw$27453, fx$27451, fy$27452, go_to$27469, handle$27439, has_video$27445, height_for$27465, label$27441, n$27436$27i264, n$27436$27i266, now$27462, picture$27447, play_button$27444, scrub$27440, set_button$27443, show_time$27468, stage$27437, start_w$27461, start_x$27459, start_y$27460, text$27i263, text$27i265, video$27446;
-    (stage$27437 = query_in$27dom(p, "[data-p-stage]"));
-    (box$27438 = query_in$27dom(p, "[data-p-box]"));
-    (handle$27439 = query_in$27dom(p, "[data-p-handle]"));
-    (scrub$27440 = query_in$27dom(p, "[data-p-scrub]"));
-    (label$27441 = query_in$27dom(p, "[data-p-time]"));
-    (form$27442 = query_in$27dom(p, "[data-p-form]"));
-    (set_button$27443 = query_in$27dom(p, "[data-p-set]"));
-    (play_button$27444 = query_in$27dom(p, "[data-p-play]"));
-    (has_video$27445 = ((query_in$27dom(p, "video")) !== false ? true : false));
-    (video$27446 = (has_video$27445 ? media_in$27media(p, "video") : false));
-    (picture$27447 = query_in$27dom(p, "img[data-p-frame]"));
-    (frame$27448 = (has_video$27445 ? query_in$27dom(p, "video") : picture$27447));
-    (file$27449 = data_of$27dom(p, "file"));
-    (duration$27450 = ((text$27i263 = data_of$27dom(p, "duration")), ((n$27436$27i264 = $B["string->number"](text$27i263)), ((n$27436$27i264) !== false ? (n$27436$27i264 + 0.0) : 0.0))));
-    (fx$27451 = 0.0);
-    (fy$27452 = 0.0);
-    (fw$27453 = 1.0);
-    (fh$27454 = 1.0);
-    (aspect$27455 = 0.66666666666666663);
-    (dragging$27456 = "");
-    (from_x$27457 = 0.0);
-    (from_y$27458 = 0.0);
-    (start_x$27459 = 0.0);
-    (start_y$27460 = 0.0);
-    (start_w$27461 = 0.0);
-    (now$27462 = ((text$27i265 = ((scrub$27440) !== false ? value_of$27dom(scrub$27440) : "0")), ((n$27436$27i266 = $B["string->number"](text$27i265)), ((n$27436$27i266) !== false ? (n$27436$27i266 + 0.0) : 0.0))));
-    (frame_w$27463 = function () {
-      let r$27471;
-      (r$27471 = rect_of$27dom(frame$27448));
-      return $B["vector-ref"](r$27471, 2);
-    });
-    (frame_h$27464 = function () {
-      let r$27472;
-      (r$27472 = rect_of$27dom(frame$27448));
-      return $B["vector-ref"](r$27472, 3);
-    });
-    (height_for$27465 = function (w) {
-      let H$27474, W$27473, or$27value$27475;
-      (W$27473 = frame_w$27463());
-      (H$27474 = frame_h$27464());
-      if (((or$27value$27475 = (W$27473 <= 0.0)), (or$27value$27475 ? or$27value$27475 : (H$27474 <= 0.0)))) {
-        return w;
-      } else {
-        return ((w * W$27473) / (aspect$27455 * H$27474));
-      }
-    });
-    (draw$27466 = function () {
-      let H$27477, W$27476;
-      (W$27476 = frame_w$27463());
-      (H$27477 = frame_h$27464());
-      if (((W$27476 > 0.0) ? (H$27477 > 0.0) : false)) {
-        set_style$21$27dom(box$27438, "left", $B["string-append"]($B["number->string"]((fx$27451 * W$27476)), "px"));
-        set_style$21$27dom(box$27438, "top", $B["string-append"]($B["number->string"]((fy$27452 * H$27477)), "px"));
-        set_style$21$27dom(box$27438, "width", $B["string-append"]($B["number->string"]((fw$27453 * W$27476)), "px"));
-        set_style$21$27dom(box$27438, "height", $B["string-append"]($B["number->string"]((fh$27454 * H$27477)), "px"));
-        return set_hidden$21$27dom(box$27438, false);
-      } else {
-        return false;
-      }
-    });
-    (fit$27467 = function () {
-      let h1$27479, h2$27481, w1$27478, w2$27480;
-      (w1$27478 = 0.90000000000000002);
-      (h1$27479 = height_for$27465(w1$27478));
-      (w2$27480 = ((h1$27479 > 0.90000000000000002) ? (w1$27478 * (0.90000000000000002 / h1$27479)) : w1$27478));
-      (h2$27481 = height_for$27465(w2$27480));
-      (fw$27453 = w2$27480);
-      (fh$27454 = h2$27481);
-      (fx$27451 = ((1.0 - w2$27480) / 2.0));
-      (fy$27452 = ((1.0 - h2$27481) / 2.0));
-      return draw$27466();
-    });
-    (show_time$27468 = function (t) {
-      (now$27462 = t);
-      ((scrub$27440) !== false ? set_field$21$27dom(scrub$27440, $realText(t)) : false);
-      if ((label$27441) !== false) {
-        return set_text$21$27dom(label$27441, time_text$27picker(t));
-      } else {
-        return false;
-      }
-    });
-    (go_to$27469 = function (t) {
-      let t2$27482;
-      (t2$27482 = clamp$27picker(t, 0.0, ((duration$27450 > 0.0) ? duration$27450 : t)));
-      show_time$27468(t2$27482);
-      if (has_video$27445) {
-        return seek$21$27media(video$27446, t2$27482);
-      } else {
-        if ((picture$27447) !== false) {
-          return set_attribute$21$27dom(picture$27447, "src", $B["string-append"]("/edit/", file$27449, "/frame?t=", $realText(t2$27482)));
-        } else {
-          return false;
-        }
-      }
-    });
-    (choose$27470 = function (radio) {
-      let n$27436$27i268, text$27i267;
-      (aspect$27455 = ((text$27i267 = data_of$27dom(radio, "aspect")), ((n$27436$27i268 = $B["string->number"](text$27i267)), ((n$27436$27i268) !== false ? (n$27436$27i268 + 0.0) : 0.66666666666666663))));
-      ((set_button$27443) !== false ? set_text$21$27dom(set_button$27443, $B["string-append"]("Set ", data_of$27dom(radio, "label"))) : false);
-      return fit$27467();
-    });
-    if ((((stage$27437) !== false ? ((box$27438) !== false ? ((handle$27439) !== false ? ((frame$27448) !== false ? form$27442 : false) : false) : false) : false)) !== false) {
-      each_in$27picker(query_all_in$27dom(p, "input[name=\"which\"]"), function (radio) {
-        (checked$3f$27dom(radio) ? choose$27470(radio) : false);
-        return on$27dom(radio, change$27dom, function (e) {
-          return choose$27470(radio);
-        });
-      });
-      on$27dom(frame$27448, (has_video$27445 ? loadedmetadata$27media : load$27dom), function (e) {
-        return fit$27467();
-      });
-      on_window$27page(resize$27page, function (e) {
-        return draw$27466();
-      });
-      on$27dom(box$27438, pointerdown$27dom, function (e) {
-        prevent_default$21$27dom(e);
-        capture_pointer$21$27dom(box$27438, e);
-        (dragging$27456 = ((closest_of$27dom(e, "[data-p-handle]")) !== false ? "size" : "move"));
-        (from_x$27457 = pointer_x$27dom(e));
-        (from_y$27458 = pointer_y$27dom(e));
-        (start_x$27459 = fx$27451);
-        (start_y$27460 = fy$27452);
-        return (start_w$27461 = fw$27453);
-      });
-      on_document$27dom(pointermove$27dom, function (e) {
-        let dx$27483, dy$27484, hh$27487, most_w$27485, w$27486, w2$27488;
-        if ($B["equal?"](dragging$27456, "")) {
-          return false;
-        } else {
-          (dx$27483 = ((pointer_x$27dom(e) - from_x$27457) / frame_w$27463()));
-          (dy$27484 = ((pointer_y$27dom(e) - from_y$27458) / frame_h$27464()));
-          ($B["equal?"](dragging$27456, "move") ? ((fx$27451 = clamp$27picker((start_x$27459 + dx$27483), 0.0, (1.0 - fw$27453))), (fy$27452 = clamp$27picker((start_y$27460 + dy$27484), 0.0, (1.0 - fh$27454)))) : ((most_w$27485 = (1.0 - fx$27451)), (w$27486 = clamp$27picker((start_w$27461 + dx$27483), 0.050000000000000003, most_w$27485)), (hh$27487 = height_for$27465(w$27486)), (w2$27488 = (((fy$27452 + hh$27487) > 1.0) ? (w$27486 * ((1.0 - fy$27452) / hh$27487)) : w$27486)), (fw$27453 = w2$27488), (fh$27454 = height_for$27465(w2$27488))));
-          return draw$27466();
-        }
-      });
-      on_document$27dom(pointerup$27dom, function (e) {
-        return (dragging$27456 = "");
-      });
-      ((scrub$27440) !== false ? on$27dom(scrub$27440, input$27dom, function (e) {
-        if (has_video$27445) {
-          return go_to$27469(number_of$27picker(value_of$27dom(scrub$27440), now$27462));
-        } else {
-          return show_time$27468(number_of$27picker(value_of$27dom(scrub$27440), now$27462));
-        }
-      }) : false);
-      (((scrub$27440) !== false ? (has_video$27445 === false) : false) ? on$27dom(scrub$27440, change$27dom, function (e) {
-        return go_to$27469(number_of$27picker(value_of$27dom(scrub$27440), now$27462));
-      }) : false);
-      each_in$27picker(query_all_in$27dom(p, "[data-p-step]"), function (b) {
-        return on$27dom(b, click$27dom, function (e) {
-          let n$27436$27i270, text$27i269;
-          (has_video$27445 ? pause$21$27media(video$27446) : false);
-          ((play_button$27444) !== false ? set_text$21$27dom(play_button$27444, "Play") : false);
-          return go_to$27469(((has_video$27445 ? media_time$27media(video$27446) : now$27462) + (frame_step$27picker * ((text$27i269 = data_of$27dom(b, "p-step")), ((n$27436$27i270 = $B["string->number"](text$27i269)), ((n$27436$27i270) !== false ? (n$27436$27i270 + 0.0) : 1.0))))));
-        });
-      });
-      (((has_video$27445 ? play_button$27444 : false)) !== false ? (on$27dom(play_button$27444, click$27dom, function (e) {
-        if (media_paused$3f$27media(video$27446)) {
-          play$21$27media(video$27446);
-          return set_text$21$27dom(play_button$27444, "Pause");
-        } else {
-          pause$21$27media(video$27446);
-          return set_text$21$27dom(play_button$27444, "Play");
-        }
-      }), on$27dom(video$27446, timeupdate$27media, function (e) {
-        return show_time$27468(media_time$27media(video$27446));
-      }), on$27dom(video$27446, loadedmetadata$27media, function (e) {
-        return seek$21$27media(video$27446, now$27462);
-      })) : false);
-      on$27dom(form$27442, submit$27dom, function (e) {
-        let t$27489;
-        (t$27489 = (has_video$27445 ? media_time$27media(video$27446) : now$27462));
-        set_field$21$27dom(query_in$27dom(form$27442, "input[name=\"t\"]"), $B["number->string"](t$27489));
-        set_field$21$27dom(query_in$27dom(form$27442, "input[name=\"x\"]"), $B["number->string"](fx$27451));
-        set_field$21$27dom(query_in$27dom(form$27442, "input[name=\"y\"]"), $B["number->string"](fy$27452));
-        set_field$21$27dom(query_in$27dom(form$27442, "input[name=\"w\"]"), $B["number->string"](fw$27453));
-        return set_field$21$27dom(query_in$27dom(form$27442, "input[name=\"h\"]"), $B["number->string"](fh$27454));
-      });
-      if ((frame_w$27463() > 0.0)) {
-        return fit$27467();
-      } else {
-        return false;
-      }
+    let box$27448, form$27450, frame$27451, handle$27449, stage$27447;
+    (stage$27447 = query_in$27dom(p, "[data-p-stage]"));
+    (box$27448 = query_in$27dom(p, "[data-p-box]"));
+    (handle$27449 = query_in$27dom(p, "[data-p-handle]"));
+    (form$27450 = query_in$27dom(p, "[data-p-form]"));
+    (frame$27451 = ((query_in$27dom(p, "video")) !== false ? query_in$27dom(p, "video") : query_in$27dom(p, "img[data-p-frame]")));
+    if ((((stage$27447) !== false ? ((box$27448) !== false ? ((handle$27449) !== false ? ((frame$27451) !== false ? form$27450 : false) : false) : false) : false)) !== false) {
+      return picker_runs$27picker(p, stage$27447, box$27448, handle$27449, frame$27451, form$27450);
     } else {
       return false;
     }
+  });
+  (picker_runs$27picker = function (p, stage, box, handle, frame, form) {
+    let aspect$27465, choose$27480, dragging$27466, draw$27476, duration$27460, fh$27464, file$27459, fit$27477, frame_h$27474, frame_w$27473, from_x$27467, from_y$27468, fw$27463, fx$27461, fy$27462, go_to$27479, has_video$27456, height_for$27475, label$27453, now$27472, picture$27458, play_button$27455, scrub$27452, set_button$27454, show_time$27478, start_w$27471, start_x$27469, start_y$27470, video$27457;
+    (scrub$27452 = query_in$27dom(p, "[data-p-scrub]"));
+    (label$27453 = query_in$27dom(p, "[data-p-time]"));
+    (set_button$27454 = query_in$27dom(p, "[data-p-set]"));
+    (play_button$27455 = query_in$27dom(p, "[data-p-play]"));
+    (has_video$27456 = ((query_in$27dom(p, "video")) !== false ? true : false));
+    (video$27457 = (has_video$27456 ? media_in$27media(p, "video") : false));
+    (picture$27458 = query_in$27dom(p, "img[data-p-frame]"));
+    (file$27459 = data_of$27dom(p, "file"));
+    (duration$27460 = number_of$27picker(data_of$27dom(p, "duration"), 0.0));
+    (fx$27461 = 0.0);
+    (fy$27462 = 0.0);
+    (fw$27463 = 1.0);
+    (fh$27464 = 1.0);
+    (aspect$27465 = 0.66666666666666663);
+    (dragging$27466 = "");
+    (from_x$27467 = 0.0);
+    (from_y$27468 = 0.0);
+    (start_x$27469 = 0.0);
+    (start_y$27470 = 0.0);
+    (start_w$27471 = 0.0);
+    (now$27472 = number_of$27picker(((scrub$27452) !== false ? value_of$27dom(scrub$27452) : "0"), 0.0));
+    (frame_w$27473 = function () {
+      return $theReal($B["vector-ref"](rect_of$27dom(frame), 2));
+    });
+    (frame_h$27474 = function () {
+      return $theReal($B["vector-ref"](rect_of$27dom(frame), 3));
+    });
+    (height_for$27475 = function (w) {
+      let H$27482, W$27481, or$27value$27483;
+      (W$27481 = frame_w$27473());
+      (H$27482 = frame_h$27474());
+      if (((or$27value$27483 = (W$27481 <= 0.0)), (or$27value$27483 ? or$27value$27483 : (H$27482 <= 0.0)))) {
+        return w;
+      } else {
+        return ((w * W$27481) / (aspect$27465 * H$27482));
+      }
+    });
+    (draw$27476 = function () {
+      let H$27485, W$27484;
+      (W$27484 = frame_w$27473());
+      (H$27485 = frame_h$27474());
+      if (((W$27484 > 0.0) ? (H$27485 > 0.0) : false)) {
+        set_style$21$27dom(box, "left", $B["string-append"]($realText((fx$27461 * W$27484)), "px"));
+        set_style$21$27dom(box, "top", $B["string-append"]($realText((fy$27462 * H$27485)), "px"));
+        set_style$21$27dom(box, "width", $B["string-append"]($realText((fw$27463 * W$27484)), "px"));
+        set_style$21$27dom(box, "height", $B["string-append"]($realText((fh$27464 * H$27485)), "px"));
+        return set_hidden$21$27dom(box, false);
+      } else {
+        return false;
+      }
+    });
+    (fit$27477 = function () {
+      let h1$27487, h2$27489, w1$27486, w2$27488;
+      (w1$27486 = 0.90000000000000002);
+      (h1$27487 = height_for$27475(w1$27486));
+      (w2$27488 = ((h1$27487 > 0.90000000000000002) ? (w1$27486 * (0.90000000000000002 / h1$27487)) : w1$27486));
+      (h2$27489 = height_for$27475(w2$27488));
+      (fw$27463 = w2$27488);
+      (fh$27464 = h2$27489);
+      (fx$27461 = ((1.0 - w2$27488) / 2.0));
+      (fy$27462 = ((1.0 - h2$27489) / 2.0));
+      return draw$27476();
+    });
+    (show_time$27478 = function (t) {
+      (now$27472 = t);
+      ((scrub$27452) !== false ? set_field$21$27dom(scrub$27452, $realText(t)) : false);
+      if ((label$27453) !== false) {
+        return set_text$21$27dom(label$27453, time_text$27picker(t));
+      } else {
+        return false;
+      }
+    });
+    (go_to$27479 = function (t) {
+      let hi$27i242, t2$27490;
+      (t2$27490 = ((hi$27i242 = ((duration$27460 > 0.0) ? duration$27460 : t)), ((t < 0.0) ? 0.0 : ((t > hi$27i242) ? hi$27i242 : t))));
+      show_time$27478(t2$27490);
+      if (has_video$27456) {
+        return seek$21$27media(video$27457, t2$27490);
+      } else {
+        if ((picture$27458) !== false) {
+          return set_attribute$21$27dom(picture$27458, "src", $B["string-append"]("/edit/", file$27459, "/frame?t=", $realText(t2$27490)));
+        } else {
+          return false;
+        }
+      }
+    });
+    (choose$27480 = function (radio) {
+      (aspect$27465 = number_of$27picker(data_of$27dom(radio, "aspect"), 0.66666666666666663));
+      ((set_button$27454) !== false ? set_text$21$27dom(set_button$27454, $B["string-append"]("Set ", data_of$27dom(radio, "label"))) : false);
+      return fit$27477();
+    });
+    each_in$27picker(query_all_in$27dom(p, "input[name=\"which\"]"), function (radio) {
+      (checked$3f$27dom(radio) ? choose$27480(radio) : false);
+      return on$27dom(radio, change$27dom, function (e) {
+        return choose$27480(radio);
+      });
+    });
+    on$27dom(frame, (has_video$27456 ? loadedmetadata$27media : load$27dom), function (e) {
+      return fit$27477();
+    });
+    on_window$27page(resize$27page, function (e) {
+      return draw$27476();
+    });
+    on$27dom(box, pointerdown$27dom, function (e) {
+      prevent_default$21$27dom(e);
+      capture_pointer$21$27dom(box, e);
+      (dragging$27466 = ((closest_of$27dom(e, "[data-p-handle]")) !== false ? "size" : "move"));
+      (from_x$27467 = pointer_x$27dom(e));
+      (from_y$27468 = pointer_y$27dom(e));
+      (start_x$27469 = fx$27461);
+      (start_y$27470 = fy$27462);
+      return (start_w$27471 = fw$27463);
+    });
+    on_document$27dom(pointermove$27dom, function (e) {
+      let dx$27491, dy$27492, hh$27495, hi$27i244, hi$27i246, hi$27i248, most_w$27493, w$27494, w2$27496, x$27i243, x$27i245, x$27i247;
+      if ($B["equal?"](dragging$27466, "")) {
+        return false;
+      } else {
+        (dx$27491 = ((pointer_x$27dom(e) - from_x$27467) / frame_w$27473()));
+        (dy$27492 = ((pointer_y$27dom(e) - from_y$27468) / frame_h$27474()));
+        ($B["equal?"](dragging$27466, "move") ? ((fx$27461 = ((x$27i243 = (start_x$27469 + dx$27491)), (hi$27i244 = (1.0 - fw$27463)), ((x$27i243 < 0.0) ? 0.0 : ((x$27i243 > hi$27i244) ? hi$27i244 : x$27i243)))), (fy$27462 = ((x$27i245 = (start_y$27470 + dy$27492)), (hi$27i246 = (1.0 - fh$27464)), ((x$27i245 < 0.0) ? 0.0 : ((x$27i245 > hi$27i246) ? hi$27i246 : x$27i245))))) : ((most_w$27493 = (1.0 - fx$27461)), (w$27494 = ((x$27i247 = (start_w$27471 + dx$27491)), (hi$27i248 = most_w$27493), ((x$27i247 < 0.050000000000000003) ? 0.050000000000000003 : ((x$27i247 > hi$27i248) ? hi$27i248 : x$27i247)))), (hh$27495 = height_for$27475(w$27494)), (w2$27496 = (((fy$27462 + hh$27495) > 1.0) ? (w$27494 * ((1.0 - fy$27462) / hh$27495)) : w$27494)), (fw$27463 = w2$27496), (fh$27464 = height_for$27475(w2$27496))));
+        return draw$27476();
+      }
+    });
+    on_document$27dom(pointerup$27dom, function (e) {
+      return (dragging$27466 = "");
+    });
+    ((scrub$27452) !== false ? on$27dom(scrub$27452, input$27dom, function (e) {
+      if (has_video$27456) {
+        return go_to$27479(number_of$27picker(value_of$27dom(scrub$27452), now$27472));
+      } else {
+        return show_time$27478(number_of$27picker(value_of$27dom(scrub$27452), now$27472));
+      }
+    }) : false);
+    (((scrub$27452) !== false ? (has_video$27456 === false) : false) ? on$27dom(scrub$27452, change$27dom, function (e) {
+      return go_to$27479(number_of$27picker(value_of$27dom(scrub$27452), now$27472));
+    }) : false);
+    each_in$27picker(query_all_in$27dom(p, "[data-p-step]"), function (b) {
+      return on$27dom(b, click$27dom, function (e) {
+        (has_video$27456 ? pause$21$27media(video$27457) : false);
+        ((play_button$27455) !== false ? set_text$21$27dom(play_button$27455, "Play") : false);
+        return go_to$27479(((has_video$27456 ? media_time$27media(video$27457) : now$27472) + (frame_step$27picker * number_of$27picker(data_of$27dom(b, "p-step"), 1.0))));
+      });
+    });
+    (((has_video$27456 ? play_button$27455 : false)) !== false ? (on$27dom(play_button$27455, click$27dom, function (e) {
+      if (media_paused$3f$27media(video$27457)) {
+        play$21$27media(video$27457);
+        return set_text$21$27dom(play_button$27455, "Pause");
+      } else {
+        pause$21$27media(video$27457);
+        return set_text$21$27dom(play_button$27455, "Play");
+      }
+    }), on$27dom(video$27457, timeupdate$27media, function (e) {
+      return show_time$27478(media_time$27media(video$27457));
+    }), on$27dom(video$27457, loadedmetadata$27media, function (e) {
+      return seek$21$27media(video$27457, now$27472);
+    })) : false);
+    on$27dom(form, submit$27dom, function (e) {
+      let t$27497;
+      (t$27497 = (has_video$27456 ? media_time$27media(video$27457) : now$27472));
+      set_field$21$27dom(query_in$27dom(form, "input[name=\"t\"]"), $realText(t$27497));
+      set_field$21$27dom(query_in$27dom(form, "input[name=\"x\"]"), $realText(fx$27461));
+      set_field$21$27dom(query_in$27dom(form, "input[name=\"y\"]"), $realText(fy$27462));
+      set_field$21$27dom(query_in$27dom(form, "input[name=\"w\"]"), $realText(fw$27463));
+      return set_field$21$27dom(query_in$27dom(form, "input[name=\"h\"]"), $realText(fh$27464));
+    });
+    if ((frame_w$27473() > 0.0)) {
+      return fit$27477();
+    } else {
+      return false;
+    }
+  });
+  (series_views$27series = function () {
+    return on_document$27dom(click$27dom, function (e) {
+      let b$27498;
+      (b$27498 = closest_of$27dom(e, "[data-series-view]"));
+      if ((b$27498) !== false) {
+        return cookie_set$21$27page("reel-series-view", data_of$27dom(b$27498, "series-view"), 31536000);
+      } else {
+        return false;
+      }
+    });
   });
   connect$27socket();
   intro_plays$27intro();
@@ -3958,4 +4006,5 @@ $run(() => {
   saver_runs$27saver();
   keypads_work$27keypad();
   pickers_work$27picker();
+  series_views$27series();
 });

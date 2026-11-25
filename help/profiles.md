@@ -28,3 +28,7 @@ A profile can have a code, 4 to 12 digits, set on *Your profile*. Who's watching
 ## Its picture
 
 *Your profile*, Its picture: any photo (JPEG, PNG, HEIC, WebP or GIF), cropped to a square.
+
+## Play history
+
+Off at first. Turn on **Keep play history** in Settings, Play history, and each time anyone plays a film or an episode is kept: who, on which screen, when, and how far they got. **View history** shows a week at a time (each play's picture, title, who, the device it played on, when, and its library), newest first, with buttons for the week before and after, and filters for who and which library. **Clear history** (unfold it first) forgets all of it. Only the owner sees Settings, so only the owner sees the history.

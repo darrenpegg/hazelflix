@@ -9,11 +9,11 @@ A **screen** is:
 - a browser set to *Play* (Settings, Browsers), showing **Ready to play**. Tap it once (browsers need that before they'll play sound), and it waits for a film.
 - a DLNA TV or player ticked under *Players on the network* in Settings.
 
-Play where? lists only the screens that can play it: a TV whose profile doesn't see the film isn't offered (see [TVs](tvs.md)). With none left, it plays where you are. On a series, an episode's picture plays it too.
+Play where? lists only the screens that can play it: a TV whose profile doesn't see the film isn't offered (see [TVs](tvs.md)). With none left, it plays where you are. On a series, an episode's picture plays it too. A series' episodes show as a list or a grid: *List* and *Grid* beside the season tabs, remembered in this browser for every series.
 
 ## The remote
 
-*Remote*, at the top: the screens as tabs, what each is playing, and its controls: pause, skip, stop, the sound, and a bar to seek with.
+*Remote*, at the top: the screens as tabs, what each is playing, and its controls: pause, skip, stop, the sound, and a bar to seek with. It opens on the screen that's playing, unless you choose another.
 
 ## Converting
 

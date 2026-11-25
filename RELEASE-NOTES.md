@@ -1,5 +1,17 @@
 # HazelFlix release notes
 
+## HazelFlix 2391 (24 November 2026)
+
+**Before you update:** back up your data folder. This version adds a table to the database the first time it starts.
+
+- **Play history:** turn on Keep play history in Settings (it's off at first), and each time anyone plays a film or an episode is kept: who, on which screen, when, and how far they got. View history shows a week at a time, with the week before and after, and filters for who and which library. Clear history forgets it all.
+- **The remote opens on the screen that's playing,** rather than the first one, unless you choose another.
+- **Pages are lighter and quicker:** the look every page shares is now one small file your browser keeps, rather than sent again with each page; pages and the app's script are compressed on the way to your browser (the home page about a sixth of its size); and pages are put together several times faster.
+- **Videos and songs that couldn't be read are tried again** on the next scan (or *Scan now* in Settings). Useful if ffprobe wasn't installed when HazelFlix first found them.
+- **Add to Home Screen** gets HazelFlix's own name, icon and colour again: the browser had been refusing them.
+- **`--timing`** (for `start.sh`) prints each request and how long HazelFlix took to answer it.
+- **A series' episodes as a list or a grid:** List and Grid beside the season tabs. Your choice is remembered in this browser for every series.
+
 ## HazelFlix 2168 (18 November 2026)
 
 **Before you update:** back up your data folder (on a Mac, `~/Library/Application Support/HazelFlix`). This version changes the database the first time it starts, and an older version can't read it afterwards.

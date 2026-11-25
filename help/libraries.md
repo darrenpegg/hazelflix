@@ -30,7 +30,7 @@ The engines look the series up by its name; if they don't know it, it's named fr
 
 On a library's own form:
 
-- **Scanned** hourly, daily, or only when asked (*Scan now* in Settings).
+- **Scanned** hourly, daily, or only when asked (*Scan now* in Settings). A video or song that couldn't be read (ffprobe wasn't installed yet, or the share dropped for a moment) is tried again on the next scan.
 - **Found by** the network engines, the local IMDb only, or *named from their files* (nothing asked anywhere: the name's title and year, and a poster from a frame). The last suits home videos.
 - **Converted for browsers**, or not: one that isn't plays live, never queued for converting.
 
