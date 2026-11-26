@@ -23,4 +23,14 @@ Each browser and player can be given a **format** (Settings, Browsers and Player
 
 ## Subtitles and sound
 
-A film's subtitles are those beside its file (`Film.en.srt`). Its sound track is the language in Settings, *Audio*, or the one chosen on its Edit page.
+A film's subtitles are those beside its file and named as it is, with a language after if you like (`Film.srt`, `Film.en.srt`; any name at all when the film has a folder of its own), and those HazelFlix fetches from [OpenSubtitles](https://www.opensubtitles.com). To fetch them, open Settings, *Subtitles*:
+
+1. Make a free key: sign in at OpenSubtitles, open *Get a key* (API consumers), add one, and paste its key in.
+2. Optionally, add your OpenSubtitles username and password. Without them the key allows a few downloads a day; with them, your account's allowance.
+3. List the languages you want, in order, by OpenSubtitles' codes: `en, fr, pt-br`.
+
+A film's subtitles are fetched when you open its page or play it, and an episode's (and the next one's) when it plays, so they're usually there by the time you press Play. Once fetched they're kept, and never fetched again.
+
+The first language's subtitles show as a film starts, unless you untick that; the player's subtitles button chooses another or turns them off. Their font, size, colour, background, corners (square, or one box with rounded corners) and position (title safe, a tenth of the picture above its bottom edge as TV's are, at first; higher; or the bottom edge) are set there too, and the preview shows them as you choose. A phone playing full screen, and a TV, show subtitles their own way. A TV is offered the film's subtitles (your first language's) and turns them on and off from its own menu (Samsung's say they take them; others vary, and an Xbox may show none). For those, *Your profile* can have them [drawn into the picture](tvs.md#subtitles-on-a-tv).
+
+A film's sound track is the language in Settings, *Audio*, or the one chosen on its Edit page.

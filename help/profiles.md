@@ -29,6 +29,10 @@ A profile can have a code, 4 to 12 digits, set on *Your profile*. Who's watching
 
 *Your profile*, Its picture: any photo (JPEG, PNG, HEIC, WebP or GIF), cropped to a square.
 
+## Subtitles in the picture
+
+*Your profile*, On TVs: for TVs that don't show subtitles themselves, films play on them with the subtitles drawn into the picture. More in [TVs](tvs.md#subtitles-on-a-tv).
+
 ## Play history
 
 Off at first. Turn on **Keep play history** in Settings, Play history, and each time anyone plays a film or an episode is kept: who, on which screen, when, and how far they got. **View history** shows a week at a time (each play's picture, title, who, the device it played on, when, and its library), newest first, with buttons for the week before and after, and filters for who and which library. **Clear history** (unfold it first) forgets all of it. Only the owner sees Settings, so only the owner sees the history.

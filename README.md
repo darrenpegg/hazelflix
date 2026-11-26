@@ -4,6 +4,7 @@ Your films, series, music and photos, played in a browser or sent to the TVs on 
 
 - **Films and series** from your own folders, with posters, cast and ratings (TMDB, IMDb's datasets, Wikidata).
 - **Plays anywhere on your network:** in a browser, or sent to a TV or games console that speaks DLNA, converted on the fly to what that screen can play.
+- **Subtitles** beside your files or fetched from OpenSubtitles in your languages, styled as you like, sent to TVs too (or drawn into the picture for those that don't show them).
 - **Music**, with each song's card shown on the TV while it plays.
 - **Photos as a screen saver:** upload them from a phone, and every idle screen shows them, gently moving, with where and when each was taken.
 
@@ -21,6 +22,7 @@ HazelFlix is one JavaScript file, run by Node.js. There's nothing to install fro
 - [Node.js](https://nodejs.org) 22.5 or later
 - [ffmpeg](https://ffmpeg.org) and ffprobe (Mac: `brew install ffmpeg`)
 - `curl` and `sqlite3`, for IMDb's and GeoNames' data (both come with macOS)
+- optionally, an ffmpeg that can draw subtitles (libass's), for subtitles drawn into the picture on TVs that don't show them (Mac: `brew install ffmpeg-full`, kept beside ffmpeg; HazelFlix finds it)
 
 It's made and checked on Macs (Apple silicon), and in Docker (Linux). On a Mac it converts video with the Mac's own encoder (VideoToolbox); elsewhere with x264 and x265, in software.
 

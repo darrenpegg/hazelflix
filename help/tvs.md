@@ -39,6 +39,12 @@ That's all. Now:
 
 The same steps with a hidden *Living room* profile, sharing every library but the ones for grown-ups. The owner's profile always sees everything, so a TV left on the owner's sees everything too.
 
+## Subtitles on a TV
+
+A film's subtitles (your first language's) go to a TV with it, for the TV to show: its own menu turns them on and off. Samsung TVs take them; some TVs and players (an Xbox) don't.
+
+For those, **Your profile**, On TVs, **Subtitles in the picture** draws them into the picture instead: a film you send to a TV, or a TV given your profile browses, plays as a stream with them in it. It needs an ffmpeg that can draw them, Homebrew's *ffmpeg-full* (`brew install ffmpeg-full`); the page says when there isn't one. The stream is made as it plays, so a TV browsing can't skip ahead in it itself.
+
 ## Screen savers
 
 Each screen has its own screen saver: the photos of the photo libraries ticked for it in Settings (under Players on the network, or Browsers), of those its profile sees. Nothing ticked means every photo library it sees. So the kids' TV can show the holiday photos, and not the ones from the office party. More in [Music and photos](music-and-photos.md#screen-savers).

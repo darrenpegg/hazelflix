@@ -37,3 +37,13 @@ A collection's page has *Edit this collection*: its name and description, its po
 ## Taking a file out
 
 A file's **Delete** (for the library's maker, or the owner) takes it out of HazelFlix. The file itself is never deleted, and it stays out even though a scan still finds it.
+
+## Subtitles
+
+At the bottom of a file's Edit page are its subtitles: each language, and where it's from.
+
+- **Beside the file:** `.srt` files named as the film is (`Film.en.srt`). These play.
+- **Inside the file:** subtitles the file carries itself. HazelFlix doesn't show these, though a browser playing the file directly may show its text ones on its own.
+- **OpenSubtitles:** each language in Settings, *Subtitles*, and whether it's been fetched.
+
+**Turn off** a subtitle you don't want and it's left out of the player (an OpenSubtitles language isn't fetched for that film); **Turn on** brings it back. **Use OpenSubtitles' only** leaves the files beside it out and fetches those languages from OpenSubtitles instead. **Fetch a different one** replaces a fetched subtitle that's badly timed with the next best, and never fetches the old one again. **Fetch the missing ones now** tries again for languages none were found for.

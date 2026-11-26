@@ -6,7 +6,8 @@ HazelFlix comes as a folder, from [its releases](https://github.com/darrenpegg/h
 
 - [Node.js](https://nodejs.org) 22.5 or later,
 - [ffmpeg](https://ffmpeg.org) and ffprobe (on a Mac, `brew install ffmpeg`),
-- `curl` and `sqlite3`, which come with a Mac.
+- `curl` and `sqlite3`, which come with a Mac,
+- optionally, an ffmpeg that can draw subtitles, for [subtitles in the picture](tvs.md#subtitles-on-a-tv) on TVs that don't show them (on a Mac, `brew install ffmpeg-full`: it's kept beside ffmpeg, and HazelFlix finds it).
 
 Then, in the folder:
 
@@ -39,13 +40,15 @@ The folder has a `Dockerfile`; its `README.md` says how to build and run it. TVs
 
 ### Your data, and updating
 
-Your data (the database, settings, keys, photos, posters and converted copies) is kept outside the folder: on a Mac in `~/Library/Application Support/HazelFlix`, on Linux in `~/.local/share/hazelflix`, or wherever `HAZELFLIX_DATA` says. So to update, replace the folder with the new one and start it again.
+Your data (the database, settings, keys, photos, posters and converted copies) is kept outside the folder: on a Mac in `~/Library/Application Support/HazelFlix`, on Linux in `~/.local/share/hazelflix`, or wherever `HAZELFLIX_DATA` says. So to update, replace the folder with the new one and start it again. Pages left open on your phone, laptop or a *Ready to play* screen load the new version by themselves (once nothing on them is playing).
 
 > Back up your data folder before updating: a new version may change the database as it starts, and there's no going back.
 
 ## The first time
 
 The first profile, **Owner**, is made for you, and with one profile and no code HazelFlix goes straight in. Rename it on *Your profile* (the circle at the top right). Only the owner changes Settings. More on [profiles](profiles.md).
+
+The home page has a film at the top, then Continue watching, what's been added to each library, TV shows, the top rated, a row for each genre, and one of your collections (its name opens it; *All collections* lists them all). The film at the top and the collection change every ten minutes.
 
 ## Your first library
 

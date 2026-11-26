@@ -1,5 +1,22 @@
 # HazelFlix release notes
 
+## HazelFlix 2416 (25 November 2026)
+
+**Before you update:** back up your data folder. This version adds columns to the database the first time it starts.
+
+### Subtitles
+- **Subtitles from OpenSubtitles:** add a free OpenSubtitles key in Settings, *Subtitles*, and your languages, and each film's subtitles are fetched when you open its page or play it (an episode's, and the next one's, when it plays), then kept. Your OpenSubtitles login, if you add it, gives your account's downloads a day. Subtitles HazelFlix finds are matched to your file where they can be.
+- **How subtitles look:** their font, size, colour, background, corners (rounded puts them in one box) and position (inside the title-safe area at first, or higher, or on the bottom edge) in Settings, *Subtitles*, with a preview that follows your choices; and whether they show as a film starts.
+- **A film's subtitles on its Edit page:** each language and where it's from (beside the file, inside it, or OpenSubtitles, with where that's got to). *Turn off* any one you don't want; *Use OpenSubtitles' only* sets aside the ones beside the file; *Fetch a different one* replaces a badly timed download.
+- **Subtitles on TVs:** a film's subtitles (your first language's) go with it to a TV, whether it's browsed from the TV or sent to it, in the ways Samsung and most other TVs look for them; the TV's own menu turns them on and off.
+- **Subtitles in the picture, for whoever likes them:** *Your profile*, *On TVs*, *Subtitles in the picture*: films play on a TV with their subtitles drawn into the picture, for TVs (an Xbox) that don't show them themselves. It needs an ffmpeg that can draw subtitles: on a Mac, `brew install ffmpeg-full` (it's kept beside ffmpeg, and HazelFlix finds it).
+- **Subtitles beside a film are labelled by language** (`Film.fr.srt` shows as French), and **only a film's own are offered:** in a folder of many films, one starting *The* had been offered every *The* film's subtitles. A subtitle is a film's when it's named as the film is, with a language at most after (`Film.srt`, `Film.en.srt`), or when the film is alone in its folder.
+- **Fixed:** on *Ready to play*, a film with no subtitles could still show the last film's.
+
+### Everything else
+- **The home page shows one collection** rather than all of them, a different one every ten minutes (as the film at the top changes). Its name opens it; *All collections* beside it opens the Collections page.
+- **Pages update themselves:** a page left open when HazelFlix is updated loads again by itself (not while it's playing something), so it never runs the old version. A *Ready to play* screen asks for its tap again after.
+
 ## HazelFlix 2391 (24 November 2026)
 
 **Before you update:** back up your data folder. This version adds a table to the database the first time it starts.

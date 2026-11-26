@@ -16,11 +16,11 @@ It does the rest of what you'd expect too: it finds what your films are (posters
 **Setting it up**
 
 - [Libraries](libraries.md): what goes in each, how they're scanned, a folder as one series, and sharing.
-- [Profiles](profiles.md): who's watching, codes, and hidden profiles.
-- [TVs and what they can play](tvs.md): each TV's own profile, and how to keep a TV to the right libraries.
+- [Profiles](profiles.md): who's watching, codes, hidden profiles, and subtitles in the picture.
+- [TVs and what they can play](tvs.md): each TV's own profile, how to keep a TV to the right libraries, and subtitles on a TV.
 
 **Using it**
 
-- [Playing](playing.md): sending to a screen, the remote, and converting.
-- [Editing](editing.md): titles, pictures from the film itself, people, collections, and taking a file out.
+- [Playing](playing.md): sending to a screen, the remote, converting, and subtitles: fetched from OpenSubtitles, and how they look.
+- [Editing](editing.md): titles, pictures from the film itself, people, collections, a film's subtitles, and taking a file out.
 - [Music and photos](music-and-photos.md): albums, queues, the gallery and screen savers.
